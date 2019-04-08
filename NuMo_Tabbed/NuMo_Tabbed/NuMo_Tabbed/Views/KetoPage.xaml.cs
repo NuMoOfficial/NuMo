@@ -64,5 +64,10 @@ namespace NuMo_Tabbed.Views
                 DisplayAlert("Invalid Input", "Please enter a number", "OK");
             }
         }
+        //open nutrient as function over time line graph
+        async void AddLineNutr(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new NutrientVisual());
+        }
     }
 }
