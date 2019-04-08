@@ -787,11 +787,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj",
+      "projectUniqueName": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj",
       "projectName": "NuMo_Tabbed",
-      "projectPath": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj",
+      "projectPath": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj",
       "packagesPath": "C:\\Users\\llvin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\obj\\",
+      "outputPath": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

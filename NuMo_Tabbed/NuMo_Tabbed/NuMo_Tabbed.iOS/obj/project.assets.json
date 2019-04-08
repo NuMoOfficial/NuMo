@@ -1542,11 +1542,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.iOS\\NuMo_Tabbed.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.iOS\\NuMo_Tabbed.iOS.csproj",
       "projectName": "NuMo_Tabbed.iOS",
-      "projectPath": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.iOS\\NuMo_Tabbed.iOS.csproj",
+      "projectPath": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.iOS\\NuMo_Tabbed.iOS.csproj",
       "packagesPath": "C:\\Users\\llvin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.iOS\\obj\\",
+      "outputPath": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -1563,8 +1563,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj": {
-              "projectPath": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj"
+            "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj": {
+              "projectPath": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj"
             }
           }
         }

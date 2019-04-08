@@ -2300,11 +2300,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.Android\\NuMo_Tabbed.Android.csproj",
+      "projectUniqueName": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.Android\\NuMo_Tabbed.Android.csproj",
       "projectName": "NuMo_Tabbed.Android",
-      "projectPath": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.Android\\NuMo_Tabbed.Android.csproj",
+      "projectPath": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.Android\\NuMo_Tabbed.Android.csproj",
       "packagesPath": "C:\\Users\\llvin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.Android\\obj\\",
+      "outputPath": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -2321,8 +2321,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj": {
-              "projectPath": "C:\\Users\\llvin\\source\\repos\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj"
+            "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj": {
+              "projectPath": "C:\\Users\\llvin\\Desktop\\NuMo\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.csproj"
             }
           }
         }
