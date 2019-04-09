@@ -26,13 +26,13 @@ namespace NuMo_Tabbed.Views
 
         public CameraStuff()
         {
-            new CameraStuff(DateTime.Today);
-        }
-
-        public CameraStuff(DateTime dateS)
-        {
+        //    new CameraStuff(DateTime.Today);
+        //}
+        //
+        //public CameraStuff(DateTime dateS)
+        //{
             // Initialize the toolbar with save button, date, and title
-            this.date = dateS;
+            this.date = DateTime.Today;
             ToolbarItem refresh = new ToolbarItem();
             refresh.Text = "Refresh";
             refresh.Clicked += refreshButtonClicked;

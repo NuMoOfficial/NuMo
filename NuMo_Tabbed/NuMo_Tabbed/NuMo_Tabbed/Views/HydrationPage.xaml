@@ -9,7 +9,7 @@
             <StackLayout Orientation="Vertical" HorizontalOptions="Center">
                 <DatePicker x:Name="datePicker" MinimumDate="01/01/1970" Format="ddd, MMMM d" DateSelected="dateClicked"/>
                 <Label x:Name="Drinks" Text="Default" FontSize="Large" HorizontalOptions="Center"/>
-                <Image x:Name="MainImage" HorizontalOptions="Center" HeightRequest="400" />
+                <Image x:Name="MainImage" HorizontalOptions="Center" HeightRequest="350" />
             </StackLayout>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
 
