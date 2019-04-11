@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NuMo_Tabbed.ItemViews;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -67,7 +68,15 @@ namespace NuMo_Tabbed.Views
         //open nutrient as function over time line graph
         async void AddLineNutr(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new NutrientVisual());
+            List<MyDayReminderItem> ketoList = db.getKetoHistory();
+            double[] data = new double[] { };
+            
+            for (var i = 0; i < ketoList.Count; i++)
+            {
+                data[i] = double.Parse(ketoList.ElementAt(i).imageString);
+            }
+            
+            await Navigation.PushAsync(new NutrientVisual(data));
         }
     }
 }

@@ -11,6 +11,7 @@ using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.Xamarin.Forms;
 using OxyPlot.Axes;
+using NuMo_Tabbed.ItemViews;
 
 namespace NuMo_Tabbed.Views
 {
@@ -23,11 +24,11 @@ namespace NuMo_Tabbed.Views
             VerticalOptions = LayoutOptions.Fill,
             HorizontalOptions = LayoutOptions.Fill,
         };
-        public NutrientVisual()
+
+        public NutrientVisual(double[] data)
         {
             InitializeComponent();
 
-            int[] data = new int[] { 1, 2, 5, 10, 3, 6, 0 };
             String name = "Keto Index Over Time";
             var s1 = new LineSeries()
             {
@@ -39,7 +40,7 @@ namespace NuMo_Tabbed.Views
                 MarkerFill = OxyColors.PaleTurquoise,
                 MarkerStrokeThickness = 2.0
             };
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < data.Length; i++)
             {
                 s1.Points.Add(new DataPoint(i, data[i]));
             }
@@ -50,6 +51,5 @@ namespace NuMo_Tabbed.Views
             nutrView.Model.Title = name;
             Content = nutrView;
         }
-
     }
 }

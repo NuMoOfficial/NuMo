@@ -428,6 +428,16 @@ namespace NuMo_Tabbed
                 return "";
         }
 
+        //retrieves the foodhistory associated to a certain date
+        public List<MyDayReminderItem> getKetoHistory()
+        {
+            var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Keto_Val as imageString from KETO_VALUES WHERE Keto_Date BETWEEN '{0}' AND '{1}", DateTime.Today, DateTime.Today.AddDays(-7)));
+            if (values.Any())
+                return values;
+            else
+                return null;
+        }
+
         //save hydration log
         public void saveHydralog(String HydraName, String HYDRValue)
         {
