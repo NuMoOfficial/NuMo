@@ -429,13 +429,9 @@ namespace NuMo_Tabbed
         }
 
         //retrieves the foodhistory associated to a certain date
-        public List<MyDayReminderItem> getKetoHistory()
+        public List<MyDayReminderItem> getKetoHistory(DateTime date)
         {
-            var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Keto_Val as imageString from KETO_VALUES WHERE Keto_Date BETWEEN '{0}' AND '{1}", DateTime.Today, DateTime.Today.AddDays(-7)));
-            if (values.Any())
-                return values;
-            else
-                return null;
+            return dbConn.Query<MyDayReminderItem>(String.Format("SELECT Keto_Val as imageString from KETO_VALUES WHERE Keto_Date LIKE '%{0}%'", date));
         }
 
         //save hydration log

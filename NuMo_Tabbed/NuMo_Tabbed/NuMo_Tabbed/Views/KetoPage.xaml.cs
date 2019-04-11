@@ -68,15 +68,20 @@ namespace NuMo_Tabbed.Views
         //open nutrient as function over time line graph
         async void AddLineNutr(object sender, EventArgs args)
         {
-            List<MyDayReminderItem> ketoList = db.getKetoHistory();
-            double[] data = new double[] { };
-            
-            for (var i = 0; i < ketoList.Count; i++)
+            double[] ketoList = new double[7];
+
+            for (int i = 0; i < 7; i++)
             {
-                data[i] = double.Parse(ketoList.ElementAt(i).imageString);
+                var baseList = db.getKetoHistory(DateTime.Today.AddDays(-i));
+
+                foreach (var item in baseList)
+                {
+                    ketoList[i] = double.Parse(item.imageString);
+                    Console.WriteLine(ketoList[i]);
+                }
             }
-            
-            await Navigation.PushAsync(new NutrientVisual(data));
+
+            await Navigation.PushAsync(new NutrientVisual(ketoList));
         }
     }
 }
