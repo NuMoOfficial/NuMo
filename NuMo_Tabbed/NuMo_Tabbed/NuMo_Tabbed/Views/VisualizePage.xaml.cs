@@ -7,7 +7,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SkiaSharp;
 using NuMo_Tabbed.DatabaseItems;
-using SkiaSharp.Views.Desktop;
 using SkiaSharp.Views.Forms;
 
 namespace NuMo_Tabbed.Views
@@ -22,6 +21,7 @@ namespace NuMo_Tabbed.Views
         bool pageIsActive;
         double fill;
 
+        // inialize the days to visualize to 1
         int daysToLoad = 1;
 
         // lists of values for each DRI nutrient
@@ -31,9 +31,6 @@ namespace NuMo_Tabbed.Views
         List<double> DRImed = new List<double>();
         List<double> DRIhigh = new List<double>();
         List<double> nutConsumed = new List<double>();
-        List<bool> DRIlimit = new List<bool>(); // true if the nutrient is harmless beyond DRI // unset, unused
-        List<bool> displayNut = new List<bool>(); // which nutrients should be displayed  // unset, unused
-        List<int> canvasHashValues = new List<int>(); // list of hash values to identify canvases
 
         // light shades used for unfilled visualize bar drawings
         SKColor LIGHTRED = new SKColor(255, 181, 181);
@@ -89,20 +86,34 @@ namespace NuMo_Tabbed.Views
                 nutConsumed.Add(item.quantity);
             }
 
+            // conditional check to add in zero values if nothing has been consumed that day 
+            if (nutConsumed.Count() == 0)
+            {
+                for (var i = 0; i < 29; i++)
+                {
+                    nutConsumed.Add(0);
+                }
+            }
+
             // Calories text set
             var caloriesConsumed = nutConsumed.ElementAt(2);
             var caloriesDRI = DRImed.ElementAt(2);
             CaloriesCounter.Text = "Consumed " + caloriesConsumed.ToString("F0") + " out of your recomended " + caloriesDRI.ToString() + " " + nutNames.ElementAt(2);
 
+
             // Protein text set
             var proteinConsumed = nutConsumed.ElementAt(0);
             var proteinDRI = DRImed.ElementAt(0);
-            ProteinCounter.Text = "Consumed " + proteinConsumed.ToString("F0") + " out of your recomended " + proteinDRI.ToString() + " " + nutNames.ElementAt(0);
+            ProteinCounter.Text = "Consumed " + proteinConsumed.ToString("F0") + "g out of your recomended " + proteinDRI.ToString() + "g " + nutNames.ElementAt(0);
 
             // Sugar text set
             var sugarConsumed = nutConsumed.ElementAt(3);
             var sugarDRI = DRImed.ElementAt(3);
-            SugarCounter.Text = "Consumed " + sugarConsumed.ToString("F0") + " out of your recomended " + sugarDRI.ToString() + " " + nutNames.ElementAt(3);
+            SugarCounter.Text = "Consumed " + sugarConsumed.ToString("F0") + "g out of your recomended " + sugarDRI.ToString() + "g " + nutNames.ElementAt(3);
+
+            // Omega text set
+            var omegaConsumed = nutConsumed.ElementAt(nutConsumed.Count-1);
+            OmegaCounter.Text = "Your ratio is " + omegaConsumed.ToString("F1") + ", it is recommended to be at or below 4.0";
         }
 
         private void ResetDRIs()
@@ -113,7 +124,6 @@ namespace NuMo_Tabbed.Views
             DRImed.Clear();
             DRIhigh.Clear();
             nutConsumed.Clear();
-            DRIlimit.Clear();
         }
 
         private List<Nutrient> GetNutrients()
@@ -127,11 +137,11 @@ namespace NuMo_Tabbed.Views
             }
             var nutrientList = db.getNutrientsFromHistoryList(baseList);
 
-            foreach (var item in nutrientList)
-            {
-                if (item.DisplayName != "Omega6/3 Ratio")
-                    item.quantity /= daysToLoad;
-            }
+            //foreach (var item in nutrientList)
+            //{
+            //    if (item.DisplayName != "Omega6/3 Ratio")
+            //        item.quantity /= daysToLoad;
+            //}
             return nutrientList;
         }
 
@@ -166,6 +176,8 @@ namespace NuMo_Tabbed.Views
             base.OnAppearing();
 
             InitializeDRIs();
+            OmegaTargetCanvas.InvalidateSurface();
+
             pageIsActive = true;
 
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
@@ -183,7 +195,7 @@ namespace NuMo_Tabbed.Views
         /* Method to create the underlying empty bar for nutritional visualizations       
          * Called for each base cell of each nutrient
          */
-        private void DrawBaseVisual(SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
+        private void DrawBaseVisual(SKPaintSurfaceEventArgs e)
         {
             SKCanvas canvas = e.Surface.Canvas;
 
@@ -196,6 +208,10 @@ namespace NuMo_Tabbed.Views
 
                 var width = e.Info.Width - 2 * HORIZONTALPADDING;
                 var height = e.Info.Height - 2 * VERTICALPADDING;
+
+                // The black outline to the visualize bar
+                paint.Color = Color.Black.ToSKColor();
+                canvas.DrawRoundRect(new SKRoundRect(new SKRect(HORIZONTALPADDING - 19, VERTICALPADDING - 4, width + HORIZONTALPADDING + 19, height + VERTICALPADDING + 4), 15f, 15f), paint);
 
                 // The left rounded edge of the nutrition visual
                 // Starts Red to indicate that it could fill up
@@ -271,20 +287,21 @@ namespace NuMo_Tabbed.Views
         }
 
         // helper methods to draw the different DRI bars
-        void OnVisualizePaintSurfaceCalories(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs args) { OnVisualizePaintSurface(sender, args, "dri_calories"); }
-        void OnVisualizePaintSurfaceProtein(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs args) { OnVisualizePaintSurface(sender, args, "dri_protein"); }
-        void OnVisualizePaintSurfaceSugar(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs args) { OnVisualizePaintSurface(sender, args, "dri_sugar"); }
+        void OnVisualizePaintSurfaceCalories(object sender, SKPaintSurfaceEventArgs args) { OnVisualizePaintSurface(sender, args, "dri_calories"); }
+        void OnVisualizePaintSurfaceProtein(object sender, SKPaintSurfaceEventArgs args) { OnVisualizePaintSurface(sender, args, "dri_protein"); }
+        void OnVisualizePaintSurfaceSugar(object sender, SKPaintSurfaceEventArgs args) { OnVisualizePaintSurface(sender, args, "dri_sugar"); }
+
 
         /* Method to create backdrop and draw filled bars for the canvases
          * Takes in the sender and SKCanvas       
          */
-        void OnVisualizePaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs args, string dri)
+        void OnVisualizePaintSurface(object sender, SKPaintSurfaceEventArgs args, string dri)
         {
             DrawBaseVisual(args);
             OnVisualizeAnimateBar(args, dri);
         }
 
-        void OnVisualizeAnimateBar(SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e, string dri)
+        void OnVisualizeAnimateBar(SKPaintSurfaceEventArgs e, string dri)
         {
             var width = e.Info.Width - 60;
             var height = e.Info.Height - 30;
@@ -396,8 +413,137 @@ namespace NuMo_Tabbed.Views
                         canvas.DrawRoundRect(width - VERTICALPADDING, VERTICALPADDING, 30f, height + VERTICALPADDING, VERTICALPADDING, VERTICALPADDING, paint);
                     }
                 }
+
+                paint.Color = Color.Black.ToSKColor();
+                canvas.DrawRect(new SKRect(currentFill * width + HORIZONTALPADDING - 3, VERTICALPADDING, currentFill * width + HORIZONTALPADDING + 3, height + VERTICALPADDING), paint);
+
+                // Vertical lines
+                canvas.DrawRect(new SKRect(width / 2 + HORIZONTALPADDING - 2, VERTICALPADDING, width / 2 + HORIZONTALPADDING + 2, height + VERTICALPADDING), paint);
+                canvas.DrawRect(new SKRect(width * 1 / 10 + HORIZONTALPADDING - 2, VERTICALPADDING, width * 1 / 10 + HORIZONTALPADDING + 2, height + VERTICALPADDING), paint);
+                canvas.DrawRect(new SKRect(width * 3 / 10 + HORIZONTALPADDING - 2, VERTICALPADDING, width * 3 / 10 + HORIZONTALPADDING + 2, height + VERTICALPADDING), paint);
+                canvas.DrawRect(new SKRect(width * 7 / 10 + HORIZONTALPADDING - 2, VERTICALPADDING, width * 7 / 10 + HORIZONTALPADDING + 2, height + VERTICALPADDING), paint);
+                canvas.DrawRect(new SKRect(width * 9 / 10 + HORIZONTALPADDING - 2, VERTICALPADDING, width * 9 / 10 + HORIZONTALPADDING + 2, height + VERTICALPADDING), paint);
+
             }
 
+        }
+
+        void OnVisualizePaintSurfaceOmegas(object sender, SKPaintSurfaceEventArgs args)
+        {
+            SKColor ARROWSHADE = new SKColor(185, 220, 223);
+            SKColor CIRCLEDARK = new SKColor(72, 88, 88);
+            SKColor CIRCLEBLUE = new SKColor(78, 161, 179);
+            SKColor CIRCLESKY = new SKColor(118, 196, 196);
+
+            SKCanvas canvas = args.Surface.Canvas;
+            var width = args.Info.Width;
+            var height = args.Info.Height;
+
+            var radius = Math.Min(width, height) / 2;
+
+            using (SKPaint paint = new SKPaint())
+            {
+                canvas.Clear(BASEBACKGROUND);
+
+                // central point for each of the circles
+                var centerPoint = new SKPoint(width / 2, height / 2);
+
+                // outer dark ring of target
+                paint.Color = CIRCLEDARK;
+                canvas.DrawCircle(centerPoint, (float)(radius * 0.8), paint);
+
+                // outer blue ring of target
+                paint.Color = CIRCLEBLUE;
+                canvas.DrawCircle(centerPoint, (float)(radius * 0.6), paint);
+
+                // inner blue ring of target
+                paint.Color = CIRCLESKY;
+                canvas.DrawCircle(centerPoint, (float)(radius * 0.4), paint);
+
+                // inner dark ring of target
+                paint.Color = CIRCLEDARK;
+                canvas.DrawCircle(centerPoint, (float)(radius * 0.2), paint);
+
+                //arrow calculations
+                SKPath ArrowPath = CalculateArrowPath(height, width);
+
+                // arrow drawing
+                paint.Color = ARROWSHADE;
+                canvas.DrawPath(ArrowPath, paint);
+            }
+
+        }
+
+        private SKPath CalculateArrowPath(double height, double width)
+        {
+            SKPath ArrowPath = new SKPath();
+            SKPoint[] points = new SKPoint[12];
+
+            double radius = Math.Min(height, width) / 2;
+            float centerX = (float)(width / 2);
+            float centerY = (float)(height / 2);
+
+            // omega 6 to 3 ration from nutrients consumed
+            double ratioO63 = nutConsumed.ElementAt(nutConsumed.Count-1);
+
+            double tipX = 0;
+            // calculation for where the tip point of the arrow should be
+            if (ratioO63 >= 20) { tipX = width / 2 - 0.8 * radius; }
+            else { tipX = width / 2 - 0.8 * radius * ratioO63 / 20; }
+
+
+            SKPoint tipPoint = new SKPoint((float)tipX, centerY);
+            points[0] = tipPoint;
+
+            // arrowhead left and right points
+            var headWidth = radius * 0.1;
+            var headHeight = radius * 0.2;
+            SKPoint leftHeadPoint = new SKPoint((float)(tipX - headWidth), (float)(centerY - headHeight));
+            points[1] = leftHeadPoint;
+
+            SKPoint rightHeadPoint = new SKPoint((float)(tipX + headWidth), (float)(centerY - headHeight));
+            points[11] = rightHeadPoint;
+
+            // Arrow Shaft base points
+            var shaftWidth = radius * 0.04;
+            var shaftBaseHeight = radius * 0.2;
+            SKPoint leftShaftBasePoint = new SKPoint((float)(tipX - shaftWidth), (float)(centerY - shaftBaseHeight));
+            points[2] = leftShaftBasePoint;
+
+            SKPoint rightShaftBasePoint = new SKPoint((float)(tipX + shaftWidth), (float)(centerY - shaftBaseHeight));
+            points[10] = rightShaftBasePoint;
+
+            // Arrow Shaft back points
+            var shaftBackHeight = radius * 0.6;
+            SKPoint leftShaftBackPoint = new SKPoint((float)(tipX - shaftWidth), (float)(centerY - shaftBackHeight));
+            points[3] = leftShaftBackPoint;
+
+            SKPoint rightShaftBackPoint = new SKPoint((float)(tipX + shaftWidth), (float)(centerY - shaftBackHeight));
+            points[9] = rightShaftBackPoint;
+
+            // Arrow Feathers bottom points
+            var featherBottomHeight = radius * 0.7;
+            var featherWidth = radius * 0.075;
+            SKPoint leftFeatherBottomPoint = new SKPoint((float)(tipX - featherWidth), (float)(centerY - featherBottomHeight));
+            points[4] = leftFeatherBottomPoint;
+
+            SKPoint rightFeatherBottomPoint = new SKPoint((float)(tipX + featherWidth), (float)(centerY - featherBottomHeight));
+            points[8] = rightFeatherBottomPoint;
+
+            // Arrow Feathers top point
+            var feathertopHeight = radius * 0.9;
+            SKPoint leftFeatherTopPoint = new SKPoint((float)(tipX - featherWidth), (float)(centerY - feathertopHeight));
+            points[5] = leftFeatherTopPoint;
+
+            SKPoint rightFeatherTopPoint = new SKPoint((float)(tipX + featherWidth), (float)(centerY - feathertopHeight));
+            points[7] = rightFeatherTopPoint;
+
+            // Central back point
+            SKPoint centralBackPoint = new SKPoint((float)tipX, (float)(centerY - radius * 0.70));
+            points[6] = centralBackPoint;
+
+            ArrowPath.AddPoly(points, true);
+            return ArrowPath;
         }
     }
 }
