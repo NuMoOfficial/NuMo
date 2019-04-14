@@ -20,7 +20,7 @@
         <NavigationPage Title="Create">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_about.png"/>
+                    <On Platform="iOS" Value="Plus.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
@@ -31,7 +31,7 @@
         <NavigationPage Title="Camera">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_about.png"/>
+                    <On Platform="iOS" Value="camera.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
@@ -53,7 +53,7 @@
         <NavigationPage Title="Profile">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="tab_about.png"/>
+                    <On Platform="iOS" Value="profile.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
