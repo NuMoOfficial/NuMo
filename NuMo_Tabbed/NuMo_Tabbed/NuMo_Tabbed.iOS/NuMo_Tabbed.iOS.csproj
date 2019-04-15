@@ -73,6 +73,15 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="Resources\numoDatabase.db" />
+    <BundleResource Include="Resources\camera.png" />
+    <BundleResource Include="Resources\camera%402x.png" />
+    <BundleResource Include="Resources\camera%403x.png" />
+    <BundleResource Include="Resources\Plus_Tab.png" />
+    <BundleResource Include="Resources\Plus_Tab%402x.png" />
+    <BundleResource Include="Resources\Plus_Tab%403x.png" />
+    <BundleResource Include="Resources\profile.png" />
+    <BundleResource Include="Resources\profile%402x.png" />
+    <BundleResource Include="Resources\profile%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -218,11 +227,12 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\NuMo_Tabbed\NuMo_Tabbed.csproj">
-      <Project>{EF16BFBE-3C2B-4B80-892D-A9F48EAC403C}</Project>
+      <Project>{A03CA37A-5A6F-4B37-9376-C8BBAF44C884}</Project>
       <Name>NuMo_Tabbed</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <BundleResource Include="Resources\Plus.png" />
   </ItemGroup>
   <ItemGroup>
@@ -248,5 +258,10 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\profile%403x.png" />
+=======
+    <Folder Include="Assets.xcassets\Plus_Tab.imageset\" />
+    <Folder Include="Assets.xcassets\camera.imageset\" />
+    <Folder Include="Assets.xcassets\profile.imageset\" />
+>>>>>>> c284aa1d166a0076a23a28463282b35b4966ba6f
   </ItemGroup>
 </Project>
