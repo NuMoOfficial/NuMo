@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{BCE35947-7B54-471A-A99D-19B6DF9CB435}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NuMo_Tabbed/NuMo_Tabbed/Views/MainPage.xaml">
+    <Files>
+      <File FileName="NuMo_Tabbed/NuMo_Tabbed/Views/MainPage.xaml" />
+      <File FileName="NuMo_Tabbed/NuMo_Tabbed/Views/MainPage.xaml.cs" Line="21" Column="41" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="NuMo_Tabbed" expanded="True">
+            <Node name="NuMo_Tabbed" expanded="True">
+              <Node name="Views" expanded="True">
+                <Node name="MainPage.xaml" expanded="True" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.NuMo__Tabbed.Android PreferredExecutionTarget="Android.Android_Accelerated_Oreo" />
+  <MonoDevelop.Ide.ItemProperties.NuMo__Tabbed.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.B76DCE6D-089D-44D0-8BE4-F19D04B2D717" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
