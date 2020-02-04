@@ -214,15 +214,18 @@ namespace NuMo_Tabbed.Views
 
             String genderString = db.getSettingsItem("gender");
             Console.WriteLine("GS = " + genderString);
-            gender = int.Parse(genderString);
+            int.TryParse(genderString, out gender);
+            //gender = int.Parse(genderString);
 
             String pregnantString = db.getSettingsItem("pregnant");
             Console.WriteLine("PS = " + pregnantString);
-            pregnant = int.Parse(pregnantString);
+            int.TryParse(pregnantString, out pregnant);
+            //pregnant = int.Parse(pregnantString);
 
             String lactatingString = db.getSettingsItem("lactating");
             Console.WriteLine("LS = " + lactatingString);
-            lactating = int.Parse(lactatingString);
+            int.TryParse(lactatingString, out lactating);
+            //lactating = int.Parse(lactatingString);
 
 
             //calculations for infants

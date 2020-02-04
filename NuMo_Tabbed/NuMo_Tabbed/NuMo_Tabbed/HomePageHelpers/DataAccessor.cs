@@ -184,7 +184,9 @@ namespace NuMo_Tabbed
 
         public string getDRIValue(String DRIName)
         {
-            var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT DRI_Val as imageString from DRI_VALUES WHERE DRI_Name = '{0}'", DRIName));
+            var args = new List<object>();
+            args.Add(DRIName);
+            var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT DRI_Val as imageString from DRI_VALUES WHERE DRI_Name = '{0}'", args.ToArray()));
             if (values.Any())
                 return values.First().imageString;
             else

@@ -40,6 +40,7 @@ namespace NuMo_Tabbed.Views
 
         public VisualizePage()
         {
+           
             InitializeComponent();
 
             date = datePicker.Date;
@@ -68,7 +69,21 @@ namespace NuMo_Tabbed.Views
             foreach (var DRIname in nutDRINames)
             {
                 var DRIthreshholds = db.getDRIThresholds(DRIname);
-                var midDRI = Double.Parse(db.getDRIValue(DRIname)) * daysToLoad;
+
+                // added if clause so that if the string coming back is empty that a 0 is put instead 
+                // otherwise it will error out trying to parse an empty string.
+                Double midDRI;
+                if (Double.TryParse(db.getDRIValue(DRIname), out midDRI))
+                {
+                    midDRI *= daysToLoad;
+                }
+                else
+                {
+                    midDRI = 0.0;
+                }
+                //original code
+                //var midDRI = Double.Parse(db.getDRIValue(DRIname)) * daysToLoad;
+                
 
                 DRImed.Add(midDRI);
 
