@@ -17,10 +17,7 @@ namespace NuMo_Tabbed.Views
 			InitializeComponent ();
 		}
 
-        async void AddVisualize(object sender, EventArgs args)
-        {
-            await Navigation.PushAsync(new VisualizePage());
-        }
+        async void AddVisualize(object sender, EventArgs args) => await Navigation.PushAsync(new VisualizePage());  //waits for the visualize page button to be pushed
 
         async void AddDRI(object sender, EventArgs args)
         {

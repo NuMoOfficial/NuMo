@@ -40,8 +40,15 @@ namespace NuMo_Tabbed.Views
 
         public VisualizePage()
         {
-            InitializeComponent();
-
+            try
+            {
+                InitializeComponent();
+                //ResetDRIs();
+            }
+            catch (Exception e)
+            {
+                Empty_profile_error(this, e);
+            }
             date = datePicker.Date;
             ViewItemList = new List<IMyDayViewItem>();
             var timeArr = new String[] { "Today", "This Week", "This Month" };
@@ -49,6 +56,13 @@ namespace NuMo_Tabbed.Views
             timePicker.SelectedItem = timeArr[0];
 
         }
+
+        private async void Empty_profile_error(object sender, Exception e)
+        {
+            Console.WriteLine(e.Message);
+            await DisplayAlert("No Profile Exists", "Create a Profile to see Visualization", "OK");
+        }
+
 
         /* method to populate the DRI lists and names
          * used as a precurser to creating the visualize elements

@@ -8,7 +8,7 @@ using System.Linq;
 
 /* This is the page where the user's will enter their settings.
  * They are forced here the first time they open the app.
- * They are not allowed to leave unless certain things are filled in
+ * They are not allowed to leave unless certain things are filled in (not true when debugging)
  * These settings affect the DRI values
  */
 

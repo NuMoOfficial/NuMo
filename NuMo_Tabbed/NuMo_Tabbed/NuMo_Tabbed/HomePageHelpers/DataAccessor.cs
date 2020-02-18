@@ -13,7 +13,7 @@ using static NuMo_Tabbed.NumoNameSearch;
 
 namespace NuMo_Tabbed
 {
-    //Impliments Singleton design pattern: This class is the focus point of all database queries
+    //Implements Singleton design pattern: This class is the focus point of all database queries
     class DataAccessor
     {
         private static DataAccessor accessor;
@@ -87,7 +87,7 @@ namespace NuMo_Tabbed
             item.convertions.AddRange(convertItems);
         }
 
-        //Retrives custom quantifiers from the database for a food_no
+        //Retrieves custom quantifiers from the database for a food_no
         public List<ConvertItem> getCustomQuantifiers(int food_no)
         {
             string data_num = food_no.ToString();
@@ -162,11 +162,14 @@ namespace NuMo_Tabbed
 
         public string getSettingsItem(String settingName)
         {
-            var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Setting_Val as imageString from SETTINGS WHERE Setting_Name = '{0}'", settingName));
-            if (values.Any())
-                return values.First().imageString;
-            else
-                return "";
+            //dbConn.Query<MyDayReminderItem>(String.Format("Delete from SETTINGS")); //use this to delete profile keep return ""; also
+            //dbConn.Query<MyDayReminderItem>(String.Format("Delete from DRI_VALUES")); //use this to delete DRI_Values keep return ""; also
+              var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Setting_Val as imageString from SETTINGS WHERE Setting_Name = '{0}'", settingName));
+             if (values.Any())
+                 return values.First().imageString;
+             else
+                 return "";
+                 
         }
 
         public void saveDRIValue(String DRIName, String DRIValue)
