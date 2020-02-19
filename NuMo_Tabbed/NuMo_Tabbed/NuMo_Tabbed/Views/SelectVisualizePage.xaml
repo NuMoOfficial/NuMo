@@ -5,8 +5,8 @@
              Title="Visualize Nutritional Information">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Visualize Nutrients" HeightRequest="50" HorizontalOptions="Center" Clicked="AddVisualize"/>
-            <Button Text="View DRI Values" HeightRequest="50" HorizontalOptions="Center" Clicked="AddDRI" />
+            <Button Text="Visualize Nutrients" WidthRequest="175" HeightRequest="50" HorizontalOptions="Center" Clicked="AddVisualize"/>
+            <Button Text="View DRI Values" WidthRequest="175" BackgroundColor="#76c1c4" HeightRequest="50" HorizontalOptions="Center" Clicked="AddDRI" />
             <Button Text="View Hydration" HeightRequest="50" HorizontalOptions="Center" Clicked="AddHydration" />
         </StackLayout>
     </ContentPage.Content>

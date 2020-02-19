@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,7 +28,7 @@ namespace NuMo_Tabbed.Views
             var tapped = new TapGestureRecognizer();
             tapped.Tapped += (s, e) =>
             {
-                Device.OpenUri(new Uri("https://perfectketo.com/track-your-glucose-ketone-index/"));
+                Launcher.OpenAsync(new Uri("https://perfectketo.com/track-your-glucose-ketone-index/"));
             };
 
             hyperlink.GestureRecognizers.Add(tapped);
