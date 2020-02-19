@@ -1,15 +1,11 @@
 ﻿<Properties StartupConfiguration="{BCE35947-7B54-471A-A99D-19B6DF9CB435}|Default">
   <MonoDevelop.Ide.Workbench>
-    <Files>
-      <File FileName="NuMo_Tabbed/NuMo_Tabbed.iOS/Info.plist" />
-      <File FileName="NuMo_Tabbed/NuMo_Tabbed.iOS/Entitlements.plist" />
-    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="NuMo_Tabbed" expanded="True">
             <Node name="NuMo_Tabbed.iOS" expanded="True">
-              <Node name="Info.plist" selected="True" />
+              <Node name="Entitlements.plist" selected="True" />
             </Node>
           </Node>
         </State>
