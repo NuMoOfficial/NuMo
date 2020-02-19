@@ -40,15 +40,9 @@ namespace NuMo_Tabbed.Views
 
         public VisualizePage()
         {
-            try
-            {
-                InitializeComponent();
-                //ResetDRIs();
-            }
-            catch (Exception e)
-            {
-                Empty_profile_error(this, e);
-            }
+           
+            InitializeComponent();
+
             date = datePicker.Date;
             ViewItemList = new List<IMyDayViewItem>();
             var timeArr = new String[] { "Today", "This Week", "This Month" };
@@ -57,11 +51,6 @@ namespace NuMo_Tabbed.Views
 
         }
 
-        private async void Empty_profile_error(object sender, Exception e)
-        {
-            Console.WriteLine(e.Message);
-            await DisplayAlert("No Profile Exists", "Create a Profile to see Visualization", "OK");
-        }
 
 
         /* method to populate the DRI lists and names
@@ -78,10 +67,12 @@ namespace NuMo_Tabbed.Views
             // initalize DRI and readable names
             nutNames = db.GetNutNames();
             nutDRINames = db.GetDRINames();
-
+            
+            //goes through each DRI name and finds the value based on that name
             foreach (var DRIname in nutDRINames)
             {
                 var DRIthreshholds = db.getDRIThresholds(DRIname);
+
                 var midDRI = Double.Parse(db.getDRIValue(DRIname)) * daysToLoad;
 
                 DRImed.Add(midDRI);

@@ -162,6 +162,7 @@ namespace NuMo_Tabbed
 
         public string getSettingsItem(String settingName)
         {
+            //uncomment the following two lines to clear the user profile data
             //dbConn.Query<MyDayReminderItem>(String.Format("Delete from SETTINGS")); //use this to delete profile keep return ""; also
             //dbConn.Query<MyDayReminderItem>(String.Format("Delete from DRI_VALUES")); //use this to delete DRI_Values keep return ""; also
               var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Setting_Val as imageString from SETTINGS WHERE Setting_Name = '{0}'", settingName));
