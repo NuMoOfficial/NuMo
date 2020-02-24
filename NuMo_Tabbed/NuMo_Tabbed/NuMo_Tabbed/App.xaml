@@ -6,9 +6,24 @@
         <ResourceDictionary>
             <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="ButtonColor">#47e3c9</Color>
+            <Color x:Key="ButtonBorder">#323232</Color>
+            
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
+            </Style>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BorderColor" Value="{StaticResource ButtonBorder}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource ButtonColor}"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="BorderRadius" Value="8" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="WidthRequest" Value="350" />
+                <Setter Property="HeightRequest" Value="70"/>
+                <Setter Property="TextColor" Value="Black" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

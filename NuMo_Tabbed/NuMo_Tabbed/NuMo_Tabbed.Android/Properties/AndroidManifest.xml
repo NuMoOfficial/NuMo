@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.NuMo_Tabbed" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
-	<application android:label="NuMo_Tabbed.Android" android:icon="@drawable/NuMoLogo">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" android:versionName="1" package="com.companyname.NuMo_Tabbed" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="20" android:targetSdkVersion="28" />
+	<application android:label="NuMo_Tabbed2.Android" android:icon="@drawable/MedWater">
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="${applicationId}.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 		</provider>
