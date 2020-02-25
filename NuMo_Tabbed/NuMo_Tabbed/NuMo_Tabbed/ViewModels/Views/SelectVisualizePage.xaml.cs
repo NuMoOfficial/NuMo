@@ -22,10 +22,18 @@ namespace NuMo_Tabbed.Views
             
             var db = DataAccessor.getDataAccessor();
 
+            //check to see if a profile has been created. If it has initialize the dri values before opening
+            //the visualize page
+            if (db.getSettingsItem("age") != "" && db.getSettingsItem("gender") != "")
+            {
+                new DRIPage();
+            }
+
             /* check to see if the DRI values are blank. Blank values means no profile is setup
              * No DRI values will make the visualization crash and the app will crash too
              * to prevent app crashing a pop up box is displayed telling the user to create a profile
              */
+
             if (db.getDRIValue(db.GetDRINames()[0]) == "")
             {
                 Empty_profile_error();

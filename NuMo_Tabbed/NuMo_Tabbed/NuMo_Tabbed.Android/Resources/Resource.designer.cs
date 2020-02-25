@@ -10490,11 +10490,10 @@ namespace NuMo_Tabbed.Droid
 			
 			// aapt resource value: 2
 			public const int BottomSheetBehavior_Layout_behavior_peekHeight = 2;
-
+			
 			// aapt resource value: 3
 			public const int BottomSheetBehavior_Layout_behavior_skipCollapsed = 3;
 			
-
 			// aapt resource value: { 0x7F030026 }
 			public static int[] ButtonBarLayout = new int[] {
 					2130903078};
@@ -10553,7 +10552,7 @@ namespace NuMo_Tabbed.Droid
 			
 			// aapt resource value: 11
 			public const int CardView_contentPaddingRight = 11;
-
+			
 			// aapt resource value: 12
 			public const int CardView_contentPaddingTop = 12;
 			
@@ -11265,7 +11264,7 @@ namespace NuMo_Tabbed.Droid
 			
 			// aapt resource value: 12
 			public const int MaterialButton_iconTintMode = 12;
-
+			
 			// aapt resource value: 13
 			public const int MaterialButton_rippleColor = 13;
 			
@@ -11275,7 +11274,6 @@ namespace NuMo_Tabbed.Droid
 			// aapt resource value: 15
 			public const int MaterialButton_strokeWidth = 15;
 			
-
 			// aapt resource value: { 0x7F03017D,0x7F03017E }
 			public static int[] MaterialCardView = new int[] {
 					2130903421,
@@ -11707,7 +11705,6 @@ namespace NuMo_Tabbed.Droid
 			
 			// aapt resource value: 3
 			public const int RecyclerView_fastScrollHorizontalThumbDrawable = 3;
-
 			
 			// aapt resource value: 4
 			public const int RecyclerView_fastScrollHorizontalTrackDrawable = 4;
@@ -11715,7 +11712,6 @@ namespace NuMo_Tabbed.Droid
 			// aapt resource value: 5
 			public const int RecyclerView_fastScrollVerticalThumbDrawable = 5;
 			
-
 			// aapt resource value: 6
 			public const int RecyclerView_fastScrollVerticalTrackDrawable = 6;
 			
@@ -12379,7 +12375,6 @@ namespace NuMo_Tabbed.Droid
 			
 			// aapt resource value: 28
 			public const int Toolbar_titleTextColor = 28;
-
 			
 			// aapt resource value: { 0x1010000,0x10100DA,0x7F030142,0x7F030143,0x7F0301BF }
 			public static int[] View = new int[] {
@@ -12389,7 +12384,6 @@ namespace NuMo_Tabbed.Droid
 					2130903363,
 					2130903487};
 			
-
 			// aapt resource value: { 0x10100D4,0x7F030034,0x7F030035 }
 			public static int[] ViewBackgroundHelper = new int[] {
 					16842964,
@@ -12451,11 +12445,9 @@ namespace NuMo_Tabbed.Droid
 			// aapt resource value: 0x7F100000
 			public const int file_paths = 2131755008;
 			
-
 			// aapt resource value: 0x7F100001
 			public const int xamarin_essentials_fileprovider_file_paths = 2131755009;
 			
-
 			static Xml()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
