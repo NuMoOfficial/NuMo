@@ -2,8 +2,10 @@
   "ExpandedNodes": [
 
     "",
-    "\\NuMo_Tabbed"
-
+    "\\NuMo_Tabbed",
+    "\\NuMo_Tabbed\\NuMo_Tabbed"
   ],
-  "PreviewInSolutionExplorer": false
+  "SelectedNode": "\\NuMo_Tabbed\\NuMo_Tabbed.sln",
+  "PreviewInSolutionExplorer": true
+
 }

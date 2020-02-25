@@ -162,8 +162,11 @@ namespace NuMo_Tabbed.Views
 
             //macronutrients
             this.FindByName<Entry>("dri_calories").Text = calories;
+            //this.FindByName<Entry>("dri_calories").IsReadOnly = true;
             this.FindByName<Entry>("dri_totalCarbs").Text = totalCarbs[saveNum];
+            //this.FindByName<Entry>("dri_totalCarbs").IsReadOnly = true;
             this.FindByName<Entry>("dri_sugar").Text = sugar;
+            //this.FindByName<Entry>("dri_sugar").IsReadOnly = true;
             this.FindByName<Entry>("dri_dietaryFiber").Text = dietaryFiber[saveNum];
             this.FindByName<Entry>("dri_netCarbs").Text = netCarbs[saveNum];
             this.FindByName<Entry>("dri_protein").Text = protein[saveNum];

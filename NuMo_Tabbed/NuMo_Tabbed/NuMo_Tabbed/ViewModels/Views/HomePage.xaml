@@ -14,6 +14,7 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
+        <ToolbarItem Text="Scan" Clicked="OpenOCR"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

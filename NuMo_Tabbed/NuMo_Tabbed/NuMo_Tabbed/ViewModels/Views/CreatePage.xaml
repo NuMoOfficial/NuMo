@@ -5,8 +5,8 @@
              Title="Create Custom Foods and Recipes">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Create Food" Clicked="AddCreateFood" HeightRequest="50" HorizontalOptions="Center"/>
-            <Button Text="Create Recipe" Clicked="AddCreateRecipe" HeightRequest="50" HorizontalOptions="Center"/>
+            <Button Text="Create Food" Clicked="AddCreateFood" Margin="0, 5.5, 0, 0" Style="{StaticResource buttonStyle}"/>
+            <Button Text="Create Recipe" Clicked="AddCreateRecipe" Style="{StaticResource buttonStyle}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
