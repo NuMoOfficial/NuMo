@@ -87,6 +87,11 @@ namespace NuMo_Tabbed.Views
             await Navigation.PushAsync(new KetoPage(datePicker.Date));
         }
 
+        async void OpenOCR(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new OCRview());
+        }
+
         //Display the food items associated with today, and back in time to the number of selected days.
         void OnItemsClicked()
         {

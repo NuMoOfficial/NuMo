@@ -25,6 +25,14 @@
                 <Setter Property="HeightRequest" Value="70"/>
                 <Setter Property="TextColor" Value="Black" />
             </Style>
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="Margin" Value="0,0,50,0"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="WidthRequest" Value="65"/>
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="Text" Value="Temp"/>
+                <!-- <Setter Property="IsReadOnly" Value="True"/> -->
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
