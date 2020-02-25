@@ -51,6 +51,8 @@ namespace NuMo_Tabbed.Views
 
         }
 
+
+
         /* method to populate the DRI lists and names
          * used as a precurser to creating the visualize elements
          * uses the database accessor methods:
@@ -65,25 +67,14 @@ namespace NuMo_Tabbed.Views
             // initalize DRI and readable names
             nutNames = db.GetNutNames();
             nutDRINames = db.GetDRINames();
-
+            
+            //goes through each DRI name and finds the value based on that name
             foreach (var DRIname in nutDRINames)
             {
                 var DRIthreshholds = db.getDRIThresholds(DRIname);
 
-                // added if clause so that if the string coming back is empty that a 0 is put instead 
-                // otherwise it will error out trying to parse an empty string.
-                Double midDRI;
-                if (Double.TryParse(db.getDRIValue(DRIname), out midDRI))
-                {
-                    midDRI *= daysToLoad;
-                }
-                else
-                {
-                    midDRI = 0.0;
-                }
-                //original code
-                //var midDRI = Double.Parse(db.getDRIValue(DRIname)) * daysToLoad;
-                
+                var midDRI = Double.Parse(db.getDRIValue(DRIname)) * daysToLoad;
+
 
                 DRImed.Add(midDRI);
 
