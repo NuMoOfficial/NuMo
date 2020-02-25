@@ -511,8 +511,8 @@ namespace NuMo_Tabbed.Views
                 try
                 {
                     await Navigation.PopModalAsync();//only used the first run, will error every other time.
-                    DRIPage driP = new DRIPage();
-                    driP.saveNoLoad();
+                    
+                    
                 }
                 catch (Exception)
                 {
@@ -521,6 +521,9 @@ namespace NuMo_Tabbed.Views
 
                 //display settings were saved
                 await DisplayAlert("Settings Saved", "", "OK");
+                
+                //initialize the DRI values so that visualizations work correctly
+                new DRIPage();
             }
             //display the error message
             else
