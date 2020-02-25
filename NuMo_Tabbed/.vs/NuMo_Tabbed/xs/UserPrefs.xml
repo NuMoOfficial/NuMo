@@ -1,27 +1,21 @@
 ﻿<Properties StartupConfiguration="{BCE35947-7B54-471A-A99D-19B6DF9CB435}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../Library/Frameworks/Xamarin.iOS.framework/Versions/12.8.0.0/lib/msbuild/iOS/Xamarin.iOS.Common.targets">
-    <Files>
-      <File FileName="NuMo_Tabbed/NuMo_Tabbed/Views/MainPage.xaml" />
-      <File FileName="NuMo_Tabbed/NuMo_Tabbed/Views/MainPage.xaml.cs" Line="1" Column="1" />
-      <File FileName="../../../../../Library/Frameworks/Mono.framework/External/xbuild/Xamarin/iOS/Xamarin.iOS.Common.targets" Line="509" Column="3" />
-    </Files>
+  <MonoDevelop.Ide.Workbench>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="NuMo_Tabbed" expanded="True">
-            <Node name="NuMo_Tabbed" expanded="True" />
+            <Node name="NuMo_Tabbed.iOS" expanded="True">
+              <Node name="Entitlements.plist" selected="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.NuMo__Tabbed.Android PreferredExecutionTarget="Android.Android_Accelerated_Oreo" />
-  <MonoDevelop.Ide.ItemProperties.NuMo__Tabbed.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.B76DCE6D-089D-44D0-8BE4-F19D04B2D717" />
+  <MonoDevelop.Ide.ItemProperties.NuMo__Tabbed.Android PreferredExecutionTarget="Android.pixel_3_xl_pie_9_0_api_28" />
+  <MonoDevelop.Ide.ItemProperties.NuMo__Tabbed.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
