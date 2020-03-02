@@ -1,0 +1,13 @@
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\bin\Debug\netstandard2.0\Driver.deps.json
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\bin\Debug\netstandard2.0\Driver.dll
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\bin\Debug\netstandard2.0\ref\Driver.dll
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\bin\Debug\netstandard2.0\Driver.pdb
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\obj\Debug\netstandard2.0\Driver.csprojAssemblyReference.cache
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\obj\Debug\netstandard2.0\Driver.AssemblyInfoInputs.cache
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\obj\Debug\netstandard2.0\Driver.AssemblyInfo.cs
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\obj\Debug\netstandard2.0\Driver.dll
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\obj\Debug\netstandard2.0\ref\Driver.dll
+C:\Users\timbo\Desktop\NuMo\NuMo_Tabbed\Driver\Driver\obj\Debug\netstandard2.0\Driver.pdb
