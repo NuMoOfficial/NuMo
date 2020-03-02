@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
-
     "",
-    "\\NuMo_Tabbed",
-    "\\NuMo_Tabbed\\NuMo_Tabbed"
+    "\\NuMo_Tabbed\\NuMo_Tabbed",
+    "\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed",
+    "\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed\\Services"
   ],
-  "SelectedNode": "\\NuMo_Tabbed\\NuMo_Tabbed.sln",
+  "SelectedNode": "\\NuMo_Tabbed",
   "PreviewInSolutionExplorer": true
-
 }
