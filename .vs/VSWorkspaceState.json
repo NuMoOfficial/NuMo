@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\NuMo_Tabbed",
-    "\\NuMo_Tabbed\\NuMo_Tabbed"
+    "\\NuMo_Tabbed\\NuMo_Tabbed",
+    "\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.iOS"
   ],
-  "SelectedNode": "\\NuMo_Tabbed\\NuMo_Tabbed.sln",
+  "SelectedNode": "\\NuMo_Tabbed\\NuMo_Tabbed\\NuMo_Tabbed.iOS\\AppDelegate.cs",
   "PreviewInSolutionExplorer": true
 }

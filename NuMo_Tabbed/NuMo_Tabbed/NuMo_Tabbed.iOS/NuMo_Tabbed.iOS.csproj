@@ -93,6 +93,16 @@
     <BundleResource Include="Resources\profile.png" />
     <BundleResource Include="Resources\profile%402x.png" />
     <BundleResource Include="Resources\profile%403x.png" />
+    <BundleResource Include="Resources\eng.traineddata" />
+    <BundleResource Include="Resources\tessdata\eng.cube.bigrams" />
+    <BundleResource Include="Resources\tessdata\eng.cube.fold" />
+    <BundleResource Include="Resources\tessdata\eng.cube.lm" />
+    <BundleResource Include="Resources\tessdata\eng.cube.nn" />
+    <BundleResource Include="Resources\tessdata\eng.cube.params" />
+    <BundleResource Include="Resources\tessdata\eng.cube.size" />
+    <BundleResource Include="Resources\tessdata\eng.cube.word-freq" />
+    <BundleResource Include="Resources\tessdata\eng.tesseract_cube.nn" />
+    <BundleResource Include="Resources\tessdata\eng.traineddata" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

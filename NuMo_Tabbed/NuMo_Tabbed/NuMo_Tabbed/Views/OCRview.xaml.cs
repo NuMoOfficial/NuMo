@@ -14,6 +14,7 @@ using XLabs.Platform.Device;
 using XLabs.Platform.Services.Media;
 using Xamarin.Forms.Xaml;
 using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System.IO;
 
 namespace NuMo_Tabbed.Views
@@ -23,22 +24,31 @@ namespace NuMo_Tabbed.Views
     {
         private Button _takePictureButton;
         private Label _recognizedTextLabel;
-        private ProgressBar _progressBar;
+        //private ProgressBar _progressBar;
         private Image _takenImage;
-
+        //private bool _loaded;
+        //private MediaFile media;
         private readonly ITesseractApi _tesseractApi;
         private readonly IDevice _device;
+
+        Image saveImage = new Image();
+        String pPath = "";
+        DateTime date;
+        DataAccessor db = DataAccessor.getDataAccessor();
 
         public OCRview()
         {
             InitializeComponent();
             this.Title = "Reciept Scanner";
 
+            
+
             if (Device.RuntimePlatform == Device.iOS)
                 Padding = new Thickness(0, 25, 0, 0);
 
             _tesseractApi = Resolver.Resolve<ITesseractApi>();
             _device = Resolver.Resolve<IDevice>();
+           
 
             BuildUi();
 
@@ -84,42 +94,142 @@ namespace NuMo_Tabbed.Views
 
             if (!_tesseractApi.Initialized)
                 await _tesseractApi.Init("eng");
-			
-            var photo = await TakePic();
+
+
+            // Image_OnClicked(sender, e);
+            var photo = await TakePic(sender, e, "data");
+
             if (photo != null)
             {
-				// When setting an ImageSource using a stream, 
-				// the stream gets closed, so to avoid that I backed up
-				// the image into a byte array with the following code:
-                var imageBytes = new byte[photo.Source.Length];
-                photo.Source.Position = 0;
-                photo.Source.Read(imageBytes, 0, (int)photo.Source.Length);
-                photo.Source.Position = 0;
 
-                var tessResult = await _tesseractApi.SetImage(imageBytes);
+                    byte[] imageAsBytes = null;
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        photo.GetStream().CopyTo(memoryStream);
+                        photo.Dispose();
+                        imageAsBytes = memoryStream.ToArray();
+                    }
 
-                if (tessResult)
-                {
+                    var tessResult = await _tesseractApi.SetImage(imageAsBytes);
 
-                    _takenImage.Source = ImageSource.FromStream(() => photo.Source);
-                    _recognizedTextLabel.Text = _tesseractApi.Text;
-                }
+                    if (tessResult)
+                    {
+
+                        _takenImage.Source = ImageSource.FromStream(() => photo.GetStream());
+                        _recognizedTextLabel.Text = _tesseractApi.Text;
+                    }
             }
-
-			_takePictureButton.Text = "New scan";
-			_takePictureButton.IsEnabled = true;
+            _takePictureButton.Text = "New scan";
+            _takePictureButton.IsEnabled = true;
         }
 
-        private async Task<MediaFile> TakePic()
+        private async Task<Plugin.Media.Abstractions.MediaFile> TakePic(object sender, EventArgs e, String picNum)
         {
-            var mediaStorageOptions = new CameraMediaStorageOptions
-            {
-                DefaultCamera = CameraDevice.Rear
-            };
-            var mediaFile = await _device.MediaPicker.TakePhotoAsync(mediaStorageOptions);
+            //var picNum = "data";
+            await CrossMedia.Current.Initialize();
 
-            return mediaFile;
+
+            //getPermissions();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return null;
+            }
+            var file = await CrossMedia.Current.TakePhotoAsync(
+                new StoreCameraMediaOptions
+                {
+                    SaveToAlbum = true,
+                    Directory = "NuMo"
+                });
+
+            if (file == null)
+                return null;
+
+
+            ////get file path for pic
+            //pPath = file.AlbumPath;
+
+            //// Display photo on page for user to see
+            //saveImage.Source = ImageSource.FromStream(() => file.GetStream());
+            //ImageButton src = (ImageButton)sender;
+            //src.Source = saveImage.Source;
+            //db.savePicReminder(date.ToString("MM/dd/yyyy"), pPath, picNum); //save to database
+
+            return file;
         }
+        //private async void Image_OnClicked(object sender, EventArgs args)
+        //{
+        //    String action = await DisplayActionSheet("Select Option for Image: ", "Cancel", "Take Photo", "Pick Photo");
+        //    String picNumber = "data";
+        //    //         ImageButton clicked = (ImageButton)sender;
+
+        //    //take selected action
+        //    if (action.Equals("Take Photo"))
+        //    {
+        //        TakePic(sender, args, picNumber);
+        //    }
+        //    else if (action.Equals("Pick Photo"))
+        //    {
+        //        PickPhotoButton_OnClicked(sender, args, picNumber);
+        //    }
+        //}
+
+        //private async void PickPhotoButton_OnClicked(object sender, EventArgs e, String picNum)
+        //{
+        //    // If the pick picure button is clicked, check if there is a photo album and access it if so
+        //    await CrossMedia.Current.Initialize();
+
+        //    if (!_tesseractApi.Initialized)
+        //        await _tesseractApi.Init("eng");
+
+        //    if (!CrossMedia.Current.IsPickPhotoSupported)
+        //    {
+        //        await DisplayAlert("Oops", "Pick photo is not supported!", "OK");
+        //        return;
+        //    }
+
+        //    var file = await CrossMedia.Current.PickPhotoAsync();
+
+        //    if (file == null)
+        //        return;
+
+        //    byte[] imageAsBytes = null;
+        //    using (var memoryStream = new MemoryStream())
+        //    {
+        //        file.GetStream().CopyTo(memoryStream);
+        //        file.Dispose();
+        //        imageAsBytes = memoryStream.ToArray();
+        //    }
+
+
+        //    var tessResult = await _tesseractApi.SetImage(imageAsBytes);
+
+        //    if (tessResult)
+        //    {
+
+        //        _takenImage.Source = ImageSource.FromStream(() => file.GetStream());
+        //        _recognizedTextLabel.Text = _tesseractApi.Text;
+        //    }
+
+        //    //file path
+        //    pPath = file.Path;
+        //    // Display photo on page for user to see
+        //    saveImage.Source = ImageSource.FromStream(() => file.GetStream());
+        //    ImageButton src = (ImageButton)sender;
+        //    src.Source = saveImage.Source;
+        //    db.savePicReminder(date.ToString("MM/dd/yyyy"), pPath, picNum); //save to database
+        //}
+
+        //private async Task<MediaFile> checkPic()
+        //{
+        //    var mediaStorageOptions = new CameraMediaStorageOptions
+        //    {
+        //        DefaultCamera = CameraDevice.Rear
+        //    };
+        //    var mediaFile = await _device.MediaPicker.TakePhotoAsync(mediaStorageOptions);
+
+        //    return mediaFile;
+        //}
 
     }
 }
