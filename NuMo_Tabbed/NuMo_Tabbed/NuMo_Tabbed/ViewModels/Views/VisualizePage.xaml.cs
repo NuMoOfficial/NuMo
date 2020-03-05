@@ -8,6 +8,7 @@ using Xamarin.Forms.Xaml;
 using SkiaSharp;
 using NuMo_Tabbed.DatabaseItems;
 using SkiaSharp.Views.Forms;
+using Xamarin.Essentials;
 
 namespace NuMo_Tabbed.Views
 {
@@ -156,6 +157,36 @@ namespace NuMo_Tabbed.Views
         {
             date = e.NewDate;
             this.OnAppearing();
+        }
+
+        async void checkValues(object sender, EventArgs args)
+        {
+            var omegaConsumed = nutConsumed.ElementAt(nutConsumed.Count - 1);
+            var sugarConsumed = nutConsumed.ElementAt(3);
+            //double ratio = omegaConsumed.parse();
+            if (omegaConsumed == 0.0)
+            {
+                await DisplayAlert("Health Info", "Please add a meal for health analysis", "OK");
+            }
+            if (omegaConsumed > 4.0) {
+                var selection = await DisplayAlert("Health Info", "We noticed your omega 6 to 3 ratio is higher than recommended. Would you like to view a helpful article?", "Yes", "No");
+
+                if (selection)
+                {
+                    await Browser.OpenAsync("https://numoofficial.github.io/PDF/omega6PDF.pdf", BrowserLaunchMode.SystemPreferred);
+                }
+
+            }
+            if (sugarConsumed > 10.0)
+            {
+                var selection = await DisplayAlert("Health Info", "We noticed your sugar consumption is higher than recommended. Would you like to view a helpful article?", "Yes", "No");
+
+                if (selection)
+                {
+                    await Browser.OpenAsync("https://numoofficial.github.io/PDF/FAQ_Sugar_and_Cancer.pdf", BrowserLaunchMode.SystemPreferred);
+                }
+
+            }
         }
 
         //Allow user to update their choice of time range
