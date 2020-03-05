@@ -21,6 +21,7 @@ namespace NuMo_Tabbed.Droid
     [Activity(Label = "NuMo_Tabbed", Icon = "@drawable/NuMoLogo", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+            TesseractApi _api;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -30,10 +31,15 @@ namespace NuMo_Tabbed.Droid
             CrossCurrentActivity.Current.Init(this, savedInstanceState); //needed for camera activity
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init(); //needed for OxyPlot
+
             var container = TinyIoCContainer.Current;
             container.Register<IDevice>(AndroidDevice.CurrentDevice);
+            //_api = new TesseractApi(Android.App.Application.Context, AssetsDeployment.OncePerInitialization);
+            //_api.Init("eng");
             container.Register<ITesseractApi>((cont, parameters) =>
             {
+                //_api = new TesseractApi(ApplicationContext, Tesseract.Droid.AssetsDeployment.OncePerInitialization);
+                //_api.Init("eng");
                 return new TesseractApi(ApplicationContext, Tesseract.Droid.AssetsDeployment.OncePerInitialization);
             });
             Resolver.SetResolver(new TinyResolver(container));

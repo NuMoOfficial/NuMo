@@ -45,10 +45,10 @@ namespace NuMo_Tabbed.Views
 
             if (Device.RuntimePlatform == Device.iOS)
                 Padding = new Thickness(0, 25, 0, 0);
-
+        
             _tesseractApi = Resolver.Resolve<ITesseractApi>();
             _device = Resolver.Resolve<IDevice>();
-           
+            TesseractInit();
 
             BuildUi();
 
@@ -88,20 +88,22 @@ namespace NuMo_Tabbed.Views
 
         async void TakePictureButton_Clicked(object sender, EventArgs e)
         {
-
+            
             _takePictureButton.Text = "Working...";
             _takePictureButton.IsEnabled = false;
 
-            if (!_tesseractApi.Initialized)
-                await _tesseractApi.Init("eng");
-
-
+            //if (!_tesseractApi.Initialized)
+            //{
+            //    await _tesseractApi.Init("eng");
+            //}
+            
+            //System.Threading.Thread.Sleep(20000);
             // Image_OnClicked(sender, e);
             var photo = await TakePic(sender, e, "data");
 
             if (photo != null)
             {
-
+               
                     byte[] imageAsBytes = null;
                     using (var memoryStream = new MemoryStream())
                     {
@@ -112,7 +114,7 @@ namespace NuMo_Tabbed.Views
 
                     var tessResult = await _tesseractApi.SetImage(imageAsBytes);
 
-                    if (tessResult)
+                if (tessResult)
                     {
 
                         _takenImage.Source = ImageSource.FromStream(() => photo.GetStream());
@@ -122,7 +124,10 @@ namespace NuMo_Tabbed.Views
             _takePictureButton.Text = "New scan";
             _takePictureButton.IsEnabled = true;
         }
-
+        private async void TesseractInit()
+        {
+            await _tesseractApi.Init("eng");
+        }
         private async Task<Plugin.Media.Abstractions.MediaFile> TakePic(object sender, EventArgs e, String picNum)
         {
             //var picNum = "data";
