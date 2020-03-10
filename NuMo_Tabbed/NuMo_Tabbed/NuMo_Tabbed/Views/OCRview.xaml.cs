@@ -24,10 +24,8 @@ namespace NuMo_Tabbed.Views
     {
         private Button _takePictureButton;
         private Label _recognizedTextLabel;
-        //private ProgressBar _progressBar;
         private Image _takenImage;
-        //private bool _loaded;
-        //private MediaFile media;
+
         private readonly ITesseractApi _tesseractApi;
         private readonly IDevice _device;
 
@@ -83,27 +81,23 @@ namespace NuMo_Tabbed.Views
         }
         private void WireEvents()
         {
-            _takePictureButton.Clicked += TakePictureButton_Clicked;
+            _takePictureButton.Clicked += Image_OnClicked;
         }
 
+        // The take a picture option has been selected so take a picture and run it through the OCR
         async void TakePictureButton_Clicked(object sender, EventArgs e)
         {
             
+            //update the onscreen buttons to show the user progress is being made
             _takePictureButton.Text = "Working...";
             _takePictureButton.IsEnabled = false;
 
-            //if (!_tesseractApi.Initialized)
-            //{
-            //    await _tesseractApi.Init("eng");
-            //}
-            
-            //System.Threading.Thread.Sleep(20000);
-            // Image_OnClicked(sender, e);
+            //Take the actual photo of the receipt
             var photo = await TakePic(sender, e, "data");
 
             if (photo != null)
             {
-               
+                    //change the photo to bytes for processing
                     byte[] imageAsBytes = null;
                     using (var memoryStream = new MemoryStream())
                     {
@@ -112,11 +106,13 @@ namespace NuMo_Tabbed.Views
                         imageAsBytes = memoryStream.ToArray();
                     }
 
+                    // runs the OCR on the text
                     var tessResult = await _tesseractApi.SetImage(imageAsBytes);
 
+                // Check to make sure the OCR came back
                 if (tessResult)
                     {
-
+                        //put the OCR on the screen
                         _takenImage.Source = ImageSource.FromStream(() => photo.GetStream());
                         _recognizedTextLabel.Text = _tesseractApi.Text;
                     }
@@ -124,15 +120,18 @@ namespace NuMo_Tabbed.Views
             _takePictureButton.Text = "New scan";
             _takePictureButton.IsEnabled = true;
         }
+
+        //Initialize the OCR API so it is ready for a scan
         private async void TesseractInit()
         {
             await _tesseractApi.Init("eng");
         }
+
+        // Accesses the camera to take a picture for the OCR
         private async Task<Plugin.Media.Abstractions.MediaFile> TakePic(object sender, EventArgs e, String picNum)
         {
-            //var picNum = "data";
+           
             await CrossMedia.Current.Initialize();
-
 
             //getPermissions();
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
@@ -151,90 +150,74 @@ namespace NuMo_Tabbed.Views
                 return null;
 
 
-            ////get file path for pic
-            //pPath = file.AlbumPath;
+            //get file path for pic
+            pPath = file.AlbumPath;
 
-            //// Display photo on page for user to see
-            //saveImage.Source = ImageSource.FromStream(() => file.GetStream());
-            //ImageButton src = (ImageButton)sender;
-            //src.Source = saveImage.Source;
-            //db.savePicReminder(date.ToString("MM/dd/yyyy"), pPath, picNum); //save to database
+            db.savePicReminder(date.ToString("MM/dd/yyyy"), pPath, picNum); //save to database
 
             return file;
         }
-        //private async void Image_OnClicked(object sender, EventArgs args)
-        //{
-        //    String action = await DisplayActionSheet("Select Option for Image: ", "Cancel", "Take Photo", "Pick Photo");
-        //    String picNumber = "data";
-        //    //         ImageButton clicked = (ImageButton)sender;
 
-        //    //take selected action
-        //    if (action.Equals("Take Photo"))
-        //    {
-        //        TakePic(sender, args, picNumber);
-        //    }
-        //    else if (action.Equals("Pick Photo"))
-        //    {
-        //        PickPhotoButton_OnClicked(sender, args, picNumber);
-        //    }
-        //}
+        // The scan button has been clicked
+        // check to see if the user wants to take a picture or select and already taken picture
+        private async void Image_OnClicked(object sender, EventArgs args)
+        {
+            String action = await DisplayActionSheet("Select Option for Image: ", "Cancel", "Take Photo", "Pick Photo");
+            String picNumber = "data";
 
-        //private async void PickPhotoButton_OnClicked(object sender, EventArgs e, String picNum)
-        //{
-        //    // If the pick picure button is clicked, check if there is a photo album and access it if so
-        //    await CrossMedia.Current.Initialize();
+            //take selected action
+            if (action.Equals("Take Photo"))
+            {
+                TakePictureButton_Clicked(sender, args);
+            }
+            else if (action.Equals("Pick Photo"))
+            {
+                PickPhotoButton_OnClicked(sender, args, picNumber);
+            }
+        }
 
-        //    if (!_tesseractApi.Initialized)
-        //        await _tesseractApi.Init("eng");
+        // User has chosen to pick a picture
+        // access the photos on their phone, have them select a picture and the run the OCR on the picture
+        private async void PickPhotoButton_OnClicked(object sender, EventArgs e, String picNum)
+        {
+            // If the pick picure button is clicked, check if there is a photo album and access it if so
+            await CrossMedia.Current.Initialize();
 
-        //    if (!CrossMedia.Current.IsPickPhotoSupported)
-        //    {
-        //        await DisplayAlert("Oops", "Pick photo is not supported!", "OK");
-        //        return;
-        //    }
+            _takePictureButton.Text = "Working...";
+            _takePictureButton.IsEnabled = false;
 
-        //    var file = await CrossMedia.Current.PickPhotoAsync();
+            if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                await DisplayAlert("Oops", "Pick photo is not supported!", "OK");
+                return;
+            }
 
-        //    if (file == null)
-        //        return;
+            var file = await CrossMedia.Current.PickPhotoAsync();
 
-        //    byte[] imageAsBytes = null;
-        //    using (var memoryStream = new MemoryStream())
-        //    {
-        //        file.GetStream().CopyTo(memoryStream);
-        //        file.Dispose();
-        //        imageAsBytes = memoryStream.ToArray();
-        //    }
+            if (file == null)
+                return;
 
+            if (file != null)
+            {
 
-        //    var tessResult = await _tesseractApi.SetImage(imageAsBytes);
+                byte[] imageAsBytes = null;
+                using (var memoryStream = new MemoryStream())
+                {
+                    file.GetStream().CopyTo(memoryStream);
+                    imageAsBytes = memoryStream.ToArray();
+                }
 
-        //    if (tessResult)
-        //    {
+                var tessResult = await _tesseractApi.SetImage(imageAsBytes);
 
-        //        _takenImage.Source = ImageSource.FromStream(() => file.GetStream());
-        //        _recognizedTextLabel.Text = _tesseractApi.Text;
-        //    }
+                if (tessResult)
+                {
 
-        //    //file path
-        //    pPath = file.Path;
-        //    // Display photo on page for user to see
-        //    saveImage.Source = ImageSource.FromStream(() => file.GetStream());
-        //    ImageButton src = (ImageButton)sender;
-        //    src.Source = saveImage.Source;
-        //    db.savePicReminder(date.ToString("MM/dd/yyyy"), pPath, picNum); //save to database
-        //}
+                    _takenImage.Source = ImageSource.FromStream(() => file.GetStream());
+                    _recognizedTextLabel.Text = _tesseractApi.Text;
+                }
+            }
 
-        //private async Task<MediaFile> checkPic()
-        //{
-        //    var mediaStorageOptions = new CameraMediaStorageOptions
-        //    {
-        //        DefaultCamera = CameraDevice.Rear
-        //    };
-        //    var mediaFile = await _device.MediaPicker.TakePhotoAsync(mediaStorageOptions);
-
-        //    return mediaFile;
-        //}
+        }
 
     }
 }
