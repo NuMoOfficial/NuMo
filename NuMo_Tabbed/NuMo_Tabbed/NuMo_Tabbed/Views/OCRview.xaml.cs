@@ -1,21 +1,18 @@
-﻿using NuMo_Tabbed.ItemViews;
-
+﻿
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
 using System.Threading.Tasks;
-using Tesseract;
 using Xamarin.Forms;
-using XLabs.Ioc;
-using XLabs.Platform.Device;
-using XLabs.Platform.Services.Media;
 using Xamarin.Forms.Xaml;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
+using System.Web;
+
 
 namespace NuMo_Tabbed.Views
 {
@@ -26,27 +23,30 @@ namespace NuMo_Tabbed.Views
         private Label _recognizedTextLabel;
         private Image _takenImage;
 
-        private readonly ITesseractApi _tesseractApi;
-        private readonly IDevice _device;
+        private string subscriptionKey;
+        private string endpoint;
+        private string uriBase;
 
         Image saveImage = new Image();
         String pPath = "";
         DateTime date;
         DataAccessor db = DataAccessor.getDataAccessor();
+        
+
 
         public OCRview()
         {
             InitializeComponent();
             this.Title = "Reciept Scanner";
+            subscriptionKey = "07440da4c92f43518c5851ca0bfd9983";
+            endpoint = "https://numo-ocr.cognitiveservices.azure.com/";
+            uriBase = endpoint + "vision/v3.0-preview/read/analyze";
 
-            
 
             if (Device.RuntimePlatform == Device.iOS)
                 Padding = new Thickness(0, 25, 0, 0);
         
-            _tesseractApi = Resolver.Resolve<ITesseractApi>();
-            _device = Resolver.Resolve<IDevice>();
-            TesseractInit();
+
 
             BuildUi();
 
@@ -87,9 +87,10 @@ namespace NuMo_Tabbed.Views
         // The take a picture option has been selected so take a picture and run it through the OCR
         async void TakePictureButton_Clicked(object sender, EventArgs e)
         {
-            
+
+
             //update the onscreen buttons to show the user progress is being made
-            _takePictureButton.Text = "Working...";
+            _takePictureButton.Text = ("Wait a moment for the results to appear.");
             _takePictureButton.IsEnabled = false;
 
             //Take the actual photo of the receipt
@@ -97,6 +98,7 @@ namespace NuMo_Tabbed.Views
 
             if (photo != null)
             {
+                string imageFilePath = photo.Path;
                     //change the photo to bytes for processing
                     byte[] imageAsBytes = null;
                     using (var memoryStream = new MemoryStream())
@@ -106,25 +108,128 @@ namespace NuMo_Tabbed.Views
                         imageAsBytes = memoryStream.ToArray();
                     }
 
-                    // runs the OCR on the text
-                    var tessResult = await _tesseractApi.SetImage(imageAsBytes);
-
-                // Check to make sure the OCR came back
-                if (tessResult)
-                    {
-                        //put the OCR on the screen
-                        _takenImage.Source = ImageSource.FromStream(() => photo.GetStream());
-                        _recognizedTextLabel.Text = _tesseractApi.Text;
-                    }
+                // runs the OCR on the text
+                if (File.Exists(imageFilePath))
+                {
+                    // Call the REST API method.
+                    _takePictureButton.Text = "\nWait a moment for the results to appear.\n";
+                    ReadText(imageFilePath, "en").Wait();
+                }
             }
             _takePictureButton.Text = "New scan";
             _takePictureButton.IsEnabled = true;
         }
 
+
+        
         //Initialize the OCR API so it is ready for a scan
-        private async void TesseractInit()
+        private async Task ReadText(string imageFilePath, string language)
         {
-            await _tesseractApi.Init("eng");
+            _recognizedTextLabel.Text = "working";
+            try
+            {
+                HttpClient client = new HttpClient();
+
+                // Request headers.
+                client.DefaultRequestHeaders.Add(
+                    "Ocp-Apim-Subscription-Key", subscriptionKey);
+
+                var builder = new UriBuilder(uriBase);
+                builder.Port = -1;
+                var query = HttpUtility.ParseQueryString(builder.Query);
+                query["language"] = language;
+                builder.Query = query.ToString();
+                string url = builder.ToString();
+
+                HttpResponseMessage response;
+
+                // Two REST API methods are required to extract text.
+                // One method to submit the image for processing, the other method
+                // to retrieve the text found in the image.
+
+                // operationLocation stores the URI of the second REST API method,
+                // returned by the first REST API method.
+                string operationLocation;
+
+                // Reads the contents of the specified local image
+                // into a byte array.
+                byte[] byteData = GetImageAsByteArray(imageFilePath);
+
+                // Adds the byte array as an octet stream to the request body.
+                using (ByteArrayContent content = new ByteArrayContent(byteData))
+                {
+                    // This example uses the "application/octet-stream" content type.
+                    // The other content types you can use are "application/json"
+                    // and "multipart/form-data".
+                    content.Headers.ContentType =
+                        new MediaTypeHeaderValue("application/octet-stream");
+
+                    // The first REST API method, Batch Read, starts
+                    // the async process to analyze the written text in the image.
+                    response = await client.PostAsync(url, content);
+                }
+
+                // The response header for the Batch Read method contains the URI
+                // of the second method, Read Operation Result, which
+                // returns the results of the process in the response body.
+                // The Batch Read operation does not return anything in the response body.
+                if (response.IsSuccessStatusCode)
+                    operationLocation =
+                        response.Headers.GetValues("Operation-Location").FirstOrDefault();
+                else
+                {
+                    // Display the JSON error data.
+                    string errorString = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("\n\nResponse:\n{0}\n",
+                        JToken.Parse(errorString).ToString());
+                    return;
+                }
+
+                // If the first REST API method completes successfully, the second 
+                // REST API method retrieves the text written in the image.
+                //
+                // Note: The response may not be immediately available. Text
+                // recognition is an asynchronous operation that can take a variable
+                // amount of time depending on the length of the text.
+                // You may need to wait or retry this operation.
+                //
+                // This example checks once per second for ten seconds.
+                string contentString;
+                int i = 0;
+                do
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    response = await client.GetAsync(operationLocation);
+                    contentString = await response.Content.ReadAsStringAsync();
+                    ++i;
+                    _recognizedTextLabel.Text = contentString;
+                }
+                while (i < 60 && contentString.IndexOf("\"status\":\"succeeded\"") == -1);
+
+                if (i == 60 && contentString.IndexOf("\"status\":\"succeeded\"") == -1)
+                {
+                    _recognizedTextLabel.Text = ("\nTimeout error.\n");
+                    return;
+                }
+
+                // Display the JSON response.
+                _recognizedTextLabel.Text = ("\nResponse:\n\nJToken.Parse(contentString).ToString()\n");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\n" + e.Message);
+            }
+        }
+        private byte[] GetImageAsByteArray(string imageFilePath)
+        {
+            // Open a read-only file stream for the specified file.
+            using (FileStream fileStream =
+                new FileStream(imageFilePath, FileMode.Open, FileAccess.Read))
+            {
+                // Read the file's contents into a byte array.
+                BinaryReader binaryReader = new BinaryReader(fileStream);
+                return binaryReader.ReadBytes((int)fileStream.Length);
+            }
         }
 
         // Accesses the camera to take a picture for the OCR
@@ -183,7 +288,7 @@ namespace NuMo_Tabbed.Views
             // If the pick picure button is clicked, check if there is a photo album and access it if so
             await CrossMedia.Current.Initialize();
 
-            _takePictureButton.Text = "Working...";
+            _takePictureButton.Text = ("Wait a moment for the results to appear.");
             _takePictureButton.IsEnabled = false;
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
@@ -199,22 +304,15 @@ namespace NuMo_Tabbed.Views
 
             if (file != null)
             {
-
-                byte[] imageAsBytes = null;
-                using (var memoryStream = new MemoryStream())
+                string imageFilePath = file.Path;
+                if (File.Exists(imageFilePath))
                 {
-                    file.GetStream().CopyTo(memoryStream);
-                    imageAsBytes = memoryStream.ToArray();
+                    // Call the REST API method.
+                    _takePictureButton.Text = ("\nWait a moment for the results to appear.\n");
+                    ReadText(imageFilePath, "en").Wait();
                 }
 
-                var tessResult = await _tesseractApi.SetImage(imageAsBytes);
 
-                if (tessResult)
-                {
-
-                    _takenImage.Source = ImageSource.FromStream(() => file.GetStream());
-                    _recognizedTextLabel.Text = _tesseractApi.Text;
-                }
             }
 
         }
