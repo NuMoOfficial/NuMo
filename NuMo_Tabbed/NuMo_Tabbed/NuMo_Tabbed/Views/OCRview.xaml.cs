@@ -23,9 +23,12 @@ namespace NuMo_Tabbed.Views
         private Label _recognizedTextLabel;
         private Image _takenImage;
 
-        private string subscriptionKey;
-        private string endpoint;
-        private string uriBase;
+        private string subscriptionKey = "07440da4c92f43518c5851ca0bfd9983";
+
+        //private string endpoint = "https://numo-ocr.cognitiveservices.azure.com/";
+
+        // the Batch Read method endpoint
+        private string uriBase = "https://numo-ocr.cognitiveservices.azure.com/vision/v3.0-preview/read/analyze";
 
         Image saveImage = new Image();
         String pPath = "";
@@ -38,9 +41,9 @@ namespace NuMo_Tabbed.Views
         {
             InitializeComponent();
             this.Title = "Reciept Scanner";
-            subscriptionKey = "07440da4c92f43518c5851ca0bfd9983";
-            endpoint = "https://numo-ocr.cognitiveservices.azure.com/";
-            uriBase = endpoint + "vision/v3.0-preview/read/analyze";
+            //subscriptionKey = "07440da4c92f43518c5851ca0bfd9983";
+            //endpoint = "https://numo-ocr.cognitiveservices.azure.com/";
+            //uriBase = endpoint + "vision/v3.0-preview/read/analyze";
 
 
             if (Device.RuntimePlatform == Device.iOS)
@@ -113,7 +116,7 @@ namespace NuMo_Tabbed.Views
                 {
                     // Call the REST API method.
                     _takePictureButton.Text = "\nWait a moment for the results to appear.\n";
-                    ReadText(imageFilePath, "en").Wait();
+                    await ReadText(imageFilePath, "en");
                 }
             }
             _takePictureButton.Text = "New scan";
@@ -121,11 +124,13 @@ namespace NuMo_Tabbed.Views
         }
 
 
-        
-        //Initialize the OCR API so it is ready for a scan
+        /// <summary>
+        /// Gets the text from the specified image file by using
+        /// the Computer Vision REST API.
+        /// </summary>
+        /// <param name="imageFilePath">The image file with text.</param>
         private async Task ReadText(string imageFilePath, string language)
         {
-            _recognizedTextLabel.Text = "working";
             try
             {
                 HttpClient client = new HttpClient();
@@ -180,6 +185,7 @@ namespace NuMo_Tabbed.Views
                 {
                     // Display the JSON error data.
                     string errorString = await response.Content.ReadAsStringAsync();
+                    _recognizedTextLabel.Text = errorString;
                     Console.WriteLine("\n\nResponse:\n{0}\n",
                         JToken.Parse(errorString).ToString());
                     return;
@@ -202,24 +208,33 @@ namespace NuMo_Tabbed.Views
                     response = await client.GetAsync(operationLocation);
                     contentString = await response.Content.ReadAsStringAsync();
                     ++i;
-                    _recognizedTextLabel.Text = contentString;
                 }
                 while (i < 60 && contentString.IndexOf("\"status\":\"succeeded\"") == -1);
 
                 if (i == 60 && contentString.IndexOf("\"status\":\"succeeded\"") == -1)
                 {
                     _recognizedTextLabel.Text = ("\nTimeout error.\n");
+                    Console.WriteLine("\nTimeout error.\n");
                     return;
                 }
 
                 // Display the JSON response.
-                _recognizedTextLabel.Text = ("\nResponse:\n\nJToken.Parse(contentString).ToString()\n");
+                _recognizedTextLabel.Text = JToken.Parse(contentString).ToString();
+                Console.WriteLine("\nResponse:\n\n{0}\n",
+                    JToken.Parse(contentString).ToString());
             }
             catch (Exception e)
             {
+                _recognizedTextLabel.Text = ("\n" + e.Message);
                 Console.WriteLine("\n" + e.Message);
             }
         }
+
+        /// <summary>
+        /// Returns the contents of the specified file as a byte array.
+        /// </summary>
+        /// <param name="imageFilePath">The image file to read.</param>
+        /// <returns>The byte array of the image data.</returns>
         private byte[] GetImageAsByteArray(string imageFilePath)
         {
             // Open a read-only file stream for the specified file.
@@ -309,7 +324,7 @@ namespace NuMo_Tabbed.Views
                 {
                     // Call the REST API method.
                     _takePictureButton.Text = ("\nWait a moment for the results to appear.\n");
-                    ReadText(imageFilePath, "en").Wait();
+                    await ReadText(imageFilePath, "en");
                 }
 
 
