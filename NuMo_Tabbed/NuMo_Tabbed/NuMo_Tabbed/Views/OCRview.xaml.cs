@@ -19,15 +19,37 @@ namespace NuMo_Tabbed.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OCRview : ContentPage, INotifyPropertyChanged
     {
-        private Button _takePictureButton;
-        private Label _recognizedTextLabel;
-        private Image _takenImage;
+        // Changes the label on the screen whenever the OcrText string is set
+        public string OcrText
+        {
+            get { return ocr; }
+            set
+            {
+                ocr = value;
+                OnPropertyChanged(nameof(OcrText));
+            }
+
+        }
+
+        // Changes the photo on the screen to whatever photo is taken or selected
+        public string Photo
+        {
+            get { return PhotoPath; }
+            set
+            {
+                PhotoPath = value;
+                OnPropertyChanged(nameof(Photo));
+            }
+
+        }
+
+        string PhotoPath = string.Empty;
+        
+        string ocr = string.Empty;
 
         private string subscriptionKey = "07440da4c92f43518c5851ca0bfd9983";
 
-        //private string endpoint = "https://numo-ocr.cognitiveservices.azure.com/";
-
-        // the Batch Read method endpoint
+        // the Batch Read method endpoint for the OCR
         private string uriBase = "https://numo-ocr.cognitiveservices.azure.com/vision/v3.0-preview/read/analyze";
 
         Image saveImage = new Image();
@@ -35,66 +57,25 @@ namespace NuMo_Tabbed.Views
         DateTime date;
         DataAccessor db = DataAccessor.getDataAccessor();
         
-
+        
 
         public OCRview()
         {
             InitializeComponent();
-            this.Title = "Reciept Scanner";
-            //subscriptionKey = "07440da4c92f43518c5851ca0bfd9983";
-            //endpoint = "https://numo-ocr.cognitiveservices.azure.com/";
-            //uriBase = endpoint + "vision/v3.0-preview/read/analyze";
 
+            this.Title = "Reciept Scanner";
+            BindingContext = this;
+            OcrText = "Recognized Text";
+            Photo = "camera.png";
 
             if (Device.RuntimePlatform == Device.iOS)
                 Padding = new Thickness(0, 25, 0, 0);
         
-
-
-            BuildUi();
-
-            WireEvents();
-        }
-
-        private void BuildUi()
-        {
-            _takePictureButton = new Button
-            {
-                Text = "New scan"
-            };
-
-            _recognizedTextLabel = new Label();
-
-
-            _takenImage = new Image() { HeightRequest = 200 };
-
-            Content = new ScrollView
-            {
-                Content = new StackLayout
-                {
-                    Children =
-                    {
-                        _takePictureButton,
-                        _takenImage,
-                        _recognizedTextLabel
-                    }
-                }
-            };
-
-        }
-        private void WireEvents()
-        {
-            _takePictureButton.Clicked += Image_OnClicked;
         }
 
         // The take a picture option has been selected so take a picture and run it through the OCR
         async void TakePictureButton_Clicked(object sender, EventArgs e)
         {
-
-
-            //update the onscreen buttons to show the user progress is being made
-            _takePictureButton.Text = ("Wait a moment for the results to appear.");
-            _takePictureButton.IsEnabled = false;
 
             //Take the actual photo of the receipt
             var photo = await TakePic(sender, e, "data");
@@ -102,6 +83,7 @@ namespace NuMo_Tabbed.Views
             if (photo != null)
             {
                 string imageFilePath = photo.Path;
+                Photo = imageFilePath;
                     //change the photo to bytes for processing
                     byte[] imageAsBytes = null;
                     using (var memoryStream = new MemoryStream())
@@ -115,12 +97,10 @@ namespace NuMo_Tabbed.Views
                 if (File.Exists(imageFilePath))
                 {
                     // Call the REST API method.
-                    _takePictureButton.Text = "\nWait a moment for the results to appear.\n";
+                    OcrText = "\nWait a moment for the results to appear.\n";
                     await ReadText(imageFilePath, "en");
                 }
             }
-            _takePictureButton.Text = "New scan";
-            _takePictureButton.IsEnabled = true;
         }
 
 
@@ -129,6 +109,7 @@ namespace NuMo_Tabbed.Views
         /// the Computer Vision REST API.
         /// </summary>
         /// <param name="imageFilePath">The image file with text.</param>
+
         private async Task ReadText(string imageFilePath, string language)
         {
             try
@@ -185,7 +166,7 @@ namespace NuMo_Tabbed.Views
                 {
                     // Display the JSON error data.
                     string errorString = await response.Content.ReadAsStringAsync();
-                    _recognizedTextLabel.Text = errorString;
+                    OcrText = errorString;
                     Console.WriteLine("\n\nResponse:\n{0}\n",
                         JToken.Parse(errorString).ToString());
                     return;
@@ -213,19 +194,19 @@ namespace NuMo_Tabbed.Views
 
                 if (i == 60 && contentString.IndexOf("\"status\":\"succeeded\"") == -1)
                 {
-                    _recognizedTextLabel.Text = ("\nTimeout error.\n");
+                    OcrText = ("\nTimeout error.\n");
                     Console.WriteLine("\nTimeout error.\n");
                     return;
                 }
 
                 // Display the JSON response.
-                _recognizedTextLabel.Text = JToken.Parse(contentString).ToString();
+                OcrText = JToken.Parse(contentString).ToString();
                 Console.WriteLine("\nResponse:\n\n{0}\n",
                     JToken.Parse(contentString).ToString());
             }
             catch (Exception e)
             {
-                _recognizedTextLabel.Text = ("\n" + e.Message);
+                OcrText = ("\n" + e.Message);
                 Console.WriteLine("\n" + e.Message);
             }
         }
@@ -272,6 +253,7 @@ namespace NuMo_Tabbed.Views
 
             //get file path for pic
             pPath = file.AlbumPath;
+            Photo = pPath;
 
             db.savePicReminder(date.ToString("MM/dd/yyyy"), pPath, picNum); //save to database
 
@@ -296,15 +278,14 @@ namespace NuMo_Tabbed.Views
             }
         }
 
+        
+
         // User has chosen to pick a picture
         // access the photos on their phone, have them select a picture and the run the OCR on the picture
         private async void PickPhotoButton_OnClicked(object sender, EventArgs e, String picNum)
         {
             // If the pick picure button is clicked, check if there is a photo album and access it if so
             await CrossMedia.Current.Initialize();
-
-            _takePictureButton.Text = ("Wait a moment for the results to appear.");
-            _takePictureButton.IsEnabled = false;
 
             if (!CrossMedia.Current.IsPickPhotoSupported)
             {
@@ -320,13 +301,13 @@ namespace NuMo_Tabbed.Views
             if (file != null)
             {
                 string imageFilePath = file.Path;
+                Photo = imageFilePath;
                 if (File.Exists(imageFilePath))
                 {
                     // Call the REST API method.
-                    _takePictureButton.Text = ("\nWait a moment for the results to appear.\n");
+                    OcrText = ("\nWait a moment for the results to appear.\n");
                     await ReadText(imageFilePath, "en");
                 }
-
 
             }
 
