@@ -11,8 +11,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System.Web;
-
+using System.Collections.Generic;
 
 namespace NuMo_Tabbed.Views
 {
@@ -167,8 +168,8 @@ namespace NuMo_Tabbed.Views
                     // Display the JSON error data.
                     string errorString = await response.Content.ReadAsStringAsync();
                     OcrText = errorString;
-                    Console.WriteLine("\n\nResponse:\n{0}\n",
-                        JToken.Parse(errorString).ToString());
+                    //Console.WriteLine("\n\nResponse:\n{0}\n",
+                    //    JToken.Parse(errorString).ToString());
                     return;
                 }
 
@@ -195,19 +196,29 @@ namespace NuMo_Tabbed.Views
                 if (i == 60 && contentString.IndexOf("\"status\":\"succeeded\"") == -1)
                 {
                     OcrText = ("\nTimeout error.\n");
-                    Console.WriteLine("\nTimeout error.\n");
+                    //Console.WriteLine("\nTimeout error.\n");
                     return;
                 }
 
                 // Display the JSON response.
-                OcrText = JToken.Parse(contentString).ToString();
-                Console.WriteLine("\nResponse:\n\n{0}\n",
-                    JToken.Parse(contentString).ToString());
+                // Parse the JSON returned to find the lines of text only
+                JObject rss = JObject.Parse(contentString);
+                JArray results = (JArray)rss["analyzeResult"]["readResults"][0]["lines"];
+                string TempResults = "Start Results:\n";
+                // Go through each line of text and add it to the temporary string
+                for (int r = 0; r < results.Count-1; r++)
+                {
+                    TempResults += (results[r]["text"]).ToString() + "\n";
+                }
+
+                // Update the screen with the results of the OCR
+                OcrText = TempResults;
+                
             }
             catch (Exception e)
             {
                 OcrText = ("\n" + e.Message);
-                Console.WriteLine("\n" + e.Message);
+                //Console.WriteLine("\n" + e.Message);
             }
         }
 
