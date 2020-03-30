@@ -6,12 +6,8 @@ using Foundation;
 using UIKit;
 using UserNotifications;
 
-using TinyIoC;
-using Tesseract;
-using Tesseract.iOS;
-using XLabs.Ioc;
-using XLabs.Ioc.TinyIOC;
-using XLabs.Platform.Device;
+
+
 
 namespace NuMo_Tabbed.iOS
 {
@@ -32,13 +28,6 @@ namespace NuMo_Tabbed.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             OxyPlot.Xamarin.Forms.Platform.iOS.PlotViewRenderer.Init();
-            var container = TinyIoCContainer.Current;
-            container.Register<IDevice>(AppleDevice.CurrentDevice);
-            container.Register<ITesseractApi>((cont, parameters) =>
-            {
-                return new TesseractApi();
-            });
-            Resolver.SetResolver(new TinyResolver(container));
 
 
             LoadApplication(new App());

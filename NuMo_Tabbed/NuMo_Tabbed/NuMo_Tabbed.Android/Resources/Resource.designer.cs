@@ -27,8 +27,6 @@ namespace NuMo_Tabbed.Droid
 		public static void UpdateIdValues()
 		{
 			global::Plugin.LocalNotifications.Resource.Drawable.plugin_lc_smallicon = global::NuMo_Tabbed.Droid.Resource.Drawable.plugin_lc_smallicon;
-			global::Tesseract.Droid.Resource.String.ApplicationName = global::NuMo_Tabbed.Droid.Resource.String.ApplicationName;
-			global::Tesseract.Droid.Resource.String.Hello = global::NuMo_Tabbed.Droid.Resource.String.Hello;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::NuMo_Tabbed.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::NuMo_Tabbed.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::NuMo_Tabbed.Droid.Resource.Attribute.font;

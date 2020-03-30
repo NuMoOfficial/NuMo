@@ -11,9 +11,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
 using System.Web;
-using System.Collections.Generic;
 
 namespace NuMo_Tabbed.Views
 {
@@ -31,6 +29,7 @@ namespace NuMo_Tabbed.Views
             }
 
         }
+
 
         // Changes the photo on the screen to whatever photo is taken or selected
         public string Photo
@@ -265,6 +264,7 @@ namespace NuMo_Tabbed.Views
             //get file path for pic
             pPath = file.AlbumPath;
             Photo = pPath;
+            this.date = DateTime.Today;
 
             db.savePicReminder(date.ToString("MM/dd/yyyy"), pPath, picNum); //save to database
 

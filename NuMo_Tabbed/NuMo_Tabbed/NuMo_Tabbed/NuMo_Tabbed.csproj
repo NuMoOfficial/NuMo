@@ -21,9 +21,8 @@
     <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
 
 
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />  
-    <PackageReference Include="Xamarin.Tesseract" Version="0.3.4" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />  
     <PackageReference Include="XLabs.Forms" Version="2.0.5782" />  
     <PackageReference Include="XLabs.IoC.TinyIoC" Version="2.0.5782" />
 

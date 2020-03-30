@@ -94,33 +94,6 @@
     <BundleResource Include="Resources\profile%402x.png" />
     <BundleResource Include="Resources\profile%403x.png" />
     <BundleResource Include="Resources\eng.traineddata" />
-    <BundleResource Include="Resources\tessdata\eng.cube.bigrams">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Resources\tessdata\eng.cube.fold">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Resources\tessdata\eng.cube.lm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Resources\tessdata\eng.cube.nn">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Resources\tessdata\eng.cube.params">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Resources\tessdata\eng.cube.size">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Resources\tessdata\eng.cube.word-freq">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Resources\tessdata\eng.tesseract_cube.nn">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <BundleResource Include="Resources\tessdata\eng.traineddata">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -267,10 +240,7 @@
     <PackageReference Include="OxyPlot.Xamarin.Forms">
       <Version>1.0.0</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
-    <PackageReference Include="Xamarin.Tesseract">
-      <Version>0.3.4</Version>
-    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
     <PackageReference Include="XLabs.Forms">
       <Version>2.0.5782</Version>
     </PackageReference>
