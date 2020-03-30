@@ -6,6 +6,9 @@ using Foundation;
 using UIKit;
 using UserNotifications;
 
+
+
+
 namespace NuMo_Tabbed.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -25,6 +28,8 @@ namespace NuMo_Tabbed.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             OxyPlot.Xamarin.Forms.Platform.iOS.PlotViewRenderer.Init();
+
+
             LoadApplication(new App());
 
             //following is used for sending notifications

@@ -5,6 +5,9 @@
              xmlns:vm="clr-namespace:NuMo_Tabbed.ViewModels"
              xmlns:views="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Health Info" Clicked="checkValues"/>
+    </ContentPage.ToolbarItems>
 
     <ContentPage.BindingContext>
         <vm:VisualizeViewModel />

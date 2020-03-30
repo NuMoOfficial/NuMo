@@ -3,8 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NuMo_Tabbed.Views.OCRview">
   <ContentPage.Content>
-      <StackLayout>
-          <Label TextColor="Black" FontSize="20" Text="Place for Timothy's OCR example..." />
-      </StackLayout>
-  </ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Button Text="New Scan" Clicked="Image_OnClicked" Style="{StaticResource buttonStyle}" />
+                <Label x:Name="fillerSpace" Text="" FontSize="100" HorizontalOptions="Center" />
+                <Image>
+                    <Image.Source>
+                        <FileImageSource File="{Binding Photo}" />
+                    </Image.Source>
+                </Image>
+                <Label x:Name="fillerSpace2" Text="" FontSize="20" HorizontalOptions="Center" />
+                <Label x:Name="recognizedText" Text="{Binding OcrText}" FontSize="20" HorizontalOptions="Center"/>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
