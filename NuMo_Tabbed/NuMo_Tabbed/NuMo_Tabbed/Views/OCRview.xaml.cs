@@ -253,6 +253,7 @@ namespace NuMo_Tabbed.Views
             var file = await CrossMedia.Current.TakePhotoAsync(
                 new StoreCameraMediaOptions
                 {
+                    PhotoSize = PhotoSize.Medium,
                     SaveToAlbum = true,
                     Directory = "NuMo"
                 });
@@ -304,7 +305,12 @@ namespace NuMo_Tabbed.Views
                 return;
             }
 
-            var file = await CrossMedia.Current.PickPhotoAsync();
+            var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+            {
+                PhotoSize = PhotoSize.Medium,
+                CompressionQuality = 92
+            }
+                );
 
             if (file == null)
                 return;
