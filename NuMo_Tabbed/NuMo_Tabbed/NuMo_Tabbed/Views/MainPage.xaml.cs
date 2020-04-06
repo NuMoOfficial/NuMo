@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Creates the navigation bar at the top of the app so that 
+ * users can visit different pages of the app such as home,
+ * profile, and visualize pages
+ */
+
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
