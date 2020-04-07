@@ -8,12 +8,21 @@ namespace NuMo_Tabbed
     class AddItemToFoodHistory : AddFoodPage
     {
         DateTime date;
+        private string dataToPass;
 
         public AddItemToFoodHistory(DateTime date) : base()
         {
             //display date at top of page
             this.Title += " " + date.Month + "/" + date.Day + "/" + date.Year;
             this.date = date;
+        }
+
+        public AddItemToFoodHistory(DateTime date, string dataToPass) : base()
+        {
+            this.Title += " " + date.Month + "/" + date.Day + "/" + date.Year;
+            this.date = date;
+            this.dataToPass = dataToPass;
+            changeText(dataToPass);
         }
 
         //When saved, data needs to be send to the database.

@@ -42,6 +42,12 @@ namespace NuMo_Tabbed.Views
             mainStack.Children.Insert(0, searchbar);
         }
 
+        public void changeText(string text)
+        {
+            searchbar.Text = text;
+            searchbar.Focus();
+        }
+
         //update search results.
         public void searchForMatches(object sender, TextChangedEventArgs e)
         {

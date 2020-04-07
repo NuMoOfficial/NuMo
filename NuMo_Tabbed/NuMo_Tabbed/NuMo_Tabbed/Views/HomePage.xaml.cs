@@ -77,7 +77,7 @@ namespace NuMo_Tabbed.Views
         //Plus button in top right to add a food item to today's history
         async void AddButton(object sender, EventArgs args)
         {
-            date = datePicker.Date;
+            DateTime date = datePicker.Date;
             await Navigation.PushAsync(new AddItemToFoodHistory(date));
         }
 

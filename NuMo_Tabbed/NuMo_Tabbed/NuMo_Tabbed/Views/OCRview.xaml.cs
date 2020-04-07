@@ -12,6 +12,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using System.Web;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace NuMo_Tabbed.Views
 {
@@ -30,9 +32,8 @@ namespace NuMo_Tabbed.Views
 
         }
 
-
-        // Changes the photo on the screen to whatever photo is taken or selected
-        public string Photo
+            // Changes the photo on the screen to whatever photo is taken or selected
+            public string Photo
         {
             get { return PhotoPath; }
             set
@@ -56,8 +57,7 @@ namespace NuMo_Tabbed.Views
         String pPath = "";
         DateTime date;
         DataAccessor db = DataAccessor.getDataAccessor();
-        
-        
+        string dataToPass = "";
 
         public OCRview()
         {
@@ -212,6 +212,7 @@ namespace NuMo_Tabbed.Views
 
                 // Update the screen with the results of the OCR
                 OcrText = TempResults;
+                parseText(TempResults);
                 
             }
             catch (Exception e)
@@ -220,6 +221,75 @@ namespace NuMo_Tabbed.Views
                 //Console.WriteLine("\n" + e.Message);
             }
         }
+
+        void parseText(String results)
+        {
+            results = cleanString(results);
+            string[] words = results.Split(' ');
+            var picker = new Picker { Title = "Select Text", IsVisible = false, IsEnabled = false, HorizontalOptions = LayoutOptions.Start, TitleColor = Color.Red };
+            var button1 = new Button { Text = "Select Restaurant Name", Style = (Style)Application.Current.Resources["buttonStyle"], Margin = new Thickness(0, 10, 0, 0) };
+            var label = new Label { Text = "Search: ", Margin = new Thickness(0, 20, 0, 20), FontSize = 25, TextColor = Color.Black};
+            var button2 = new Button { Text = "Search" , Style = (Style) Application.Current.Resources["buttonStyle"], VerticalOptions = LayoutOptions.End}; //, Style = (Style)Resources["buttonStyle"] 
+            var textList = new List<string>();
+            button1.Clicked += delegate
+            {
+                picker.IsEnabled = true;
+                picker.Focus();
+            };
+            button2.Clicked += openSearch;
+
+            foreach (string word in words)
+            {
+                string temp = word;
+                //temp = removeNumbers(temp);
+                if (temp.Length >= 3 && temp != "Start" && temp != "Results")
+                {
+                    textList.Add(temp);
+                }
+            }
+            picker.ItemsSource = textList;
+            picker.SelectedIndexChanged += (sender, args) =>
+            {
+                if (picker.SelectedIndex == -1)
+                {
+                    picker.IsVisible = false;
+                    picker.IsEnabled = false;
+                }
+                else
+                {
+                    string option = picker.Items[picker.SelectedIndex];
+                    //picker.Title = "Select more text";
+                    //need a line of code here that makes the picker display title instead of item
+                    label.Text += (option + " ");
+                    dataToPass += (option + " ");
+                    picker.IsEnabled = false;
+                    button1.Text = "Select Food Item";
+
+                }
+            };
+            StackLayout stackLayout = new StackLayout();
+            stackLayout.Children.Add(picker);
+            stackLayout.Children.Add(button1);
+            stackLayout.Children.Add(label);
+            stackLayout.Children.Add(button2);
+
+            Content = stackLayout;
+            //Content = picker; //this makes only the picker appear on content page
+
+        }
+
+        public string cleanString(string word)
+        {
+            return Regex.Replace(word, "[^A-Za-z]", " ");
+        }
+
+        async void openSearch(object sender, EventArgs args)
+        {
+            //date = datePicker.Date;
+            date = DateTime.Now;
+            await Navigation.PushAsync(new AddItemToFoodHistory(date, dataToPass));
+        }
+
 
         /// <summary>
         /// Returns the contents of the specified file as a byte array.
