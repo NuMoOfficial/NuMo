@@ -21,7 +21,6 @@ namespace NuMo_Tabbed
         {
             this.Title += " " + date.Month + "/" + date.Day + "/" + date.Year;
             this.date = date;
-            this.dataToPass = dataToPass;
             changeText(dataToPass);
         }
 
