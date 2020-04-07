@@ -76,6 +76,14 @@ namespace NuMo_Tabbed.Views
         // The take a picture option has been selected so take a picture and run it through the OCR
         async void TakePictureButton_Clicked(object sender, EventArgs e)
         {
+            // If the take picure button is clicked, check if a camera is supported and use it if so
+            await CrossMedia.Current.Initialize();
+            //getPermissions();
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
 
             //Take the actual photo of the receipt
             var photo = await TakePic(sender, e, "data");
@@ -312,17 +320,10 @@ namespace NuMo_Tabbed.Views
         private async Task<Plugin.Media.Abstractions.MediaFile> TakePic(object sender, EventArgs e, String picNum)
         {
            
-            await CrossMedia.Current.Initialize();
-
-            //getPermissions();
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            {
-                await DisplayAlert("No Camera", ":( No camera available.", "OK");
-                return null;
-            }
             var file = await CrossMedia.Current.TakePhotoAsync(
                 new StoreCameraMediaOptions
                 {
+                    PhotoSize = PhotoSize.Medium, // reduce the file size of the pic when taken so it is small enough for OCR
                     SaveToAlbum = true,
                     Directory = "NuMo"
                 });
@@ -345,7 +346,7 @@ namespace NuMo_Tabbed.Views
         // check to see if the user wants to take a picture or select and already taken picture
         private async void Image_OnClicked(object sender, EventArgs args)
         {
-            String action = await DisplayActionSheet("Select Option for Image: ", "Cancel", "Take Photo", "Pick Photo");
+            String action = await DisplayActionSheet("Select Option for Image: ", "Cancel", null, "Take Photo", "Pick Photo");
             String picNumber = "data";
 
             //take selected action
@@ -374,7 +375,12 @@ namespace NuMo_Tabbed.Views
                 return;
             }
 
-            var file = await CrossMedia.Current.PickPhotoAsync();
+            var file = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
+            {
+                PhotoSize = PhotoSize.Medium,
+                CompressionQuality = 92  // reduce the file size to 92% of the original size. Make pic smaller for OCR
+            }
+                );
 
             if (file == null)
                 return;
