@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using static NuMo_Tabbed.NumoNameSearch;
+using RestSharp;
 
 namespace NuMo_Tabbed
 {
@@ -37,6 +38,7 @@ namespace NuMo_Tabbed
         //For use in addItem pages.
         public List<NumoNameSearch> searchName(String name)
         {
+            queryUSDAdb();
 
             if (name == null || name.Length <= 0 || name.Trim().Length == 0)
                 return new List<NumoNameSearch>();
@@ -74,6 +76,22 @@ namespace NuMo_Tabbed
             foreach (var item in resultsOR)
                 resultList.Add(item);
             return resultList;
+        }
+
+        //Queries the USDA database to get nutritional informatin on search item
+        async void queryUSDAdb()
+        {
+
+            var client = new RestClient("https://api.nal.usda.gov/fdc/v1/foods/search");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            request.AddQueryParameter("api_key", "3RDFeHFY6uRhql23DDargkAdc5MqpHhZEiV5F8t7");
+            request.AddQueryParameter("query", "Cheddar%20Cheese");
+
+            IRestResponse response = await client.ExecuteAsync(request);
+            Console.WriteLine("Incoming response");
+            Console.WriteLine(response.Content);
+
         }
 
         //Retrieve custom quantifiers from database and add to searchItem
