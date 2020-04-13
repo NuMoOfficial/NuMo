@@ -108,7 +108,7 @@ namespace NuMo_Tabbed.Views
             }
             else
             {
-                db.deletePicture(date.ToString("MM/dd/yyyy"), picNum);
+                bool success = db.deletePicture(date.ToString("MM/dd/yyyy"), picNum);
                 pPath = "";
                 switch (picNum)
                 {
@@ -195,7 +195,7 @@ namespace NuMo_Tabbed.Views
                 if (!File.Exists(dbPicPath))
                 {
                     // Don't want to save memento because the file already doesn't exist
-                    db.deletePicture(formattedDate, i + "", saveMemento: false);
+                    bool success = db.deletePicture(formattedDate, i + "", saveMemento: false);
                     dbPicPath = "";
                 }
                 switch (i)

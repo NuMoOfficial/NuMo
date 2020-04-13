@@ -149,9 +149,6 @@ namespace NuMo_Tabbed
         //Used to save and read Settings and User Info from the database
         public void saveSettingsItem(String settingName, String settingValue)
         {
-            // Create memento just in case user wants to undo insertion or update
-            createMemento();
-
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Setting_Name from SETTINGS WHERE Setting_Name = '{0}'", settingName));
             if (values.Any())
             {
@@ -177,9 +174,6 @@ namespace NuMo_Tabbed
 
         public void saveDRIValue(String DRIName, String DRIValue)
         {
-            // Create memento just in case user wants to undo insertion or update
-            createMemento();
-
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT DRI_Name from DRI_VALUES WHERE DRI_Name = '{0}'", DRIName));
             if (values.Any())
             {
@@ -203,11 +197,9 @@ namespace NuMo_Tabbed
         }
 
         //save threshold values for dri thresholds
+        // Memento not needed for updating or inserting DRI threshholds. Easy to edit without memento
         public void saveDRIThresholds(String DRIName, String lowThresh, String highThresh)
         {
-            // Create memento just in case user wants to undo insertion or update
-            createMemento();
-
             var values = dbConn.Query<DRIThresholds>(String.Format("SELECT Low_Thresh as lowThresh from DRI_VALUES WHERE DRI_Name = '{0}'", DRIName));
             if (values.Any())
             {
@@ -228,10 +220,9 @@ namespace NuMo_Tabbed
         }
 
         //Inserts a new reminder for a specific date. Reminders are held in the database as a base64 string.
+        // Memento not needed for adding a reminder picture
         public void insertReminder(MyDayReminderItem item)
         {
-            // Create memento just in case user wants to undo insertion
-            createMemento();
 
             if (item.imageString == null)
             {
@@ -264,7 +255,6 @@ namespace NuMo_Tabbed
 
         }
 
-
         public String getNameFromID(int food_no)
         {
             var values = dbConn.Query<NumoNameSearch>(String.Format("SELECT Long_Desc as name FROM FOOD_DES where NDB_No = {0}", food_no));
@@ -272,10 +262,12 @@ namespace NuMo_Tabbed
         }
 
         //quantity is the number of servings...
-        public void createFoodItem(List<Nutrient> values, String name, double multiplier, String quantifier)
+        public void createFoodItem(List<Nutrient> values, String name, double multiplier, String quantifier, bool saveMemento = true)
         {
-            // Create memento just in case user wants to undo insertion
-            createMemento();
+            if (saveMemento)
+            {
+                createMemento();
+            }
 
             name.Replace("'", "''");
             dbConn.Execute(String.Format("INSERT INTO FOOD_DES (Long_Desc, Times_Searched) VALUES ('{0}', 10)", name));
@@ -293,12 +285,26 @@ namespace NuMo_Tabbed
         }
 
         //Adds the foodHistory entry to the database
-        public void addFoodHistory(FoodHistoryItem item)
+        public void addFoodHistory(FoodHistoryItem item, bool saveMemento = true)
         {
-            // Create memento just in case user wants to undo insertion
-            createMemento();
+            if (saveMemento)
+            {
+                createMemento();
+            }
 
             dbConn.Execute(String.Format("INSERT INTO FoodHistory (Date, Food_Id, Quantity, Quantifier) VALUES ('{0}', {1}, {2}, '{3}')", item.Date, item.food_no, item.Quantity, item.Quantifier));
+        }
+
+        //Update an entry in the foodhistory table.
+        public void updateFoodHistory(FoodHistoryItem item, int id, bool saveMemento = true)
+        {
+            // Create memento just in case user wants to undo update
+            if (saveMemento)
+            {
+                createMemento();
+            }
+
+            dbConn.Execute(String.Format("UPDATE FoodHistory SET Quantity = {0}, Quantifier = '{1}', Food_Id = {2} WHERE History_id = {3}", item.Quantity, item.Quantifier, item.food_no, id));
         }
 
         //retrieves the foodhistory associated to a certain date
@@ -326,15 +332,6 @@ namespace NuMo_Tabbed
             return resultList;
         }
 
-        //Update an entry in the foodhistory table.
-        public void updateFoodHistory(FoodHistoryItem item, int id)
-        {
-            // Create memento just in case user wants to undo update
-            createMemento();
-
-            dbConn.Execute(String.Format("UPDATE FoodHistory SET Quantity = {0}, Quantifier = '{1}', Food_Id = {2} WHERE History_id = {3}", item.Quantity, item.Quantifier, item.food_no, id));
-        }
-
         //Retreives a foodhistory item by id
         public FoodHistoryItem getFoodHistoryItem(int foodHistoryId)
         {
@@ -343,14 +340,16 @@ namespace NuMo_Tabbed
         }
 
         //Delete an entry in the foodHistory table
-        public bool deleteFoodHistoryItem(int id)
+        public bool deleteFoodHistoryItem(int id, bool saveMemento = true)
         {
-            // Create memento just in case user wants to undo deletion
-            createMemento();
-
             int rowsModified = 0;
             if (id >= 0)
             {
+                // Create memento just in case user wants to undo deletion
+                if (saveMemento)
+                {
+                    createMemento();
+                }
                 rowsModified = dbConn.Execute(String.Format("DELETE FROM FoodHistory WHERE History_Id={0}", id));
             }
             if (rowsModified > 0)
@@ -432,12 +431,14 @@ namespace NuMo_Tabbed
         }
 
         //save Keto log
-        public void saveKeto(DateTime KetoDate, double KetoVal)
+        public void saveKeto(DateTime KetoDate, double KetoVal, bool saveMemento = true)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Keto_Date from KETO_VALUES WHERE Keto_Date = '{0}'", KetoDate));
 
             // Create memento just in case user wants to undo insertion or update
-            createMemento();
+            if (saveMemento) {
+                createMemento();
+            }
 
             if (values.Any())
             {
@@ -474,6 +475,7 @@ namespace NuMo_Tabbed
         }
 
         //save hydration log
+        // saving a memento is not necessary for updating the hydration log.
         public void saveHydralog(String HydraName, String HYDRValue)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Hydr_Name from HYDR_VALUES WHERE Hydr_Name = '{0}'", HydraName));
@@ -507,14 +509,10 @@ namespace NuMo_Tabbed
         }
 
         //save picture urls for days
-        public void savePicReminder(String picDate, String picPath, String picNum, bool saveMemento = true)
+        // Not necessary to save a memento for saving or updating a picture.
+        public void savePicReminder(String picDate, String picPath, String picNum)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Pic_Name from PIC_VALUES WHERE Pic_Name = '{0}' AND Pic_Num = '{1}'", picDate, picNum));
-
-            if (saveMemento)
-            {
-                createMemento();
-            }
 
             if (values.Any())
             {
@@ -547,7 +545,7 @@ namespace NuMo_Tabbed
 
         // Delete an entry in the picture table
 
-        public void deletePicture(String picDate, String picNum, bool saveMemento = true)
+        public bool deletePicture(String picDate, String picNum, bool saveMemento = true)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Pic_Name from PIC_VALUES WHERE Pic_Name = '{0}' AND Pic_Num = '{1}'", picDate, picNum));
             if (values.Any())
@@ -564,6 +562,11 @@ namespace NuMo_Tabbed
                     Console.WriteLine("File Deleted");
                 }
                 dbConn.Execute(String.Format("DELETE FROM PIC_VALUES WHERE Pic_Name = '{0}' AND Pic_Num = '{1}'", picDate, picNum));
+                return true;
+            }
+            else
+            {
+                return false;
             }
 
         }

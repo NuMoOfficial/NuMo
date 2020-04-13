@@ -88,7 +88,6 @@ namespace NuMo_Tabbed.Views
                     item.Quantity = Convert.ToDouble(nutrQuantity);
                     item.Quantifier = nutrQuantifier;
 
-
                     //Add to our database
                     db.addFoodHistory(item);
                 }
