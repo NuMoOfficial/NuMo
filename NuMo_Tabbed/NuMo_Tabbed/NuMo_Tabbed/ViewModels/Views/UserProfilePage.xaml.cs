@@ -502,7 +502,7 @@ namespace NuMo_Tabbed.Views
                         oldItem = oldItems.First<MyDayReminderItem>(i => i.Date == "ProfileImage");
                     if (oldItem != null)
                     {
-                        db.deleteFoodHistoryItem(oldItem.id);
+                        bool success = db.deleteFoodHistoryItem(oldItem.id);
                     }
                     db.insertReminder(ReminderItem);
                 }

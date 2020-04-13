@@ -149,6 +149,9 @@ namespace NuMo_Tabbed
         //Used to save and read Settings and User Info from the database
         public void saveSettingsItem(String settingName, String settingValue)
         {
+            // Create memento just in case user wants to undo insertion or update
+            createMemento();
+
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Setting_Name from SETTINGS WHERE Setting_Name = '{0}'", settingName));
             if (values.Any())
             {
@@ -165,16 +168,18 @@ namespace NuMo_Tabbed
             //uncomment the following two lines to clear the user profile data
             //dbConn.Query<MyDayReminderItem>(String.Format("Delete from SETTINGS")); //use this to delete profile keep return ""; also
             //dbConn.Query<MyDayReminderItem>(String.Format("Delete from DRI_VALUES")); //use this to delete DRI_Values keep return ""; also
-              var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Setting_Val as imageString from SETTINGS WHERE Setting_Name = '{0}'", settingName));
-             if (values.Any())
-                 return values.First().imageString;
-             else
-                 return "";
-                 
+            var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Setting_Val as imageString from SETTINGS WHERE Setting_Name = '{0}'", settingName));
+            if (values.Any())
+                return values.First().imageString;
+            else
+                return "";
         }
 
         public void saveDRIValue(String DRIName, String DRIValue)
         {
+            // Create memento just in case user wants to undo insertion or update
+            createMemento();
+
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT DRI_Name from DRI_VALUES WHERE DRI_Name = '{0}'", DRIName));
             if (values.Any())
             {
@@ -200,6 +205,9 @@ namespace NuMo_Tabbed
         //save threshold values for dri thresholds
         public void saveDRIThresholds(String DRIName, String lowThresh, String highThresh)
         {
+            // Create memento just in case user wants to undo insertion or update
+            createMemento();
+
             var values = dbConn.Query<DRIThresholds>(String.Format("SELECT Low_Thresh as lowThresh from DRI_VALUES WHERE DRI_Name = '{0}'", DRIName));
             if (values.Any())
             {
@@ -222,6 +230,9 @@ namespace NuMo_Tabbed
         //Inserts a new reminder for a specific date. Reminders are held in the database as a base64 string.
         public void insertReminder(MyDayReminderItem item)
         {
+            // Create memento just in case user wants to undo insertion
+            createMemento();
+
             if (item.imageString == null)
             {
                 StreamImageSource streamImageSource = (StreamImageSource)item.ReminderImage.Source;
@@ -263,6 +274,9 @@ namespace NuMo_Tabbed
         //quantity is the number of servings...
         public void createFoodItem(List<Nutrient> values, String name, double multiplier, String quantifier)
         {
+            // Create memento just in case user wants to undo insertion
+            createMemento();
+
             name.Replace("'", "''");
             dbConn.Execute(String.Format("INSERT INTO FOOD_DES (Long_Desc, Times_Searched) VALUES ('{0}', 10)", name));
             dbConn.Commit();
@@ -281,10 +295,11 @@ namespace NuMo_Tabbed
         //Adds the foodHistory entry to the database
         public void addFoodHistory(FoodHistoryItem item)
         {
+            // Create memento just in case user wants to undo insertion
+            createMemento();
+
             dbConn.Execute(String.Format("INSERT INTO FoodHistory (Date, Food_Id, Quantity, Quantifier) VALUES ('{0}', {1}, {2}, '{3}')", item.Date, item.food_no, item.Quantity, item.Quantifier));
         }
-
-
 
         //retrieves the foodhistory associated to a certain date
         public List<FoodHistoryItem> getFoodHistoryList(String date)
@@ -311,10 +326,12 @@ namespace NuMo_Tabbed
             return resultList;
         }
 
-
         //Update an entry in the foodhistory table.
         public void updateFoodHistory(FoodHistoryItem item, int id)
         {
+            // Create memento just in case user wants to undo update
+            createMemento();
+
             dbConn.Execute(String.Format("UPDATE FoodHistory SET Quantity = {0}, Quantifier = '{1}', Food_Id = {2} WHERE History_id = {3}", item.Quantity, item.Quantifier, item.food_no, id));
         }
 
@@ -326,11 +343,23 @@ namespace NuMo_Tabbed
         }
 
         //Delete an entry in the foodHistory table
-        public void deleteFoodHistoryItem(int id)
+        public bool deleteFoodHistoryItem(int id)
         {
+            // Create memento just in case user wants to undo deletion
+            createMemento();
+
+            int rowsModified = 0;
             if (id >= 0)
             {
-                dbConn.Execute(String.Format("DELETE FROM FoodHistory WHERE History_Id={0}", id));
+                rowsModified = dbConn.Execute(String.Format("DELETE FROM FoodHistory WHERE History_Id={0}", id));
+            }
+            if (rowsModified > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -402,10 +431,14 @@ namespace NuMo_Tabbed
             return returnString;
         }
 
-        //save hydration log
+        //save Keto log
         public void saveKeto(DateTime KetoDate, double KetoVal)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Keto_Date from KETO_VALUES WHERE Keto_Date = '{0}'", KetoDate));
+
+            // Create memento just in case user wants to undo insertion or update
+            createMemento();
+
             if (values.Any())
             {
                 dbConn.Execute(String.Format("UPDATE KETO_VALUES set Keto_Val = '{0}' WHERE Keto_Date = '{1}'", KetoVal, KetoDate));
@@ -444,6 +477,7 @@ namespace NuMo_Tabbed
         public void saveHydralog(String HydraName, String HYDRValue)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Hydr_Name from HYDR_VALUES WHERE Hydr_Name = '{0}'", HydraName));
+
             if (values.Any())
             {
                 dbConn.Execute(String.Format("UPDATE HYDR_VALUES set HYDR_Val = '{0}' WHERE Hydr_Name = '{1}'", HYDRValue, HydraName));
@@ -473,9 +507,15 @@ namespace NuMo_Tabbed
         }
 
         //save picture urls for days
-        public void savePicReminder(String picDate, String picPath, String picNum)
+        public void savePicReminder(String picDate, String picPath, String picNum, bool saveMemento = true)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Pic_Name from PIC_VALUES WHERE Pic_Name = '{0}' AND Pic_Num = '{1}'", picDate, picNum));
+
+            if (saveMemento)
+            {
+                createMemento();
+            }
+
             if (values.Any())
             {
                 dbConn.Execute(String.Format("UPDATE PIC_VALUES set Pic_Val = '{0}' WHERE Pic_Name = '{1}' AND Pic_Num = '{2}'", picPath, picDate, picNum));
@@ -485,6 +525,7 @@ namespace NuMo_Tabbed
                 dbConn.Execute(String.Format("INSERT INTO PIC_VALUES (Pic_Name, Pic_Val, Pic_Num) VALUES ('{0}', '{1}','{2}')", picDate, picPath, picNum));
             }
         }
+
         //get the urls for stored pictures by date and number
         public string getPicReminder(String picDate, String picNum)
         {
@@ -504,12 +545,18 @@ namespace NuMo_Tabbed
                 return "";
         }
 
-        //Delete an entry in the picture table
-        public void deletePicture(String picDate, String picNum)
+        // Delete an entry in the picture table
+
+        public void deletePicture(String picDate, String picNum, bool saveMemento = true)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Pic_Name from PIC_VALUES WHERE Pic_Name = '{0}' AND Pic_Num = '{1}'", picDate, picNum));
             if (values.Any())
             {
+                if (saveMemento)
+                {
+                    createMemento();
+                }
+
                 String filePath = getPicReminder(picDate, picNum);
                 if (File.Exists(filePath))
                 {
@@ -517,8 +564,6 @@ namespace NuMo_Tabbed
                     Console.WriteLine("File Deleted");
                 }
                 dbConn.Execute(String.Format("DELETE FROM PIC_VALUES WHERE Pic_Name = '{0}' AND Pic_Num = '{1}'", picDate, picNum));
-
-
             }
 
         }
@@ -541,6 +586,23 @@ namespace NuMo_Tabbed
                 }
             }
             return foundPics;
+        }
+
+        // This function is part of the Memento pattern. Tells the db to rollback to
+        // a previous state.
+        public void rollback(Memento memento)
+        {
+            string savepoint = memento.getSavepoint();
+            dbConn.RollbackTo(savepoint);
+        }
+
+        // Creates a memento just in case the user wants to undo a transaction 
+        // made on the database.
+        private void createMemento()
+        {
+            string savepoint = dbConn.SaveTransactionPoint();
+            Caretaker ct = Caretaker.getCaretaker();
+            ct.addMemento(new Memento(savepoint));
         }
 
     }

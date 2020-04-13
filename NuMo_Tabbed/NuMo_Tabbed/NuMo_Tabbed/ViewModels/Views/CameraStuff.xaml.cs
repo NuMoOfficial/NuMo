@@ -26,11 +26,11 @@ namespace NuMo_Tabbed.Views
 
         public CameraStuff()
         {
-        //    new CameraStuff(DateTime.Today);
-        //}
-        //
-        //public CameraStuff(DateTime dateS)
-        //{
+            //    new CameraStuff(DateTime.Today);
+            //}
+            //
+            //public CameraStuff(DateTime dateS)
+            //{
             // Initialize the toolbar with save button, date, and title
             this.date = DateTime.Today;
             ToolbarItem refresh = new ToolbarItem();
@@ -194,7 +194,8 @@ namespace NuMo_Tabbed.Views
                 //make sure file still exists (incase user deletes album)
                 if (!File.Exists(dbPicPath))
                 {
-                    db.deletePicture(formattedDate, i + "");
+                    // Don't want to save memento because the file already doesn't exist
+                    db.deletePicture(formattedDate, i + "", saveMemento: false);
                     dbPicPath = "";
                 }
                 switch (i)
