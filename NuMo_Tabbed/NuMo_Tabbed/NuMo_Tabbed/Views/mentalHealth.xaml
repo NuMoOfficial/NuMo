@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Controls="clr-namespace:NuMo_Tabbed.Views"
+             mc:Ignorable="d"
+             x:Class="NuMo_Tabbed.Views.mentalHealth"
+             Title="Nutrients and Mental Health">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Nutrient1: effects on mental health &#10;Nutrient2: effects on mental health &#10;Nutrient3: effects on mental health &#10;Nutrient4: effects on mental health &#10;Nutrient5: effects on mental health &#10;Nutrient6: effects on mental health &#10;Nutrient7: effects on mental health &#10;Nutrient8: effects on mental health &#10;Nutrient9: effects on mental health &#10;Nutrient10: effects on mental health &#10;"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="20,10,0,0"/>
+            <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="20,10,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Relevant article"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://xamarin.com" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="More great info for Dallas to put in a text box&#10;We can put anything here..."
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="20,10,0,0"/>
+            <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="20,10,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Relevant article"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://xamarin.com" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

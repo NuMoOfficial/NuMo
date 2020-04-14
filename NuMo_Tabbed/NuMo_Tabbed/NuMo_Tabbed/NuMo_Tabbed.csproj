@@ -32,6 +32,9 @@
     <Compile Update="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\mentalHealth.xaml.cs">
+      <DependentUpon>mentalHealth.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\NutrientVisual.xaml.cs">
       <DependentUpon>NutrientVisual.xaml</DependentUpon>
     </Compile>
@@ -63,6 +66,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\KetoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\mentalHealth.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NutrFacts.xaml">

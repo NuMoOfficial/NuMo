@@ -510,6 +510,10 @@ namespace NuMo_Tabbed.Views
             }
 
         }
+        async void openMentalHealth(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new mentalHealth());
+        }
 
         private SKPath CalculateArrowPath(double height, double width)
         {
