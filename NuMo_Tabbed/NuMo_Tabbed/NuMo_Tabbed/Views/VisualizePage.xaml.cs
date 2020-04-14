@@ -120,7 +120,7 @@ namespace NuMo_Tabbed.Views
 
             // Omega text set
             var omegaConsumed = nutConsumed.ElementAt(nutConsumed.Count-1);
-            OmegaCounter.Text = "Your ratio is " + omegaConsumed.ToString("F1") + ", it is recommended to be at or below 4.0";
+            OmegaCounter.Text = "Your ratio is " + omegaConsumed.ToString("F1") + ", it is recommended to be at or below 3";
         }
 
         private void ResetDRIs()
