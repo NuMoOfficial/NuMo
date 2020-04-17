@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace NuMo_Tabbed.Views
 {
+    [Xamarin.Forms.TypeConverter(typeof(Xamarin.Forms.VisualElement.VisibilityConverter))]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateFoodPage : ContentPage
     {
+    // public bool IsVisible { get; set; }
+
         //index in inputValues corresponds to value at that index in mappings[]
         public static string[] inputValues = {
             "Protein(g)", "Carbs By Diff(g)", "Total Sugars(g)",
@@ -37,10 +41,8 @@ namespace NuMo_Tabbed.Views
         public CreateFoodPage()
         {
             InitializeComponent();
-
             foreach (var item in inputValues)
             {
-
                 var entryCell = new EntryCell()
                 {
                     Label = item,
@@ -126,10 +128,37 @@ namespace NuMo_Tabbed.Views
                     gramsAmount.Text = "";
                     CreateItemName.Text = "";
 
+                    // Update the undo button
+                    ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+                    undoButton.Text = "Undo";
+
                     //alert user it was saved
                     await DisplayAlert("Item Saved", "", "OK");
                 }
             }
+        }
+
+        async void undoButtonClicked(object sender, EventArgs args)
+        {
+            String action = await DisplayActionSheet("Do you want to remove\nthe last food added?", "Cancel", "Undo", "");
+            
+            if (action.Equals("Undo"))
+            {
+                // Get Memento from Caretaker
+                Caretaker ct = Caretaker.getCaretaker();
+                Memento m = ct.getMemento();
+                bool success = m.getLastState();
+
+                if (success) {
+                    // Remove undo button
+                    ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+                    undoButton.Text = "";
+
+                    await DisplayAlert("Undo Complete", "", "OK");
+                }
+                
+            }
+
         }
     }
 }
