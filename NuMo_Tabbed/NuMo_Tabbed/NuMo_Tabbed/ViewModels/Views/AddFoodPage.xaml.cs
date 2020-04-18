@@ -90,8 +90,55 @@ namespace NuMo_Tabbed.Views
 
                     //Add to our database
                     db.addFoodHistory(item);
+
+                    updateUndoButton();
                 }
             }
+        }
+
+        protected void updateUndoButton()
+        {
+            // Update the undo button
+            ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+
+            if (undoButton.Text.Equals(""))
+            {
+                undoButton.Text = "Undo";
+            }
+            else if (undoButton.Text.Equals("Undo"))
+            {
+                undoButton.Text = "";
+            }
+
+        }
+
+        async void undoButtonClicked(object sender, EventArgs args)
+        {
+            String action = await DisplayActionSheet("Do you want to remove\nthe last food added?", "Cancel", "Undo", "");
+
+            if (action.Equals("Undo"))
+            {
+                // Get Memento from Caretaker
+                Caretaker ct = Caretaker.getCaretaker();
+                Memento m = ct.getMemento();
+                await DisplayAlert("Got Memento from Caretaker", "", "OK");
+                bool success = m.getLastState();
+
+                if (success)
+                {
+                    await DisplayAlert("Rollback Successful! Yay!", "", "OK");
+                    // Remove undo button
+                    updateUndoButton();
+
+                    await DisplayAlert("Undo Complete", "", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Rollback unsuccessful :(", "", "OK");
+                }
+
+            }
+
         }
     }
 }
