@@ -14,13 +14,14 @@ namespace NuMo_Tabbed
             savepoint = save;
         }
 
-        public Boolean getLastState()
+        public bool getLastState()
         {
+            bool success;
             if (savepoint != null)
             {
                 DataAccessor db = DataAccessor.getDataAccessor();
-                db.rollback(this);
-                return true;
+                success = db.rollback(this);
+                return success;
             }
             else
             {

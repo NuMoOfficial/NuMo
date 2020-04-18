@@ -593,10 +593,20 @@ namespace NuMo_Tabbed
 
         // This function is part of the Memento pattern. Tells the db to rollback to
         // a previous state.
-        public void rollback(Memento memento)
+        public bool rollback(Memento memento)
         {
             string savepoint = memento.getSavepoint();
-            dbConn.RollbackTo(savepoint);
+            bool success = true;
+            try
+            {
+                dbConn.RollbackTo(savepoint);
+            }
+            catch(Exception e)
+            {
+                success = false;
+            }
+
+            return success;
         }
 
         // Creates a memento just in case the user wants to undo a transaction 
