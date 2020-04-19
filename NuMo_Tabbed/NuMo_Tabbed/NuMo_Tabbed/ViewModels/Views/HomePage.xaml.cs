@@ -183,7 +183,7 @@ namespace NuMo_Tabbed.Views
             {
                 MyDayFoodItem foodItem = (MyDayFoodItem)e.Item;
                 String action = await DisplayActionSheet("Do you want to modify " + foodItem.DisplayName,
-                    "Cancel", "", "Edit");
+                    "Cancel", "", "Edit", "Delete");
                 if (action.Equals("Edit"))
                 {
                     foodItem.OnEditEvent.Execute(null);
