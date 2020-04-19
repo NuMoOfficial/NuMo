@@ -121,12 +121,11 @@ namespace NuMo_Tabbed.Views
                 // Get Memento from Caretaker
                 Caretaker ct = Caretaker.getCaretaker();
                 Memento m = ct.getMemento();
-                await DisplayAlert("Got Memento from Caretaker", "", "OK");
+
                 bool success = m.getLastState();
 
                 if (success)
                 {
-                    await DisplayAlert("Rollback Successful! Yay!", "", "OK");
                     // Remove undo button
                     updateUndoButton();
 

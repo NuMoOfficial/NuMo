@@ -6,15 +6,16 @@
              x:Name="HomeItemsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Keto" Clicked="AddKeto"/>
-        <ToolbarItem Text="Add" Clicked="AddButton">
+        <ToolbarItem Text="Keto" Clicked="AddKeto" Priority="3"/>
+        <ToolbarItem Text="Add" Clicked="AddButton" Priority="2">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-        <ToolbarItem Text="Scan" Clicked="OpenOCR"/>
+        <ToolbarItem Text="Scan" Clicked="OpenOCR" Priority="1"/>
+        <ToolbarItem x:Name="undoButton" Text="" Clicked="undoButtonClicked" Priority="0"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -27,7 +28,7 @@
                 <Switch x:Name="nutrientToggle" IsToggled="False" Toggled="viewToggle"/>
             </StackLayout>
 
-            <ListView x:Name="listView">
+            <ListView x:Name="listView" ItemTapped="ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding DisplayName}" Detail="{Binding quantity}" TextColor="DarkBlue"/>

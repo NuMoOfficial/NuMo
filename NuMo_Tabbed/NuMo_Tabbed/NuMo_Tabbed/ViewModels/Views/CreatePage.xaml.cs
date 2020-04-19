@@ -14,12 +14,6 @@ namespace NuMo_Tabbed.Views
 	{
 		public CreatePage ()
 		{
-            // Remember to commit database. User can no longer use Memento Pattern to undo 
-            // previous transaction. By committing the database, database savepoints are
-            // no longer able to rollback the database.
-            DataAccessor db = DataAccessor.getDataAccessor();
-            db.commit();
-
             InitializeComponent ();
 		}
 
@@ -31,6 +25,17 @@ namespace NuMo_Tabbed.Views
         async void AddCreateRecipe(object sender, EventArgs args)
         {
             await Navigation.PushAsync(new CreateRecipePage());
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Remember to commit database. User can no longer use Memento Pattern to undo 
+            // previous transaction. By committing the database, database savepoints are
+            // no longer able to rollback the database.
+            DataAccessor db = DataAccessor.getDataAccessor();
+            db.commit();
         }
     }
 }
