@@ -182,7 +182,7 @@ namespace NuMo_Tabbed.Views
             else if (e.Item.GetType() == typeof(MyDayFoodItem))
             {
                 MyDayFoodItem foodItem = (MyDayFoodItem)e.Item;
-                String action = await DisplayActionSheet("Do you want to modify " + foodItem.DisplayName,
+                String action = await DisplayActionSheet("Do you want to modify " + foodItem.DisplayName + "?",
                     "Cancel", "", "Edit", "Delete");
                 if (action.Equals("Edit"))
                 {
