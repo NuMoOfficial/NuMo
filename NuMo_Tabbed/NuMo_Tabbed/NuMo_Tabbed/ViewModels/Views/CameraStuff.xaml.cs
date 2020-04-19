@@ -32,6 +32,14 @@ namespace NuMo_Tabbed.Views
             //public CameraStuff(DateTime dateS)
             //{
             // Initialize the toolbar with save button, date, and title
+
+
+            // Remember to commit database. User can no longer use Memento Pattern to undo 
+            // previous transaction. By committing the database, database savepoints are
+            // no longer able to rollback the database.
+            DataAccessor db = DataAccessor.getDataAccessor();
+            db.commit();
+
             this.date = DateTime.Today;
             ToolbarItem refresh = new ToolbarItem();
             refresh.Text = "Refresh";

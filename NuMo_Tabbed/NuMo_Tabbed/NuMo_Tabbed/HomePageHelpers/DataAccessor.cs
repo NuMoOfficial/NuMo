@@ -235,7 +235,6 @@ namespace NuMo_Tabbed
                 item.imageString = Convert.ToBase64String(memStream.ToArray());
             }
             dbConn.Execute(String.Format("INSERT INTO FoodHistory (Date, Image, Food_Id, Quantity, Quantifier) VALUES ('{0}', '{1}', 0, 0, '')", item.Date, item.imageString));
-            dbConn.Commit();
         }
 
         //retrieves reminder from database and converts it back to an image from base64.
@@ -271,7 +270,6 @@ namespace NuMo_Tabbed
 
             name.Replace("'", "''");
             dbConn.Execute(String.Format("INSERT INTO FOOD_DES (Long_Desc, Times_Searched) VALUES ('{0}', 10)", name));
-            dbConn.Commit();
             var food_no_data = dbConn.Query<NumoNameSearch>(String.Format("SELECT NDB_No as food_no, Long_Desc as name FROM FOOD_DES where UPPER(Long_Desc) LIKE '{0}' order by Times_Searched DESC", name));
             var food_no = food_no_data.FirstOrDefault().food_no;
             String data_num = food_no.ToString();
@@ -366,7 +364,6 @@ namespace NuMo_Tabbed
         public void incrementTimesSearched(int food_no)
         {
             int changes = dbConn.Execute(String.Format("UPDATE FOOD_DES SET Times_Searched = Times_Searched + 1 WHERE NDB_No = {0}", food_no));
-            dbConn.Commit();
         }
 
         /* method to get a list of each tracked nutrient as a readable name.
@@ -613,9 +610,15 @@ namespace NuMo_Tabbed
         // made on the database.
         private void createMemento()
         {
+            commit();
             string savepoint = dbConn.SaveTransactionPoint();
             Caretaker ct = Caretaker.getCaretaker();
             ct.addMemento(new Memento(savepoint));
+        }
+
+        public void commit()
+        {
+            dbConn.Commit();
         }
 
     }

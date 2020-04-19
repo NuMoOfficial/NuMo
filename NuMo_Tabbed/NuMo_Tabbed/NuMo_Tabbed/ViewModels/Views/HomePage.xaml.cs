@@ -20,6 +20,12 @@ namespace NuMo_Tabbed.Views
 
         public HomePage()
         {
+            // Remember to commit database. User can no longer use Memento Pattern to undo 
+            // previous transaction. By committing the database, database savepoints are
+            // no longer able to rollback the database.
+            DataAccessor db = DataAccessor.getDataAccessor();
+            db.commit();
+
             InitializeComponent();
 
             //subscribe to events to refresh the page and update a food item

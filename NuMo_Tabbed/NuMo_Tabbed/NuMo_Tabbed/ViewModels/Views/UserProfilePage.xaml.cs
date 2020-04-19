@@ -19,6 +19,12 @@ namespace NuMo_Tabbed.Views
         public Image MainImage = new Image();
         public UserProfilePage()
         {
+            // Remember to commit database. User can no longer use Memento Pattern to undo 
+            // previous transaction. By committing the database, database savepoints are
+            // no longer able to rollback the database.
+            DataAccessor db = DataAccessor.getDataAccessor();
+            db.commit();
+
             InitializeComponent();
             //not all of the settings are currently being used for calculations
 
