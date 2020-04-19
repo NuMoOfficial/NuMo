@@ -28,9 +28,6 @@ namespace NuMo_Tabbed.Views
             InitializeComponent();
             //not all of the settings are currently being used for calculations
 
-            //load the saved settings
-            var db = DataAccessor.getDataAccessor();
-
             //name
             this.FindByName<EntryCell>("settings_name").Text = db.getSettingsItem("name");
 
