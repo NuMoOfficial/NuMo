@@ -16,7 +16,7 @@ namespace NuMo_Tabbed
         NumoNameSearch search;
         // Make a new nutrFacts instance variable so that when we navigate, we come here
         // and not to AddFoodPage since AddItemUpdate is an AddFoodPage.
-        public NutrFacts nutFacts;
+        new public NutrFacts nutrFacts;
 
         public AddItemUpdate(MyDayFoodItem item)
         {
@@ -34,7 +34,7 @@ namespace NuMo_Tabbed
             search.name = foodHistoryItem.DisplayName;
 
             //create new instance to display food info
-            nutFacts = new NutrFacts(this, search)
+            nutrFacts = new NutrFacts(this, search)
             {
                 //update the values being displayed
                 DescriptView = foodHistoryItem.DisplayName,
@@ -42,15 +42,15 @@ namespace NuMo_Tabbed
                 UnitPickerText = foodHistoryItem.Quantifier,
                 selectedResult = search
             };
-            nutFacts.updateUnitPickerWithCustomOptions();
+            nutrFacts.updateUnitPickerWithCustomOptions();
 
 
         }
 
-        async public void SaveButtonClicked(object sender, EventArgs e)
+        async public override void saveButtonClicked(object sender, EventArgs e)
         {
-            var nutrQuantifier = nutFacts.getQuantifier();
-            var nutrQuantity = nutFacts.Quantity;
+            var nutrQuantifier = nutrFacts.getQuantifier();
+            var nutrQuantity = nutrFacts.Quantity;
 
             if (search != null && nutrQuantity != null && !nutrQuantity.Equals("0") && nutrQuantifier != null)
             {
