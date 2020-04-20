@@ -92,6 +92,9 @@ namespace NuMo_Tabbed.Views
             await Navigation.PushAsync(new OCRview());
         }
 
+        /*
+         * Not working properly right now because the database commits
+         * 
         async void undoButtonClicked(object sender, EventArgs args)
         {
             String action = await DisplayActionSheet("Do you want to undo\nthe last food deletion?", "Cancel", "Undo", "");
@@ -119,6 +122,7 @@ namespace NuMo_Tabbed.Views
             }
 
         }
+        */
 
         //Display the food items associated with today, and back in time to the number of selected days.
         void OnItemsClicked()
@@ -192,7 +196,8 @@ namespace NuMo_Tabbed.Views
                 {
                     foodItem.OnDeleteEvent.Execute(null);
 
-                    undoButton.Text = "Undo";
+                    // Since the db is committing to fast, the undo button isn't working, so no need to update it's text
+                    // undoButton.Text = "Undo";
                 }
             }
         }

@@ -294,7 +294,7 @@ namespace NuMo_Tabbed
         }
 
         //Update an entry in the foodhistory table.
-        public void updateFoodHistory(FoodHistoryItem item, int id, bool saveMemento = true)
+        public bool updateFoodHistory(FoodHistoryItem item, bool saveMemento = true)
         {
             // Create memento just in case user wants to undo update
             if (saveMemento)
@@ -302,7 +302,15 @@ namespace NuMo_Tabbed
                 createMemento();
             }
 
-            dbConn.Execute(String.Format("UPDATE FoodHistory SET Quantity = {0}, Quantifier = '{1}', Food_Id = {2} WHERE History_id = {3}", item.Quantity, item.Quantifier, item.food_no, id));
+            int rowsModified = dbConn.Execute(String.Format("UPDATE FoodHistory SET Quantity = {0}, Quantifier = '{1}', Food_Id = {2} WHERE History_id = {3}", item.Quantity, item.Quantifier, item.food_no, item.History_Id));
+            if (rowsModified > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //retrieves the foodhistory associated to a certain date

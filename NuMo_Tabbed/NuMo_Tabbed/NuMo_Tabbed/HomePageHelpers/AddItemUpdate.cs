@@ -24,8 +24,7 @@ namespace NuMo_Tabbed
             FoodHistoryItem foodHistoryItem = db.getFoodHistoryItem(item.id);
 
             //store food info in NumoNameSearch var
-            var search = new NumoNameSearch();
-            this.search = search;
+            search = new NumoNameSearch();
             search.food_no = foodHistoryItem.food_no;
             search.name = foodHistoryItem.DisplayName;
 
@@ -42,7 +41,7 @@ namespace NuMo_Tabbed
 
         }
 
-        public void SaveButtonClicked(object sender, EventArgs e)
+        async public void SaveButtonClicked(object sender, EventArgs e)
         {
             var nutrQuantifier = nutrFacts.getQuantifier();
             var nutrQuantity = nutrFacts.Quantity;
@@ -56,12 +55,21 @@ namespace NuMo_Tabbed
                 item.food_no = search.food_no;
                 item.Quantity = Convert.ToDouble(nutrQuantity);
                 item.Quantifier = nutrQuantifier;
-
+                item.History_Id = myDayItem.id;
 
                 //Add to our database
-                db.updateFoodHistory(item, myDayItem.id);
+                //bool success = db.updateFoodHistory(item, myDayItem.id, saveMemento: false);
+                bool success = db.updateFoodHistory(item, saveMemento: false);
+                if (success)
+                {
+                    await DisplayAlert("Update successful", "", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Update unsuccessful", "", "OK");
+                }
             }
             MyDayFoodItem.sendRefresh();
-        }
+        } 
     }
 }
