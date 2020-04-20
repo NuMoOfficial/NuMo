@@ -32,22 +32,22 @@ namespace NuMo_Tabbed
             search.name = foodHistoryItem.DisplayName;
 
             //create new instance to display food info
-            nutFacts = new NutrFacts(this, search);
+            nutrFacts = new NutrFacts(this, search);
 
             //update the values being displayed
-            nutFacts.DescriptView = foodHistoryItem.DisplayName;
-            nutFacts.Quantity = foodHistoryItem.Quantity.ToString();
-            nutFacts.UnitPickerText = foodHistoryItem.Quantifier;
-            nutFacts.selectedResult = search;
-            nutFacts.updateUnitPickerWithCustomOptions();
+            nutrFacts.DescriptView = foodHistoryItem.DisplayName;
+            nutrFacts.Quantity = foodHistoryItem.Quantity.ToString();
+            nutrFacts.UnitPickerText = foodHistoryItem.Quantifier;
+            nutrFacts.selectedResult = search;
+            nutrFacts.updateUnitPickerWithCustomOptions();
 
 
         }
 
         async public void SaveButtonClicked(object sender, EventArgs e)
         {
-            var nutrQuantifier = nutFacts.getQuantifier();
-            var nutrQuantity = nutFacts.Quantity;
+            var nutrQuantifier = nutrFacts.getQuantifier();
+            var nutrQuantity = nutrFacts.Quantity;
 
             if (search != null && nutrQuantity != null && !nutrQuantity.Equals("0") && nutrQuantifier != null)
             {
