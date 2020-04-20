@@ -8,7 +8,26 @@
              x:Class="NuMo_Tabbed.Views.mentalHealth"
              Title="Nutrients and Mental Health">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
+            <Label Text="Omega-3 fatty acids: Omega-3 supplements have been shown to decrease symptoms in ADHD, Autism and psychosis. Omega-3 fatty acids are important for the brain as they are a large part of the composition of the brain and help with brain cell signaling and modify receptor properties."
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+            <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="The role of omega-3 fatty acids in psychotherapy"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://numoofficial.github.io/PDF/2017%20the%20role%20of%20omega-3%20fatty%20acids%20in%20psychotherapy.pdf" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             <Label Text="Omega 6 fatty acids: A higher ratio of Omega 6 fatty acids can lead to an increased likelihood of suicide risk and major depressive episodes."
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
@@ -22,6 +41,24 @@
                             <Span.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
                                           CommandParameter="https://numoofficial.github.io/PDF/2013%20Vaz%20Omega%206%20fatty%20acids%20and%20greater%20likelihood%20of%20suicide%20risk%20and%20major%20depression%20in%20early%20pregnancy%202013.pdf" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="B vitamins: There is moderate evidence that B-Vitamins, including B-6, B-12 and folic acid, can reduce stress and improve mood."
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+            <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="A systematic review and meta-analysis of B Vitamins"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://numoofficial.github.io/PDF/2019%20A%20systematic%20review%20and%20meta-analysis%20of%20b%20vitamin.pdf" />
                             </Span.GestureRecognizers>
                         </Span>
                     </FormattedString>
@@ -65,9 +102,9 @@
             </Label>
             <Label Text="Click the link below for more articles on how nutrition relates to mental health"
                 VerticalOptions="Start" 
-                HorizontalOptions="Start" Padding="20,10,0,0"/>
+                HorizontalOptions="Start" Padding="20,10,10,0"/>
             <Label VerticalOptions="Start" 
-                HorizontalOptions="Start" Padding="20,0,0,0">
+                HorizontalOptions="Start" Padding="20,10,0,20">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Nutritional Montitoring and Mental Health"
@@ -82,5 +119,6 @@
                 </Label.FormattedText>
             </Label>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
