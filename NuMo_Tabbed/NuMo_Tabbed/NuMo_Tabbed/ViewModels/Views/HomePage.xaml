@@ -15,7 +15,7 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
         <ToolbarItem Text="Scan" Clicked="OpenOCR" Priority="1"/>
-        <ToolbarItem x:Name="undoButton" Text="" Clicked="undoButtonClicked" Priority="0"/>
+        <!--   <ToolbarItem x:Name="undoButton" Text="" Clicked="undoButtonClicked" Priority="0"/> -->
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
