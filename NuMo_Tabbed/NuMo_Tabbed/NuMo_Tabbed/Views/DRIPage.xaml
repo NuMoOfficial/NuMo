@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NuMo_Tabbed.Views.DRIPage"
+             xmlns:vm="clr-namespace:NuMo_Tabbed.ViewModels"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:DRIViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="?" Clicked="GetHelpInfo" Priority="1">
+        </ToolbarItem>
+        <ToolbarItem Text="Save" Clicked="CustomizeDRIs" Priority="0">
+        </ToolbarItem>
+        <ToolbarItem Text="Reset" Clicked="ResetDRIs" Priority="0">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--Page Level Resources: Compatible with Xamarin Live Player -->
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <TableView>
+            <TableRoot>
+                <TableSection Title = "Macronutrients">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Calories: " Margin="18,10,0,0"/>
+                            <Entry x:Name="dri_calories" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Total Carbohydrates (g) " Margin="18,10,0,0"/>
+                            <Entry x:Name="dri_totalCarbs" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Net Carboyhydrates (g) " Margin="18,10,0,0"/>
+                            <Entry x:Name="dri_netCarbs" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Protein (g): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_protein" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Sugar (g) " Margin="18,10,0,0"/>
+                            <Entry x:Name="dri_sugar" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Dietary Fiber (g) " Margin="18,10,0,0"/>
+                            <Entry x:Name="dri_dietaryFiber" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+
+                </TableSection>
+                <TableSection Title = "Vitamins">
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Vitamin A (IU): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_vitaminA" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Vitamin C (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_vitaminC" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Vitamin D (IU): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_vitaminD" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Vitamin E (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_vitaminE" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Vitamin K (μg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_vitaminK" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Thiamin (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_thiamin" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Riboflavin (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_riboflavin" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Niacin (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_niacin" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Vitamin B6 (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_vitaminB6" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Folate (μg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_folate" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Vitamin B12 (μg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_vitaminB12" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Pantothenic Acid (mg): " Margin="18,10,0,0"/>
+                            <Entry x:Name="dri_pantothenicAcid" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                </TableSection>
+
+                <TableSection Title = "Minerals">
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Calcium (mg): " Margin="18,10,0,0"/>
+                            <Entry x:Name="dri_calcium" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Iron (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_iron" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Magnesium (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_magnesium" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Phosphorus (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_phosphorus" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Potassium (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_potassium" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Sodium (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_sodium" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Zinc (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_zinc" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Copper (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_copper" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Manganese (mg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_manganese" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text = "Selenium (μg): " Margin="18,10,0,0" />
+                            <Entry x:Name="dri_selenium" Style="{StaticResource entryStyle}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+
+
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

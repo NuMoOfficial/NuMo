@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Picker Values from Manning CreateItemViewController.swift -->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		Title = "{Binding Title}"
+		x:Class="NuMo_Tabbed.Views.CreateFoodPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="saveButtonClicked" Priority="1" />
+
+        <ToolbarItem x:Name="undoButton" Text="" Clicked="undoButtonClicked" Priority="0"/>
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout >
+            <TableView>
+                <TableRoot>
+                    <TableSection Title="Item">
+                        <EntryCell x:Name="CreateItemName" Label="Name"/>
+                    </TableSection>
+                    <TableSection Title="Serving">
+                        <ViewCell>
+                            <StackLayout x:Name="layout" Orientation = "Horizontal" Margin = "0,0,0,0">
+                                <Entry x:Name="quantity" Placeholder = "1    " Margin = "10,0,0,0" 
+                           Keyboard="Numeric" WidthRequest ="55"/>
+                                <Entry x:Name="quantifier" Placeholder = "serving" WidthRequest ="80" />
+                                <Label Text = "~=" Margin = "0,0,0,0" VerticalOptions="Center"/>
+                                <Entry x:Name="gramsAmount" Placeholder = "0     "
+                           Keyboard="Numeric" WidthRequest ="65"/>
+                                <Label Text = "Grams" Margin = "0,0,0,0" VerticalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection x:Name="nutrientSection" Title="Nutrients">
+
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:views="clr-namespace:NuMo_Tabbed.Views"
+            x:Class="NuMo_Tabbed.Views.MainPage">
+    
+    
+    <TabbedPage.Children>
+        <NavigationPage x:Name="Home" Title="Home">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:HomePage />
+            </x:Arguments>
+        </NavigationPage>
+        
+        <NavigationPage x:Name="Create" Title="Create">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="Plus_Tab.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:CreatePage />
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage x:Name="Camera" Title="Camera">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="camera.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:CameraStuff />
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage x:Name="Visuals" Title="Visuals">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_about.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:SelectVisualizePage />
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage x:Name="Profile" Title="Profile">
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="profile.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+            <x:Arguments>
+                <views:UserProfilePage />
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
+</TabbedPage>

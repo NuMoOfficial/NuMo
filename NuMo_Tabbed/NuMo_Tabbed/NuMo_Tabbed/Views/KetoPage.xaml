@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NuMo_Tabbed.Views.KetoPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Visualize" Clicked="AddLineNutr" Priority="1"/>
+        <ToolbarItem x:Name="undoButton" Text="" Clicked="undoButtonClicked" Priority="0"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout x:Name="mainStack">
+            <StackLayout x:Name="ketoStack">
+                <Entry x:Name="glucoseEntry" Placeholder="Enter Blood Glucose Level (mg/dL)" Keyboard="Numeric"/>
+                <Entry x:Name="ketoEntry" Placeholder="Enter Blood Ketone (mmol/l)" Keyboard="Numeric"/>
+                <Button Text="Calculate GKI" Clicked="calculateGKI" BackgroundColor="DeepSkyBlue" TextColor="Blue"/>
+            </StackLayout>
+            <Label x:Name="hyperlink" Text="Learn more about your Glucose Ketone Index" TextColor="Blue"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
