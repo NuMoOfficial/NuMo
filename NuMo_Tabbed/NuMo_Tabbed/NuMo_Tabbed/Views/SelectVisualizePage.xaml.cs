@@ -14,7 +14,7 @@ namespace NuMo_Tabbed.Views
 	{
 		public SelectVisualizePage ()
 		{
-			InitializeComponent ();
+            InitializeComponent ();
 		}
 
         async void AddVisualize(object sender, EventArgs args)
@@ -62,6 +62,17 @@ namespace NuMo_Tabbed.Views
         {
             //pop up box stays on the screen until the ok button is selected
             await DisplayAlert("No Profile Exists", "Create a Profile to see Visualization", "OK");
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Remember to commit database. User can no longer use Memento Pattern to undo 
+            // previous transaction. By committing the database, database savepoints are
+            // no longer able to rollback the database.
+            DataAccessor db = DataAccessor.getDataAccessor();
+            db.commit();
         }
     }
 }

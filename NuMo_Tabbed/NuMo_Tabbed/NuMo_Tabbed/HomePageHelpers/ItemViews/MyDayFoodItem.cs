@@ -33,7 +33,7 @@ namespace NuMo_Tabbed.ItemViews
         void OnDelete()
         {
             var db = DataAccessor.getDataAccessor();
-            db.deleteFoodHistoryItem(id);
+            bool success = db.deleteFoodHistoryItem(id);
             //Refresh the mydaypage
             sendRefresh();
         }

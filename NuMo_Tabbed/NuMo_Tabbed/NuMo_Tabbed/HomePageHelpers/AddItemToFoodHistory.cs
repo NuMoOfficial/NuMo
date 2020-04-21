@@ -49,6 +49,9 @@ namespace NuMo_Tabbed
 
                     //Add to our database
                     db.addFoodHistory(item);
+
+                    // Update the undo button at the superclass level
+                    updateUndoButton();
                 }
             }
         }

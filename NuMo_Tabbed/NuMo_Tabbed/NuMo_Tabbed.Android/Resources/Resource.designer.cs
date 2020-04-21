@@ -15,7 +15,7 @@ namespace NuMo_Tabbed.Droid
 {
 	
 	
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
 	public partial class Resource
 	{
 		
@@ -6671,6 +6671,7 @@ namespace NuMo_Tabbed.Droid
 			global::XLabs.Forms.Resource.Styleable.ViewStubCompat_android_layout = global::NuMo_Tabbed.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::XLabs.Platform.Resource.String.ApplicationName = global::NuMo_Tabbed.Droid.Resource.String.ApplicationName;
 			global::XLabs.Platform.Resource.String.Hello = global::NuMo_Tabbed.Droid.Resource.String.Hello;
+
 		}
 		
 		public partial class Animation
