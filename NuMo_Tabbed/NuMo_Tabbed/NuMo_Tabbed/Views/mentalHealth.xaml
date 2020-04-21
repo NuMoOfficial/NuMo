@@ -22,7 +22,7 @@
                   TextDecorations="Underline">
                             <Span.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
-                                          CommandParameter="https://numoofficial.github.io/PDF/2017%20the%20role%20of%20omega-3%20fatty%20acids%20in%20psychotherapy.pdf" />
+                                          CommandParameter="https://numoofficial.github.io/PDF/2017%20The%20role%20of%20omega-3%20fatty%20acids%20in%20psychotherapy.pdf" />
                             </Span.GestureRecognizers>
                         </Span>
                     </FormattedString>
@@ -58,7 +58,7 @@
                   TextDecorations="Underline">
                             <Span.GestureRecognizers>
                                 <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
-                                          CommandParameter="https://numoofficial.github.io/PDF/2019%20A%20systematic%20review%20and%20meta-analysis%20of%20b%20vitamin.pdf" />
+                                          CommandParameter="https://numoofficial.github.io/PDF/2019%20A%20Systematic%20Review%20and%20Meta-Analysis%20of%20B%20Vitamin.pdf" />
                             </Span.GestureRecognizers>
                         </Span>
                     </FormattedString>
