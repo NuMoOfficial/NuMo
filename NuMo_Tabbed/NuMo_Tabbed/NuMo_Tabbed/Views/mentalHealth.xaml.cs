@@ -22,7 +22,7 @@ namespace NuMo_Tabbed.Views
         public ICommand ClickCommand => new Command<string>(async (url) =>
         {
             if (await Xamarin.Essentials.Launcher.CanOpenAsync(url))
-                await Xamarin.Essentials.Launcher.OpenAsync(url);
+                await Xamarin.Essentials.Launcher.OpenAsync(new Uri(url));
             else
                 await DisplayAlert("Alert", "The link was unable to open", "OK");
         });
