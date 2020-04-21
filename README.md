@@ -17,10 +17,15 @@ Or, if you are lucky, you may be able to copy/paste everything into a new draw.i
 This is to prevent random people from making changes to the diagrams.
 
 Future work:
+
 Ability to edit/remove items in a recipe as the user is creating the recipe (looking at HomePage.xaml and HomePage.xaml.cs may be helpful)
+
 Ability to add/edit/remove items in a recipe that has already been user created
+
 Ability to edit/remove foods that have already been user created
+
 I was able to crash the add recipe page by entering -0 into the quantity field. I was also able to successfully enter a negative number into the quantity field. 
+
 Scan grocery store receipts and link to database (keep seperate from daily food intake). Output nutrients as a visual to see gross amount of macro/micro nutrients? Ask Ed and Holly about this one. If they want you to attempt this, you may want to create an informational gross analysis of macro/micronutrients for purchased items. 
 
 
