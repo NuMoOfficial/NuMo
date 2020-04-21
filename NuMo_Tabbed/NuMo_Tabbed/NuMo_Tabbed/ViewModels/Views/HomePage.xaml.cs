@@ -70,7 +70,7 @@ namespace NuMo_Tabbed.Views
         async void UpdateMyDayFoodItem(MyDayFoodItem item)
         {
             AddItemUpdate update = new AddItemUpdate(item);
-            await Navigation.PushAsync(update.nutrFacts);
+            await Navigation.PushAsync(update.nutFacts);
 
         }
 
