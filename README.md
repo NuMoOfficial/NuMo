@@ -1,2 +1,2 @@
 # NuMo
-Most current NuMo version as of April 2019
+Most current NuMo version as of April 2020
