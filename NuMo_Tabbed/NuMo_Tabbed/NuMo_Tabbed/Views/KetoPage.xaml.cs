@@ -59,6 +59,10 @@ namespace NuMo_Tabbed.Views
                 ketoStack.Children.Add(indexText);
 
                 db.saveKeto(date, index);
+
+                // Update the undo button
+                ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+                undoButton.Text = "Undo";
             }
             catch (Exception e)
             {
@@ -66,6 +70,35 @@ namespace NuMo_Tabbed.Views
                 DisplayAlert("Invalid Input", "Please enter a number", "OK");
             }
         }
+
+        async void undoButtonClicked(object sender, EventArgs args)
+        {
+            String action = await DisplayActionSheet("Do you want to undo\nthe last GKI calculation?", "Cancel", "Undo", "");
+
+            if (action.Equals("Undo"))
+            {
+                // Get Memento from Caretaker
+                Caretaker ct = Caretaker.getCaretaker();
+                Memento m = ct.getMemento();
+                bool success = m.getLastState();
+
+                if (success)
+                {
+                    // Remove undo button
+                    ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+                    undoButton.Text = "";
+
+                    await DisplayAlert("Undo Complete", "", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Rollback unsuccessful :(", "", "OK");
+                }
+
+            }
+
+        }
+
         //open nutrient as function over time line graph
         async void AddLineNutr(object sender, EventArgs args)
         {

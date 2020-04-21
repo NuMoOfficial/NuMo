@@ -14,9 +14,14 @@ namespace NuMo_Tabbed
     {
         MyDayFoodItem myDayItem;
         NumoNameSearch search;
+        // Make a new nutrFacts instance variable so that when we navigate, we come here
+        // and not to AddFoodPage since AddItemUpdate is an AddFoodPage.
+        public NutrFacts nutFacts;
 
         public AddItemUpdate(MyDayFoodItem item)
         {
+            Title = "Update Item";
+            
             myDayItem = item;
 
             //get food item from database
@@ -24,28 +29,28 @@ namespace NuMo_Tabbed
             FoodHistoryItem foodHistoryItem = db.getFoodHistoryItem(item.id);
 
             //store food info in NumoNameSearch var
-            var search = new NumoNameSearch();
-            this.search = search;
+            search = new NumoNameSearch();
             search.food_no = foodHistoryItem.food_no;
             search.name = foodHistoryItem.DisplayName;
 
             //create new instance to display food info
-            nutrFacts = new NutrFacts(this, search);
-
-            //update the values being displayed
-            nutrFacts.DescriptView = foodHistoryItem.DisplayName;
-            nutrFacts.Quantity = foodHistoryItem.Quantity.ToString();
-            nutrFacts.UnitPickerText = foodHistoryItem.Quantifier;
-            nutrFacts.selectedResult = search;
-            nutrFacts.updateUnitPickerWithCustomOptions();
+            nutFacts = new NutrFacts(this, search)
+            {
+                //update the values being displayed
+                DescriptView = foodHistoryItem.DisplayName,
+                Quantity = foodHistoryItem.Quantity.ToString(),
+                UnitPickerText = foodHistoryItem.Quantifier,
+                selectedResult = search
+            };
+            nutFacts.updateUnitPickerWithCustomOptions();
 
 
         }
 
-        public void SaveButtonClicked(object sender, EventArgs e)
+        async public void SaveButtonClicked(object sender, EventArgs e)
         {
-            var nutrQuantifier = nutrFacts.getQuantifier();
-            var nutrQuantity = nutrFacts.Quantity;
+            var nutrQuantifier = nutFacts.getQuantifier();
+            var nutrQuantity = nutFacts.Quantity;
 
             if (search != null && nutrQuantity != null && !nutrQuantity.Equals("0") && nutrQuantifier != null)
             {
@@ -56,12 +61,21 @@ namespace NuMo_Tabbed
                 item.food_no = search.food_no;
                 item.Quantity = Convert.ToDouble(nutrQuantity);
                 item.Quantifier = nutrQuantifier;
-
+                item.History_Id = myDayItem.id;
 
                 //Add to our database
-                db.updateFoodHistory(item, myDayItem.id);
+                //bool success = db.updateFoodHistory(item, myDayItem.id, saveMemento: false);
+                bool success = db.updateFoodHistory(item, saveMemento: false);
+                if (success)
+                {
+                    await DisplayAlert("Update successful", "", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Update unsuccessful", "", "OK");
+                }
             }
             MyDayFoodItem.sendRefresh();
-        }
+        } 
     }
 }

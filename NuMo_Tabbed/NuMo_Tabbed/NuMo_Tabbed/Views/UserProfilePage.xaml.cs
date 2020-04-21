@@ -22,8 +22,7 @@ namespace NuMo_Tabbed.Views
             InitializeComponent();
             //not all of the settings are currently being used for calculations
 
-            //load the saved settings
-            var db = DataAccessor.getDataAccessor();
+            DataAccessor db = DataAccessor.getDataAccessor();
 
             //name
             this.FindByName<EntryCell>("settings_name").Text = db.getSettingsItem("name");
@@ -502,7 +501,7 @@ namespace NuMo_Tabbed.Views
                         oldItem = oldItems.First<MyDayReminderItem>(i => i.Date == "ProfileImage");
                     if (oldItem != null)
                     {
-                        db.deleteFoodHistoryItem(oldItem.id);
+                        bool success = db.deleteFoodHistoryItem(oldItem.id);
                     }
                     db.insertReminder(ReminderItem);
                 }
@@ -532,6 +531,17 @@ namespace NuMo_Tabbed.Views
             }
 
 
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Remember to commit database. User can no longer use Memento Pattern to undo 
+            // previous transaction. By committing the database, database savepoints are
+            // no longer able to rollback the database.
+            DataAccessor db = DataAccessor.getDataAccessor();
+            db.commit();
         }
     }
 }
