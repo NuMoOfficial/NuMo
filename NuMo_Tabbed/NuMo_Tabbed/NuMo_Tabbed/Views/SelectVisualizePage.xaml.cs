@@ -26,7 +26,6 @@ namespace NuMo_Tabbed.Views
              * No DRI values will make the visualization crash and the app will crash too
              * to prevent app crashing a pop up box is displayed telling the user to create a profile
              */
-
             if (db.getDRIValue(db.GetDRINames()[0]) == "")
             {
                 Empty_profile_error();

@@ -5,10 +5,6 @@
              xmlns:vm="clr-namespace:NuMo_Tabbed.ViewModels"
              xmlns:views="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Health Info" Clicked="checkValues"/>
-        <ToolbarItem Text="Mental Health" Clicked="openMentalHealth"/>
-    </ContentPage.ToolbarItems>
 
     <ContentPage.BindingContext>
         <vm:VisualizeViewModel />
@@ -22,11 +18,6 @@
             <Picker x:Name="timePicker" Title="Choose Display Time Period" SelectedIndexChanged="OnTimeLengthChoiceChanged"/>
         </StackLayout>
 
-        <Label Text="Omega 6 to 3 Ratio:" HorizontalOptions="StartAndExpand"/>
-        <Label x:Name="OmegaCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
-        <views:SKCanvasView x:Name="OmegaTargetCanvas" PaintSurface="OnVisualizePaintSurfaceOmegas" VerticalOptions="FillAndExpand" 
-                            HorizontalOptions="Fill" />
-        
         <Label Text="Calories:" HorizontalOptions="StartAndExpand"/>
         <Label x:Name="CaloriesCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
         <views:SKCanvasView x:Name="CaloriesBarCanvas" PaintSurface="OnVisualizePaintSurfaceCalories" HorizontalOptions="Fill"/>
@@ -39,6 +30,10 @@
         <Label x:Name="SugarCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
         <views:SKCanvasView x:Name="SugarBarCanvas" PaintSurface="OnVisualizePaintSurfaceSugar" HorizontalOptions="Fill"/>
         
+        <Label Text="Omega 6 to 3 Ratio:" HorizontalOptions="StartAndExpand"/>
+        <Label x:Name="OmegaCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+        <views:SKCanvasView x:Name="OmegaTargetCanvas" PaintSurface="OnVisualizePaintSurfaceOmegas" VerticalOptions="FillAndExpand" 
+                            HorizontalOptions="Fill" />
         <BoxView Color="White"/>        
         
     </StackLayout>

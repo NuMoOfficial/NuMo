@@ -177,7 +177,6 @@ namespace NuMo_Tabbed.Views
             }
         }
 
-
         private async void refreshButtonClicked(object sender, EventArgs args)
         {
             // Upon clicking refresh button, reload all 6 images, useful for when images reset

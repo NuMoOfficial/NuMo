@@ -70,14 +70,14 @@ namespace NuMo_Tabbed.Views
         async void UpdateMyDayFoodItem(MyDayFoodItem item)
         {
             AddItemUpdate update = new AddItemUpdate(item);
-            await Navigation.PushAsync(update.nutrFacts);
+            await Navigation.PushAsync(update.nutFacts);
 
         }
 
         //Plus button in top right to add a food item to today's history
         async void AddButton(object sender, EventArgs args)
         {
-            DateTime date = datePicker.Date;
+            date = datePicker.Date;
             await Navigation.PushAsync(new AddItemToFoodHistory(date));
         }
 

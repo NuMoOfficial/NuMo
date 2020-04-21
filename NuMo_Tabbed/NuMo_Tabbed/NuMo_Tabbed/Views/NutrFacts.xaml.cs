@@ -245,7 +245,6 @@ namespace NuMo_Tabbed.Views
             {
                 aip.saveButtonClicked(sender, args);
                 await Navigation.PopAsync();
-            
             }
         }
 
