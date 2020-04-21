@@ -288,7 +288,7 @@ namespace NuMo_Tabbed.Views
 
         public string cleanString(string word)
         {
-            return Regex.Replace(word, "[^A-Za-z]", " ");
+            return Regex.Replace(word, "[^A-Za-z']", " ");
         }
 
         async void openSearch(object sender, EventArgs args)
