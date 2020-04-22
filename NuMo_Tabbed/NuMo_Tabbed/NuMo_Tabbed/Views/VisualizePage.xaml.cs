@@ -168,12 +168,12 @@ namespace NuMo_Tabbed.Views
             {
                 await DisplayAlert("Health Info", "Please add a meal for health analysis", "OK");
             }
-            if (omegaConsumed > 4.0) {
+            if (omegaConsumed > 3.0) {
                 var selection = await DisplayAlert("Health Info", "We noticed your omega 6 to 3 ratio is higher than recommended. Would you like to view a helpful article?", "Yes", "No");
 
                 if (selection)
                 {
-                    await Browser.OpenAsync("https://numoofficial.github.io/PDF/omega6PDF.pdf", BrowserLaunchMode.SystemPreferred);
+                    await Browser.OpenAsync("https://numoofficial.github.io/PDF/2007%20Sinn%20PUFA%20supplementation%20effective%20at%20reducing%20ADHD%202015.pdf", BrowserLaunchMode.SystemPreferred);
                 }
 
             }
@@ -183,7 +183,7 @@ namespace NuMo_Tabbed.Views
 
                 if (selection)
                 {
-                    await Browser.OpenAsync("https://numoofficial.github.io/PDF/FAQ_Sugar_and_Cancer.pdf", BrowserLaunchMode.SystemPreferred);
+                    await Browser.OpenAsync("https://numoofficial.github.io/PDF/2015%20Lang%20Nutritional%20Aspects%20of%20Depression.pdf", BrowserLaunchMode.SystemPreferred);
                 }
 
             }
