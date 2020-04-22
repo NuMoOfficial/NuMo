@@ -28,6 +28,8 @@ I was able to crash the add recipe page by entering -0 into the quantity field. 
 
 Scan grocery store receipts and link to database (keep seperate from daily food intake). Output nutrients as a visual to see gross amount of macro/micro nutrients? Ask Ed and Holly about this one. If they want you to attempt this, you may want to create an informational gross analysis of macro/micronutrients for purchased items. 
 
+Try getting Firebase Crashalytics working for Android. When we tried using it, the app crashed on startup. There is a line commented out in NuMoTabbed.Android/MainActivity.cs //Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+
 
 
 
