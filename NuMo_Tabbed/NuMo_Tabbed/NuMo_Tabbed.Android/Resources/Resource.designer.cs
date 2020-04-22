@@ -6853,6 +6853,7 @@ namespace NuMo_Tabbed.Droid
 			global::XLabs.Forms.Resource.Styleable.ViewStubCompat_android_layout = global::NuMo_Tabbed.Droid.Resource.Styleable.ViewStubCompat_android_layout;
 			global::XLabs.Platform.Resource.String.ApplicationName = global::NuMo_Tabbed.Droid.Resource.String.ApplicationName;
 			global::XLabs.Platform.Resource.String.Hello = global::NuMo_Tabbed.Droid.Resource.String.Hello;
+
 		}
 		
 		public partial class Animation
