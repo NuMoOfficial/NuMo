@@ -92,6 +92,38 @@ namespace NuMo_Tabbed.Views
             await Navigation.PushAsync(new OCRview());
         }
 
+        /*
+         * Not working properly right now because the database commits
+         * 
+        async void undoButtonClicked(object sender, EventArgs args)
+        {
+            String action = await DisplayActionSheet("Do you want to undo\nthe last food deletion?", "Cancel", "Undo", "");
+
+            if (action.Equals("Undo"))
+            {
+                // Get Memento from Caretaker
+                Caretaker ct = Caretaker.getCaretaker();
+                Memento m = ct.getMemento();
+                bool success = m.getLastState();
+
+                if (success)
+                {
+                    // Remove undo button
+                    ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+                    undoButton.Text = "";
+
+                    await DisplayAlert("Undo Complete", "", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Rollback unsuccessful :(", "", "OK");
+                }
+
+            }
+
+        }
+        */
+
         //Display the food items associated with today, and back in time to the number of selected days.
         void OnItemsClicked()
         {
@@ -141,6 +173,32 @@ namespace NuMo_Tabbed.Views
             else
             {
                 OnItemsClicked();
+            }
+        }
+
+        public async void ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
+            if (e.Item == null)
+            {
+                return; //ItemSelected is called on deselection, which results in SelectedItem being set to null
+            }
+            else if (e.Item.GetType() == typeof(MyDayFoodItem))
+            {
+                MyDayFoodItem foodItem = (MyDayFoodItem)e.Item;
+                String action = await DisplayActionSheet("Do you want to modify " + foodItem.DisplayName + "?",
+                    "Cancel", "", "Edit", "Delete");
+                if (action.Equals("Edit"))
+                {
+                    foodItem.OnEditEvent.Execute(null);
+                }
+                else if (action.Equals("Delete"))
+                {
+                    foodItem.OnDeleteEvent.Execute(null);
+
+                    // Since the db is committing to fast, the undo button isn't working, so no need to update it's text
+                    // undoButton.Text = "Undo";
+                }
             }
         }
 
@@ -215,6 +273,12 @@ namespace NuMo_Tabbed.Views
         //Make sure the most current information is being used.
         protected override void OnAppearing()
         {
+            // Remember to commit database. User can no longer use Memento Pattern to undo 
+            // previous transaction. By committing the database, database savepoints are
+            // no longer able to rollback the database.
+            DataAccessor db = DataAccessor.getDataAccessor();
+            db.commit();
+
             UpdateMyDayPicture();
             base.OnAppearing();
             nutrientToggle.IsToggled = false;

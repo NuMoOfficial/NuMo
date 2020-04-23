@@ -17,6 +17,8 @@ namespace NuMo_Tabbed
 
         public AddItemUpdate(MyDayFoodItem item)
         {
+            Title = "Update Item";
+            
             myDayItem = item;
 
             //get food item from database
@@ -24,25 +26,25 @@ namespace NuMo_Tabbed
             FoodHistoryItem foodHistoryItem = db.getFoodHistoryItem(item.id);
 
             //store food info in NumoNameSearch var
-            var search = new NumoNameSearch();
-            this.search = search;
+            search = new NumoNameSearch();
             search.food_no = foodHistoryItem.food_no;
             search.name = foodHistoryItem.DisplayName;
 
             //create new instance to display food info
-            nutrFacts = new NutrFacts(this, search);
-
-            //update the values being displayed
-            nutrFacts.DescriptView = foodHistoryItem.DisplayName;
-            nutrFacts.Quantity = foodHistoryItem.Quantity.ToString();
-            nutrFacts.UnitPickerText = foodHistoryItem.Quantifier;
-            nutrFacts.selectedResult = search;
+            nutrFacts = new NutrFacts(this, search)
+            {
+                //update the values being displayed
+                DescriptView = foodHistoryItem.DisplayName,
+                Quantity = foodHistoryItem.Quantity.ToString(),
+                UnitPickerText = foodHistoryItem.Quantifier,
+                selectedResult = search
+            };
             nutrFacts.updateUnitPickerWithCustomOptions();
 
 
         }
 
-        public void SaveButtonClicked(object sender, EventArgs e)
+        async public void saveButtonClicked(object sender, EventArgs e)
         {
             var nutrQuantifier = nutrFacts.getQuantifier();
             var nutrQuantity = nutrFacts.Quantity;
@@ -57,9 +59,18 @@ namespace NuMo_Tabbed
                 item.Quantity = Convert.ToDouble(nutrQuantity);
                 item.Quantifier = nutrQuantifier;
 
+                item.History_Id = myDayItem.id;
 
                 //Add to our database
-                db.updateFoodHistory(item, myDayItem.id);
+                bool success = db.updateFoodHistory(item, saveMemento: false);
+                if (success)
+                {
+                    await DisplayAlert("Update successful", "", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Update unsuccessful", "", "OK");
+                }
             }
             MyDayFoodItem.sendRefresh();
         }

@@ -10,10 +10,12 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" Clicked="SaveRecipe">
-        </ToolbarItem>
-        <ToolbarItem Text="Add Ingredient" Clicked="AddIngredient" Priority="0">
-        </ToolbarItem>
+        <ToolbarItem Text="Save" Clicked="SaveRecipe"  Priority="1"/>
+
+        <ToolbarItem Text="Add Ingredient" Clicked="AddIngredient" Priority="0"/>
+
+        <ToolbarItem x:Name="undoButton" Text="" Clicked="undoButtonClicked" Priority="0"/>
+
     </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>

@@ -37,10 +37,8 @@ namespace NuMo_Tabbed.Views
         public CreateFoodPage()
         {
             InitializeComponent();
-
             foreach (var item in inputValues)
             {
-
                 var entryCell = new EntryCell()
                 {
                     Label = item,
@@ -126,10 +124,42 @@ namespace NuMo_Tabbed.Views
                     gramsAmount.Text = "";
                     CreateItemName.Text = "";
 
+                    // Update the undo button
+                    ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+                    undoButton.Text = "Undo";
+
                     //alert user it was saved
                     await DisplayAlert("Item Saved", "", "OK");
                 }
             }
+        }
+
+        async void undoButtonClicked(object sender, EventArgs args)
+        {
+            String action = await DisplayActionSheet("Do you want to remove\nthe last food added?", "Cancel", "Undo", "");
+
+            if (action.Equals("Undo"))
+            {
+                // Get Memento from Caretaker
+                Caretaker ct = Caretaker.getCaretaker();
+                Memento m = ct.getMemento();
+                bool success = m.getLastState();
+
+                if (success)
+                {
+                    // Remove undo button
+                    ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+                    undoButton.Text = "";
+
+                    await DisplayAlert("Undo Complete", "", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Rollback unsuccessful :(", "", "OK");
+                }
+
+            }
+
         }
     }
 }

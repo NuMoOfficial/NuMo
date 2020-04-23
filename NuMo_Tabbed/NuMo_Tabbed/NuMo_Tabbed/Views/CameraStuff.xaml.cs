@@ -26,11 +26,12 @@ namespace NuMo_Tabbed.Views
 
         public CameraStuff()
         {
-        //    new CameraStuff(DateTime.Today);
-        //}
-        //
-        //public CameraStuff(DateTime dateS)
-        //{
+            //    new CameraStuff(DateTime.Today);
+            //}
+            //
+            //public CameraStuff(DateTime dateS)
+            //{
+
             // Initialize the toolbar with save button, date, and title
             this.date = DateTime.Today;
             ToolbarItem refresh = new ToolbarItem();
@@ -108,7 +109,7 @@ namespace NuMo_Tabbed.Views
             }
             else
             {
-                db.deletePicture(date.ToString("MM/dd/yyyy"), picNum);
+                bool success = db.deletePicture(date.ToString("MM/dd/yyyy"), picNum);
                 pPath = "";
                 switch (picNum)
                 {
@@ -195,7 +196,8 @@ namespace NuMo_Tabbed.Views
                 //make sure file still exists (incase user deletes album)
                 if (!File.Exists(dbPicPath))
                 {
-                    db.deletePicture(formattedDate, i + "");
+                    // Don't want to save memento because the file already doesn't exist
+                    bool success = db.deletePicture(formattedDate, i + "", saveMemento: false);
                     dbPicPath = "";
                 }
                 switch (i)
@@ -228,6 +230,19 @@ namespace NuMo_Tabbed.Views
                 }
             }
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Remember to commit database. User can no longer use Memento Pattern to undo 
+            // previous transaction. By committing the database, database savepoints are
+            // no longer able to rollback the database.
+            DataAccessor db = DataAccessor.getDataAccessor();
+            db.commit();
+        }
+
+
         /*
         //make sure permissions are on (NOT IN USE ATM)
         public async void getPermissions()

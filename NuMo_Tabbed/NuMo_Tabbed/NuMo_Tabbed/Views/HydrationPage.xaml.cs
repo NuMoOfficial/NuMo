@@ -82,6 +82,7 @@ namespace NuMo_Tabbed.Views
             this.OnAppearing();
         }
         //sets a new hydration image depending on the number of drinks
+        
         private void SetNewWaterImage()
         {
             String key = date.ToString("MM/dd/yyyy");

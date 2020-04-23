@@ -66,6 +66,10 @@ namespace NuMo_Tabbed.Views
                 quantity.Text = "";
                 quantifier.Text = "";
 
+                // Update the undo button
+                ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+                undoButton.Text = "Undo";
+
                 await DisplayAlert("Recipe Saved", "", "OK");
             }
         }
@@ -92,6 +96,36 @@ namespace NuMo_Tabbed.Views
             }
             ingredientList.ItemsSource = foodItems;
             ingredientList.EndRefresh();
+        }
+
+        async void undoButtonClicked(object sender, EventArgs args)
+        {
+            String action = await DisplayActionSheet("Do you want to remove\nthe last recipe added?", "Cancel", "Undo", "");
+
+            if (action.Equals("Undo"))
+            {
+                // Get Memento from Caretaker
+                Caretaker ct = Caretaker.getCaretaker();
+                Memento m = ct.getMemento();
+                await DisplayAlert("Got Memento from Caretaker", "", "OK");
+                bool success = m.getLastState();
+
+                if (success)
+                {
+                    await DisplayAlert("Rollback Successful! Yay!", "", "OK");
+                    // Remove undo button
+                    ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
+                    undoButton.Text = "";
+
+                    await DisplayAlert("Undo Complete", "", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Rollback unsuccessful :(", "", "OK");
+                }
+
+            }
+
         }
     }
 }
