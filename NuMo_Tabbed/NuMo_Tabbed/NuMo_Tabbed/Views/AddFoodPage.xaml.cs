@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Threading;
 
 namespace NuMo_Tabbed.Views
 {
@@ -29,6 +30,7 @@ namespace NuMo_Tabbed.Views
             {
                 Placeholder = "Search item",
             };
+
 
             //Get search results for every key entry into the search bar and display them
             searchbar.TextChanged += (sender, e) =>
@@ -90,6 +92,7 @@ namespace NuMo_Tabbed.Views
                     FoodHistoryItem item = new FoodHistoryItem();
                     //need to add date, quantity, quantifiers, and food_no to this item
                     item.food_no = selectedResult.food_no;
+                    this.date = DateTime.Today;
                     item.Date = date.ToString();
                     item.Quantity = Convert.ToDouble(nutrQuantity);
                     item.Quantifier = nutrQuantifier;
