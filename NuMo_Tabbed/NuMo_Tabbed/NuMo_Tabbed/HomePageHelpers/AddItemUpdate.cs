@@ -44,7 +44,7 @@ namespace NuMo_Tabbed
 
         }
 
-        async public void saveButtonClicked(object sender, EventArgs e)
+        async public override void saveButtonClicked(object sender, EventArgs e)
         {
             var nutrQuantifier = nutrFacts.getQuantifier();
             var nutrQuantity = nutrFacts.Quantity;
