@@ -48,10 +48,10 @@ namespace NuMo_Tabbed.Views
         
         string ocr = string.Empty;
 
-        private string subscriptionKey = "07440da4c92f43518c5851ca0bfd9983";
+        private string subscriptionKey = "72aad0055c8847ddb267b74cf1ea293d";
 
         // the Batch Read method endpoint for the OCR
-        private string uriBase = "https://numo-ocr.cognitiveservices.azure.com/vision/v3.0-preview/read/analyze";
+        private string uriBase = "https://westus2.api.cognitive.microsoft.com/vision/v3.0-preview/read/analyze";
 
         Image saveImage = new Image();
         String pPath = "";
