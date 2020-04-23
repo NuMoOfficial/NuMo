@@ -294,7 +294,8 @@ namespace NuMo_Tabbed.Views
         async void openSearch(object sender, EventArgs args)
         {
             //date = datePicker.Date;
-            date = DateTime.Now;
+            //date = DateTime.Now;
+            this.date = DateTime.Today;
             await Navigation.PushAsync(new AddItemToFoodHistory(date, dataToPass));
         }
 

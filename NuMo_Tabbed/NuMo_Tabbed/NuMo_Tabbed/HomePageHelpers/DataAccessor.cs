@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using static NuMo_Tabbed.NumoNameSearch;
+//using RestSharp;
 
 namespace NuMo_Tabbed
 {
@@ -76,6 +77,27 @@ namespace NuMo_Tabbed
             return resultList;
         }
 
+        //// This method works to query the USDA food central database if you uncomment "Using Restsharp" at the top
+        //// The API key you have to get from the USDA website. Where it says DEMO_KEY you will need to replace that with
+        ///  an API key your get from the USDA database. The DEMO_KEY works but limits how many requests you can do
+        //// The response is a string that is formatted like JSON. You can convert it to JSON to get the data you want
+        //async void queryUSDAdb()
+        //{
+
+        //    var client = new RestClient("https://api.nal.usda.gov/fdc/v1/foods/search");
+        //    client.Timeout = -1;
+        //    var request = new RestRequest(Method.GET);
+        //    request.AddQueryParameter("api_key", "DEMO_KEY");
+        //    // The query is the name of the food you are trying to find nutrients for
+        //    // This returns an fdc_id number that can be used to uniquely identify it in the database
+        //    request.AddQueryParameter("query", "Cheddar%20Cheese");
+
+        //    IRestResponse response = await client.ExecuteAsync(request);
+        //    // Prints the reponse to the Output console window so you can see what is being returned
+        //    Console.WriteLine("Incoming response");
+        //    Console.WriteLine(response.Content);
+        //}
+
         //Retrieve custom quantifiers from database and add to searchItem
         public void addCustomQuantifiers(NumoNameSearch item)
         {
@@ -115,7 +137,7 @@ namespace NuMo_Tabbed
             string data_num = food_no.ToString();
             if (data_num.Length == 4)
                 data_num = "0" + data_num;
-            var foodInfo = dbConn.Query<ConvertItem>(String.Format("SELECT Carbohydrt_(g) as carbs, Sugar_Tot_(g) as sugarTotal FROM ABBREV WHERE NDB_No = '{0}'", data_num));
+            var foodInfo = dbConn.Query<ConvertItem>(String.Format("SELECT Carbohydrt as carbs, Sugar_Tot as sugarTotal FROM ABBREV WHERE NDB_No = '{0}'", data_num));
             return foodInfo;
         }
 
