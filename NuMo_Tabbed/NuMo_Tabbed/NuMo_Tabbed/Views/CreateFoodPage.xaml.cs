@@ -4,15 +4,11 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-
 namespace NuMo_Tabbed.Views
 {
-    [Xamarin.Forms.TypeConverter(typeof(Xamarin.Forms.VisualElement.VisibilityConverter))]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateFoodPage : ContentPage
     {
-    // public bool IsVisible { get; set; }
-
         //index in inputValues corresponds to value at that index in mappings[]
         public static string[] inputValues = {
             "Protein(g)", "Carbs By Diff(g)", "Total Sugars(g)",
@@ -141,7 +137,7 @@ namespace NuMo_Tabbed.Views
         async void undoButtonClicked(object sender, EventArgs args)
         {
             String action = await DisplayActionSheet("Do you want to remove\nthe last food added?", "Cancel", "Undo", "");
-            
+
             if (action.Equals("Undo"))
             {
                 // Get Memento from Caretaker
@@ -149,7 +145,8 @@ namespace NuMo_Tabbed.Views
                 Memento m = ct.getMemento();
                 bool success = m.getLastState();
 
-                if (success) {
+                if (success)
+                {
                     // Remove undo button
                     ToolbarItem undoButton = this.FindByName<ToolbarItem>("undoButton");
                     undoButton.Text = "";

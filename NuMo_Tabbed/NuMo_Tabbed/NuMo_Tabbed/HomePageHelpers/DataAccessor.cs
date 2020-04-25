@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using static NuMo_Tabbed.NumoNameSearch;
+//using RestSharp;
 
 namespace NuMo_Tabbed
 {
@@ -76,8 +77,9 @@ namespace NuMo_Tabbed
             return resultList;
         }
 
-        //// This method works to query the USDA food central database if you add "Using Restsharp" and download the restsharp nuget package
-        //// The API key you have to get from the USDA website. This is one we got but you may need a new one
+        //// This method works to query the USDA food central database if you uncomment "Using Restsharp" at the top
+        //// The API key you have to get from the USDA website. Where it says DEMO_KEY you will need to replace that with
+        ///  an API key your get from the USDA database. The DEMO_KEY works but limits how many requests you can do
         //// The response is a string that is formatted like JSON. You can convert it to JSON to get the data you want
         //async void queryUSDAdb()
         //{
@@ -85,7 +87,7 @@ namespace NuMo_Tabbed
         //    var client = new RestClient("https://api.nal.usda.gov/fdc/v1/foods/search");
         //    client.Timeout = -1;
         //    var request = new RestRequest(Method.GET);
-        //    request.AddQueryParameter("api_key", "3RDFeHFY6uRhql23DDargkAdc5MqpHhZEiV5F8t7");
+        //    request.AddQueryParameter("api_key", "DEMO_KEY");
         //    // The query is the name of the food you are trying to find nutrients for
         //    // This returns an fdc_id number that can be used to uniquely identify it in the database
         //    request.AddQueryParameter("query", "Cheddar%20Cheese");
@@ -94,8 +96,6 @@ namespace NuMo_Tabbed
         //    // Prints the reponse to the Output console window so you can see what is being returned
         //    Console.WriteLine("Incoming response");
         //    Console.WriteLine(response.Content);
-
-
         //}
 
         //Retrieve custom quantifiers from database and add to searchItem
@@ -137,7 +137,7 @@ namespace NuMo_Tabbed
             string data_num = food_no.ToString();
             if (data_num.Length == 4)
                 data_num = "0" + data_num;
-            var foodInfo = dbConn.Query<ConvertItem>(String.Format("SELECT Carbohydrt_(g) as carbs, Sugar_Tot_(g) as sugarTotal FROM ABBREV WHERE NDB_No = '{0}'", data_num));
+            var foodInfo = dbConn.Query<ConvertItem>(String.Format("SELECT Carbohydrt as carbs, Sugar_Tot as sugarTotal FROM ABBREV WHERE NDB_No = '{0}'", data_num));
             return foodInfo;
         }
 
@@ -188,7 +188,6 @@ namespace NuMo_Tabbed
             //dbConn.Query<MyDayReminderItem>(String.Format("Delete from SETTINGS")); //use this to delete profile keep return ""; also
             //dbConn.Query<MyDayReminderItem>(String.Format("Delete from DRI_VALUES")); //use this to delete DRI_Values keep return ""; also
             //return "";
-
 
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Setting_Val as imageString from SETTINGS WHERE Setting_Name = '{0}'", settingName));
             if (values.Any())
@@ -249,7 +248,6 @@ namespace NuMo_Tabbed
         // Memento not needed for adding a reminder picture
         public void insertReminder(MyDayReminderItem item)
         {
-
             if (item.imageString == null)
             {
                 StreamImageSource streamImageSource = (StreamImageSource)item.ReminderImage.Source;
@@ -374,6 +372,7 @@ namespace NuMo_Tabbed
         //Delete an entry in the foodHistory table
         public bool deleteFoodHistoryItem(int id, bool saveMemento = true)
         {
+
             int rowsModified = 0;
             if (id >= 0)
             {
@@ -384,6 +383,7 @@ namespace NuMo_Tabbed
                 }
                 rowsModified = dbConn.Execute(String.Format("DELETE FROM FoodHistory WHERE History_Id={0}", id));
             }
+
             if (rowsModified > 0)
             {
                 return true;
@@ -461,13 +461,13 @@ namespace NuMo_Tabbed
             return returnString;
         }
 
-        //save Keto log
+        //save keto log
         public void saveKeto(DateTime KetoDate, double KetoVal, bool saveMemento = true)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Keto_Date from KETO_VALUES WHERE Keto_Date = '{0}'", KetoDate));
-
-            // Create memento just in case user wants to undo insertion or update
-            if (saveMemento) {
+            
+            if (saveMemento)
+            {
                 createMemento();
             }
 
@@ -510,7 +510,7 @@ namespace NuMo_Tabbed
         public void saveHydralog(String HydraName, String HYDRValue)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Hydr_Name from HYDR_VALUES WHERE Hydr_Name = '{0}'", HydraName));
-
+            
             if (values.Any())
             {
                 dbConn.Execute(String.Format("UPDATE HYDR_VALUES set HYDR_Val = '{0}' WHERE Hydr_Name = '{1}'", HYDRValue, HydraName));
@@ -554,7 +554,7 @@ namespace NuMo_Tabbed
                 dbConn.Execute(String.Format("INSERT INTO PIC_VALUES (Pic_Name, Pic_Val, Pic_Num) VALUES ('{0}', '{1}','{2}')", picDate, picPath, picNum));
             }
         }
-
+        
         //get the urls for stored pictures by date and number
         public string getPicReminder(String picDate, String picNum)
         {
@@ -574,13 +574,13 @@ namespace NuMo_Tabbed
                 return "";
         }
 
-        // Delete an entry in the picture table
-
+        //Delete an entry in the picture table
         public bool deletePicture(String picDate, String picNum, bool saveMemento = true)
         {
             var values = dbConn.Query<MyDayReminderItem>(String.Format("SELECT Pic_Name from PIC_VALUES WHERE Pic_Name = '{0}' AND Pic_Num = '{1}'", picDate, picNum));
             if (values.Any())
             {
+
                 if (saveMemento)
                 {
                     createMemento();
@@ -632,7 +632,7 @@ namespace NuMo_Tabbed
             {
                 dbConn.RollbackTo(savepoint);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 success = false;
             }

@@ -22,7 +22,8 @@ namespace NuMo_Tabbed.Views
             InitializeComponent();
             //not all of the settings are currently being used for calculations
 
-            DataAccessor db = DataAccessor.getDataAccessor();
+            //load the saved settings
+            var db = DataAccessor.getDataAccessor();
 
             //name
             this.FindByName<EntryCell>("settings_name").Text = db.getSettingsItem("name");
@@ -529,7 +530,6 @@ namespace NuMo_Tabbed.Views
             {
                 await DisplayAlert("Error", needed, "OK");
             }
-
 
         }
 

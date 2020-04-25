@@ -127,7 +127,7 @@ namespace NuMo_Tabbed.Views
                 // Get Memento from Caretaker
                 Caretaker ct = Caretaker.getCaretaker();
                 Memento m = ct.getMemento();
-
+                
                 bool success = m.getLastState();
 
                 if (success)
@@ -141,9 +141,8 @@ namespace NuMo_Tabbed.Views
                 {
                     await DisplayAlert("Rollback unsuccessful :(", "", "OK");
                 }
-
             }
-
+            
         }
     }
 }

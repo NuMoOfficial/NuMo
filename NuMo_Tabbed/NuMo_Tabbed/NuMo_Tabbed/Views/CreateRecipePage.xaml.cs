@@ -97,7 +97,7 @@ namespace NuMo_Tabbed.Views
             ingredientList.ItemsSource = foodItems;
             ingredientList.EndRefresh();
         }
- 
+
         async void undoButtonClicked(object sender, EventArgs args)
         {
             String action = await DisplayActionSheet("Do you want to remove\nthe last recipe added?", "Cancel", "Undo", "");
@@ -125,7 +125,5 @@ namespace NuMo_Tabbed.Views
             }
 
         }
-
-
     }
 }

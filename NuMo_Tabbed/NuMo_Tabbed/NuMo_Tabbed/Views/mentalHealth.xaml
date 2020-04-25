@@ -3,122 +3,120 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:Controls="clr-namespace:NuMo_Tabbed.Views"
              mc:Ignorable="d"
-             x:Class="NuMo_Tabbed.Views.mentalHealth"
-             Title="Nutrients and Mental Health">
+             x:Class="NuMo_Tabbed.Views.MentalHealth">
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout>
-            <Label Text="Omega-3 fatty acids: Omega-3 supplements have been shown to decrease symptoms in ADHD, Autism and psychosis. Omega-3 fatty acids are important for the brain as they are a large part of the composition of the brain and help with brain cell signaling and modify receptor properties."
+            <StackLayout>
+                <Label Text="Omega-3 fatty acids: Omega-3 supplements have been shown to decrease symptoms in ADHD, Autism and psychosis. Omega-3 fatty acids are important for the brain as they are a large part of the composition of the brain and help with brain cell signaling and modify receptor properties."
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
-            <Label VerticalOptions="Start" 
+                <Label VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="The role of omega-3 fatty acids in psychotherapy"
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="The role of omega-3 fatty acids in psychotherapy"
                   TextColor="Blue"
                   TextDecorations="Underline">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
                                           CommandParameter="https://numoofficial.github.io/PDF/2017%20The%20role%20of%20omega-3%20fatty%20acids%20in%20psychotherapy.pdf" />
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Text="Omega 6 fatty acids: A higher ratio of Omega 6 fatty acids can lead to an increased likelihood of suicide risk and major depressive episodes."
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Omega 6 fatty acids: A higher ratio of Omega 6 fatty acids can lead to an increased likelihood of suicide risk and major depressive episodes."
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
-            <Label VerticalOptions="Start" 
+                <Label VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Omega-6 fatty acids and greater likelihood of suicide risk and major depression in early pregnancy"
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Omega-6 fatty acids and greater likelihood of suicide risk and major depression in early pregnancy"
                   TextColor="Blue"
                   TextDecorations="Underline">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
                                           CommandParameter="https://numoofficial.github.io/PDF/2013%20Vaz%20Omega%206%20fatty%20acids%20and%20greater%20likelihood%20of%20suicide%20risk%20and%20major%20depression%20in%20early%20pregnancy%202013.pdf" />
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Text="B vitamins: There is moderate evidence that B-Vitamins, including B-6, B-12 and folic acid, can reduce stress and improve mood."
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="B vitamins: There is moderate evidence that B-Vitamins, including B-6, B-12 and folic acid, can reduce stress and improve mood."
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
-            <Label VerticalOptions="Start" 
+                <Label VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="A systematic review and meta-analysis of B Vitamins"
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="A systematic review and meta-analysis of B Vitamins"
                   TextColor="Blue"
                   TextDecorations="Underline">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
                                           CommandParameter="https://numoofficial.github.io/PDF/2019%20A%20Systematic%20Review%20and%20Meta-Analysis%20of%20B%20Vitamin.pdf" />
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Text=" Zinc: Chronic Zinc deficiency can lead to chronic overproduction of Cortisol. Cortisol is a hormone produced in stressful situations and over production of Cortisol can aggravate mental conditions. Research into Zinc supplements have shown them to reduce anxiety."
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text=" Zinc: Chronic Zinc deficiency can lead to chronic overproduction of Cortisol. Cortisol is a hormone produced in stressful situations and over production of Cortisol can aggravate mental conditions. Research into Zinc supplements have shown them to reduce anxiety."
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
-            <Label VerticalOptions="Start" 
+                <Label VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Multiple Micronutrient Supplementation Reduces Anemia and Anxiety in Rural China's Elementary School Children"
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Multiple Micronutrient Supplementation Reduces Anemia and Anxiety in Rural China's Elementary School Children"
                   TextColor="Blue"
                   TextDecorations="Underline">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
                                           CommandParameter="https://numoofficial.github.io/PDF/2013%20Zhang%20zinc%20supplementation%20reducing%20anxiety%20in%20Chinese%20children.pdf" />
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Text=" Magnesium: Magnesium deficient diets have shown an increase in depression symptoms. Magnesium also acts as an anti-inflammatory agent. Inflammation can lead to health conditions like metabolic syndrome or heart disease which increase the likelihood of depression."
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text=" Magnesium: Magnesium deficient diets have shown an increase in depression symptoms. Magnesium also acts as an anti-inflammatory agent. Inflammation can lead to health conditions like metabolic syndrome or heart disease which increase the likelihood of depression."
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
-            <Label VerticalOptions="Start" 
+                <Label VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Jacka nutrient intakes and the common mental disorders in women"
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Jacka nutrient intakes and the common mental disorders in women"
                   TextColor="Blue"
                   TextDecorations="Underline">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
                                           CommandParameter="https://numoofficial.github.io/PDF/2012%20Jacka%20nutrient%20intakes%20and%20the%20common%20mental%20disorders%20in%20women%202012.pdf" />
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Text="Click the link below for more articles on how nutrition relates to mental health"
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Click the link below for more articles on how nutrition relates to mental health"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="20,10,10,0"/>
-            <Label VerticalOptions="Start" 
+                <Label VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="20,10,0,20">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Nutritional Montitoring and Mental Health"
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Nutritional Montitoring and Mental Health"
                   TextColor="Blue"
                   TextDecorations="Underline">
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
                                           CommandParameter="https://numoofficial.github.io/ " />
-                            </Span.GestureRecognizers>
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-        </StackLayout>
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

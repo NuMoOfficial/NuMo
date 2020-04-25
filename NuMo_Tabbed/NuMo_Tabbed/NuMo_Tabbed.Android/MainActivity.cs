@@ -20,7 +20,7 @@ namespace NuMo_Tabbed.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init(); //needed for OxyPlot
 
-            Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+
             LoadApplication(new App());
         }
     }

@@ -10,13 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-
     <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-
-    <PackageReference Include="EWSoftware.SHFB.NETFramework" Version="4.8.0" />
-
     <PackageReference Include="OxyPlot.Xamarin.Forms" Version="1.0.0" />
+    <PackageReference Include="RestSharp" Version="106.10.1" />
     <PackageReference Include="SkiaSharp" Version="1.68.1.1" />
     <PackageReference Include="SkiaSharp.Views" Version="1.68.1.1" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.1.1" />
@@ -26,19 +23,15 @@
 
 
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3" />  
     <PackageReference Include="XLabs.Forms" Version="2.0.5782" />  
     <PackageReference Include="XLabs.IoC.TinyIoC" Version="2.0.5782" />
 
   </ItemGroup>
 
   <ItemGroup>
-
     <Compile Update="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\mentalHealth.xaml.cs">
-      <DependentUpon>mentalHealth.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\NutrientVisual.xaml.cs">
       <DependentUpon>NutrientVisual.xaml</DependentUpon>
@@ -73,7 +66,7 @@
     <EmbeddedResource Update="Views\KetoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\mentalHealth.xaml">
+    <EmbeddedResource Update="Views\MentalHealth.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NutrFacts.xaml">
@@ -82,8 +75,16 @@
     <EmbeddedResource Update="Views\NutrientVisual.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-
     <EmbeddedResource Update="Views\OCRview.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SelectVisualizePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\VisualizePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -14,9 +14,6 @@ namespace NuMo_Tabbed
     {
         MyDayFoodItem myDayItem;
         NumoNameSearch search;
-        // Make a new nutrFacts instance variable so that when we navigate, we come here
-        // and not to AddFoodPage since AddItemUpdate is an AddFoodPage.
-        public NutrFacts nutFacts;
 
         public AddItemUpdate(MyDayFoodItem item)
         {
@@ -34,7 +31,7 @@ namespace NuMo_Tabbed
             search.name = foodHistoryItem.DisplayName;
 
             //create new instance to display food info
-            nutFacts = new NutrFacts(this, search)
+            nutrFacts = new NutrFacts(this, search)
             {
                 //update the values being displayed
                 DescriptView = foodHistoryItem.DisplayName,
@@ -42,15 +39,15 @@ namespace NuMo_Tabbed
                 UnitPickerText = foodHistoryItem.Quantifier,
                 selectedResult = search
             };
-            nutFacts.updateUnitPickerWithCustomOptions();
+            nutrFacts.updateUnitPickerWithCustomOptions();
 
 
         }
 
-        async public void SaveButtonClicked(object sender, EventArgs e)
+        async public override void saveButtonClicked(object sender, EventArgs e)
         {
-            var nutrQuantifier = nutFacts.getQuantifier();
-            var nutrQuantity = nutFacts.Quantity;
+            var nutrQuantifier = nutrFacts.getQuantifier();
+            var nutrQuantity = nutrFacts.Quantity;
 
             if (search != null && nutrQuantity != null && !nutrQuantity.Equals("0") && nutrQuantifier != null)
             {
@@ -61,10 +58,10 @@ namespace NuMo_Tabbed
                 item.food_no = search.food_no;
                 item.Quantity = Convert.ToDouble(nutrQuantity);
                 item.Quantifier = nutrQuantifier;
+
                 item.History_Id = myDayItem.id;
 
                 //Add to our database
-                //bool success = db.updateFoodHistory(item, myDayItem.id, saveMemento: false);
                 bool success = db.updateFoodHistory(item, saveMemento: false);
                 if (success)
                 {
@@ -76,6 +73,6 @@ namespace NuMo_Tabbed
                 }
             }
             MyDayFoodItem.sendRefresh();
-        } 
+        }
     }
 }

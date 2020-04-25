@@ -14,7 +14,7 @@ namespace NuMo_Tabbed.Views
 	{
 		public SelectVisualizePage ()
 		{
-            InitializeComponent ();
+			InitializeComponent ();
 		}
 
         async void AddVisualize(object sender, EventArgs args)

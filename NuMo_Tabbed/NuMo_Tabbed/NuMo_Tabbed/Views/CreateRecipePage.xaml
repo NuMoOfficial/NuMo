@@ -16,7 +16,6 @@
 
         <ToolbarItem x:Name="undoButton" Text="" Clicked="undoButtonClicked" Priority="0"/>
 
-
     </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>

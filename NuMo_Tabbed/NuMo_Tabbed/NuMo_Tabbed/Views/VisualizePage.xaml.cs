@@ -41,7 +41,7 @@ namespace NuMo_Tabbed.Views
 
         public VisualizePage()
         {
-           
+
             InitializeComponent();
 
             date = datePicker.Date;
@@ -68,7 +68,7 @@ namespace NuMo_Tabbed.Views
             // initalize DRI and readable names
             nutNames = db.GetNutNames();
             nutDRINames = db.GetDRINames();
-            
+
             //goes through each DRI name and finds the value based on that name
             foreach (var DRIname in nutDRINames)
             {
@@ -119,7 +119,7 @@ namespace NuMo_Tabbed.Views
             SugarCounter.Text = "Consumed " + sugarConsumed.ToString("F0") + "g out of your recomended " + sugarDRI.ToString() + "g " + nutNames.ElementAt(3);
 
             // Omega text set
-            var omegaConsumed = nutConsumed.ElementAt(nutConsumed.Count-1);
+            var omegaConsumed = nutConsumed.ElementAt(nutConsumed.Count - 1);
             OmegaCounter.Text = "Your ratio is " + omegaConsumed.ToString("F1") + ", it is recommended to be at or below 3";
         }
 
@@ -168,7 +168,8 @@ namespace NuMo_Tabbed.Views
             {
                 await DisplayAlert("Health Info", "Please add a meal for health analysis", "OK");
             }
-            if (omegaConsumed > 3.0) {
+            if (omegaConsumed > 3.0)
+            {
                 var selection = await DisplayAlert("Health Info", "We noticed your omega 6 to 3 ratio is higher than recommended. Would you like to view a helpful article?", "Yes", "No");
 
                 if (selection)
@@ -512,7 +513,7 @@ namespace NuMo_Tabbed.Views
         }
         async void openMentalHealth(object sender, EventArgs args)
         {
-            await Navigation.PushAsync(new mentalHealth());
+            await Navigation.PushAsync(new MentalHealth());
         }
 
         private SKPath CalculateArrowPath(double height, double width)
@@ -525,7 +526,7 @@ namespace NuMo_Tabbed.Views
             float centerY = (float)(height / 2);
 
             // omega 6 to 3 ration from nutrients consumed
-            double ratioO63 = nutConsumed.ElementAt(nutConsumed.Count-1);
+            double ratioO63 = nutConsumed.ElementAt(nutConsumed.Count - 1);
 
             double tipX = 0;
             // calculation for where the tip point of the arrow should be

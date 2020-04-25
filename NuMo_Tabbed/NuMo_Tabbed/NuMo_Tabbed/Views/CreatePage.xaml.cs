@@ -14,7 +14,7 @@ namespace NuMo_Tabbed.Views
 	{
 		public CreatePage ()
 		{
-            InitializeComponent ();
+			InitializeComponent ();
 		}
 
         async void AddCreateFood(object sender, EventArgs args)
@@ -37,5 +37,6 @@ namespace NuMo_Tabbed.Views
             DataAccessor db = DataAccessor.getDataAccessor();
             db.commit();
         }
+
     }
 }

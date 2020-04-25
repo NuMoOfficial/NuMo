@@ -4,21 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace NuMo_Tabbed.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class mentalHealth : ContentPage
+    public partial class MentalHealth : ContentPage
     {
-        public ICommand TapCommand => new Command<string>(async (url) => await Launcher.OpenAsync(url));
-        public mentalHealth()
+        public MentalHealth()
         {
             InitializeComponent();
             BindingContext = this;
         }
+
         public ICommand ClickCommand => new Command<string>(async (url) =>
         {
             if (await Xamarin.Essentials.Launcher.CanOpenAsync(url))
