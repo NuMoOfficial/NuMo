@@ -174,7 +174,7 @@ namespace NuMo_Tabbed.Views
 
                 if (selection)
                 {
-                    await Browser.OpenAsync("https://numoofficial.github.io/PDF/2007%20Sinn%20PUFA%20supplementation%20effective%20at%20reducing%20ADHD%202015.pdf", BrowserLaunchMode.SystemPreferred);
+                    await Browser.OpenAsync("http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.935.5879&rep=rep1&type=pdf", BrowserLaunchMode.SystemPreferred);
                 }
 
             }
@@ -184,7 +184,7 @@ namespace NuMo_Tabbed.Views
 
                 if (selection)
                 {
-                    await Browser.OpenAsync("https://numoofficial.github.io/PDF/2015%20Lang%20Nutritional%20Aspects%20of%20Depression.pdf", BrowserLaunchMode.SystemPreferred);
+                    await Browser.OpenAsync("https://www.karger.com/Article/FullText/430229", BrowserLaunchMode.SystemPreferred);
                 }
 
             }
