@@ -24,11 +24,21 @@ Ability to add/edit/remove items in a recipe that has already been user created
 
 Ability to edit/remove foods that have already been user created
 
-I was able to crash the add recipe page by entering -0 into the quantity field. I was also able to successfully enter a negative number into the quantity field. 
+I was able to crash the add recipe page by entering -0 into the quantity field. I was also able to successfully enter a negative number into the quantity field. This could likely be fixed by allowing for fractions of ingredients when creating a recipe and allowing for fractions of a unit of nutrients when creating a food. Make almost all quantities to be positive floats (or doubles).
 
 Scan grocery store receipts and link to database (keep seperate from daily food intake). Output nutrients as a visual to see gross amount of macro/micro nutrients? Ask Ed and Holly about this one. If they want you to attempt this, you may want to create an informational gross analysis of macro/micronutrients for purchased items. 
 
 Try getting Firebase Crashalytics working for Android. When we tried using it, the app crashed on startup. There is a line commented out in NuMoTabbed.Android/MainActivity.cs //Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
+
+Perhaps find a way to allow users to toggle which units they want to use for their nutrients (g, mg, ug, etc).
+
+Add a scrollbar for the hydration visualization page and for the nutrients visualization page.
+
+Make sure the app works properly with different phone font sizes (often located under settings -> accessibility -> font size on Android)
+
+Add a close app button somewhere (maybe on the profile page)
+
+Fix the app permissions. Right now when users want to use the camera, they have to manually go into their phone settings to allow permission. Find out how to ask and enable permissions from within the app.
 
 
 
