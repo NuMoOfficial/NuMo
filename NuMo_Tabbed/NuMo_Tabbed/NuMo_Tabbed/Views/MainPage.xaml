@@ -3,62 +3,76 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:views="clr-namespace:NuMo_Tabbed.Views"
             x:Class="NuMo_Tabbed.Views.MainPage">
-    
-    
+
+
     <TabbedPage.Children>
-        <NavigationPage x:Name="Home" Title="Home">
+        <NavigationPage x:Name="Home" Title="Home" >
+            <x:Arguments>
+                <views:HomePage />
+            </x:Arguments>
+            <NavigationPage.TitleView>
+                <Label Text="Home" FontSize="12" TextColor="White" />
+            </NavigationPage.TitleView>
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
-            <x:Arguments>
-                <views:HomePage />
-            </x:Arguments>
         </NavigationPage>
-        
+
         <NavigationPage x:Name="Create" Title="Create">
+            <x:Arguments>
+                <views:CreatePage />
+            </x:Arguments>
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="Plus_Tab.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
-            <x:Arguments>
-                <views:CreatePage />
-            </x:Arguments>
         </NavigationPage>
 
         <NavigationPage x:Name="Camera" Title="Camera">
+            <x:Arguments>
+                <views:CameraStuff />
+            </x:Arguments>
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="camera.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
-            <x:Arguments>
-                <views:CameraStuff />
-            </x:Arguments>
         </NavigationPage>
 
         <NavigationPage x:Name="Visuals" Title="Visuals">
+            <x:Arguments>
+                <views:SelectVisualizePage />
+            </x:Arguments>
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_about.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
-            <x:Arguments>
-                <views:SelectVisualizePage />
-            </x:Arguments>
         </NavigationPage>
 
         <NavigationPage x:Name="Profile" Title="Profile">
+            <x:Arguments>
+                <views:UserProfilePage />
+            </x:Arguments>
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="profile.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
+        </NavigationPage>
+
+        <NavigationPage x:Name="Resources" Title="Resources">
             <x:Arguments>
-                <views:UserProfilePage />
+                <views:NutrientResources />
             </x:Arguments>
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="tab_feed.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
         </NavigationPage>
     </TabbedPage.Children>
 </TabbedPage>
