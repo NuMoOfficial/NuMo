@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NuMo_Tabbed.Views.NutrientResources">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Label Text="HEALTHY DIETS AND SCIENCE"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="HEALTHY DIETS AND SCIENCE"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand2}"
+                                          CommandParameter="http://healthydietsandscience.blogspot.com/" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Self Nutrition Data: Know what you eat"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Self Nutrition Data: Know what you eat"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand2}"
+                                          CommandParameter="https://nutritiondata.self.com/" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Resource Name"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Resource name or intro. These are the hyperlink words"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand2}"
+                                          CommandParameter="This is where the url goes" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

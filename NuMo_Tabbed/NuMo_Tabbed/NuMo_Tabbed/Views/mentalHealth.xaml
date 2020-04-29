@@ -8,25 +8,25 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Label Text="Omega-3 fatty acids: Omega-3 supplements have been shown to decrease symptoms in ADHD, Autism and psychosis. Omega-3 fatty acids are important for the brain as they are a large part of the composition of the brain and help with brain cell signaling and modify receptor properties."
+                <Label Text="Synopsis of 'The Role of Omega-3 Fatty Acids in Developmental Psychopathology: A Systematic Review on Early Psychosis, Autism, and ADHD'"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
                 <Label VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="The role of omega-3 fatty acids in psychotherapy"
+                            <Span Text="The Role of Omega-3 Fatty Acids in Developmental Psychopathology"
                   TextColor="Blue"
                   TextDecorations="Underline">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
-                                          CommandParameter="https://numoofficial.github.io/PDF/2017%20The%20role%20of%20omega-3%20fatty%20acids%20in%20psychotherapy.pdf" />
+                                          CommandParameter="https://www.mdpi.com/1422-0067/18/12/2608/htm" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label Text="Omega 6 fatty acids: A higher ratio of Omega 6 fatty acids can lead to an increased likelihood of suicide risk and major depressive episodes."
+                <Label Text="Synopsis of 'Omega-6 fatty acids and greater likelihood of suicide risk and major depression in early pregnancy'"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
                 <Label VerticalOptions="Start" 
@@ -38,31 +38,31 @@
                   TextDecorations="Underline">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
-                                          CommandParameter="https://numoofficial.github.io/PDF/2013%20Vaz%20Omega%206%20fatty%20acids%20and%20greater%20likelihood%20of%20suicide%20risk%20and%20major%20depression%20in%20early%20pregnancy%202013.pdf" />
+                                          CommandParameter="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4239694/" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label Text="B vitamins: There is moderate evidence that B-Vitamins, including B-6, B-12 and folic acid, can reduce stress and improve mood."
+                <Label Text="Synopsis of 'A Systematic Review and Meta-Analysis of B Vitamin Supplementation on Depressive Symptoms, Anxiety, and Stress: Effects on Healthy and 'At-Risk' Individuals'"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
                 <Label VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="A systematic review and meta-analysis of B Vitamins"
+                            <Span Text="A Systematic Review and Meta-Analysis of B Vitamin Supplementation on Depressive Symptoms, Anxiety, and Stress: Effects on Healthy and 'At-Risk' Individuals"
                   TextColor="Blue"
                   TextDecorations="Underline">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
-                                          CommandParameter="https://numoofficial.github.io/PDF/2019%20A%20Systematic%20Review%20and%20Meta-Analysis%20of%20B%20Vitamin.pdf" />
+                                          CommandParameter="https://www.mdpi.com/2072-6643/11/9/2232/htm" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label Text=" Zinc: Chronic Zinc deficiency can lead to chronic overproduction of Cortisol. Cortisol is a hormone produced in stressful situations and over production of Cortisol can aggravate mental conditions. Research into Zinc supplements have shown them to reduce anxiety."
+                <Label Text="Synopsis of 'Multiple Micronutrient Supplementation Reduces Anemia and Anxiety in Rural China's Elementary School Children;"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
                 <Label VerticalOptions="Start" 
@@ -74,48 +74,212 @@
                   TextDecorations="Underline">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
-                                          CommandParameter="https://numoofficial.github.io/PDF/2013%20Zhang%20zinc%20supplementation%20reducing%20anxiety%20in%20Chinese%20children.pdf" />
+                                          CommandParameter="https://academic.oup.com/jn/article/143/5/640/4574528" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label Text=" Magnesium: Magnesium deficient diets have shown an increase in depression symptoms. Magnesium also acts as an anti-inflammatory agent. Inflammation can lead to health conditions like metabolic syndrome or heart disease which increase the likelihood of depression."
+                <Label Text="Synopsis of 'Nutrient intakes and the common mental disorders in women'"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
                 <Label VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Jacka nutrient intakes and the common mental disorders in women"
+                            <Span Text="Nutrient intakes and the common mental disorders in women"
                   TextColor="Blue"
                   TextDecorations="Underline">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
-                                          CommandParameter="https://numoofficial.github.io/PDF/2012%20Jacka%20nutrient%20intakes%20and%20the%20common%20mental%20disorders%20in%20women%202012.pdf" />
+                                          CommandParameter="http://www.brainlabsfoundation.nl/wp-content/uploads/Nutrient-intakes-and-the-common-mental-disorders-in-women.pdf" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label Text="Click the link below for more articles on how nutrition relates to mental health"
+                <Label Text="Synopsis of 'Nutritional Aspects of Depression'"
                 VerticalOptions="Start" 
-                HorizontalOptions="Start" Padding="20,10,10,0"/>
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
                 <Label VerticalOptions="Start" 
-                HorizontalOptions="Start" Padding="20,10,0,20">
+                HorizontalOptions="Start" Padding="10,10,10,0">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Nutritional Montitoring and Mental Health"
+                            <Span Text="Nutritional Aspects of Depression"
                   TextColor="Blue"
                   TextDecorations="Underline">
                                 <Span.GestureRecognizers>
                                     <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
-                                          CommandParameter="https://numoofficial.github.io/ " />
+                                          CommandParameter="https://www.karger.com/article/FullText/430229" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <Label Text="Synopsis of 'The Effect of Vitamin-Mineral Supplementation on Juvenile Delinquincy Among American Schoolchildren: A Randomized, Double-Blind Placebo-Controlled Trial'"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="The Effect of Vitamin-Mineral Supplementation on Juvenile Delinquincy Among American Schoolchildren: A Randomized, Double-Blind Placebo-Controlled Trial"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://www.liebertpub.com/doi/abs/10.1089/acm.2000.6.7" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Synopsis of 'Suicide Deaths of Active Duty U.S. Military and Omega-3 Fatty Acid Status: A Case Control Comparison'"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Suicide Deaths of Active Duty U.S. Military and Omega-3 Fatty Acid Status: A Case Control Comparison"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3259251/" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Synopsis of 'Pilot Study: EatFit Impacts Sixth Graders' Academic Performance on Achievement of Mathematics and English Education Standards'"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Pilot Study: EatFit Impacts Sixth Graders' Academic Performance on Achievement of Mathematics and English Education Standards"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://www.sciencedirect.com/science/article/abs/pii/S1499404608006921" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Synopsis of 'Effect of Supplementation with Polyunsaturated Fatty Acids and Micronutrients on Learning and Behavior Problems Associated with Child ADHD'"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Effect of Supplementation with Polyunsaturated Fatty Acids and Micronutrients on Learning and Behavior Problems Associated with Child ADHD"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://www.researchgate.net/publication/6393868_Effect_of_Supplementation_with_Polyunsaturated_Fatty_Acids_and_Micronutrients_on_Learning_and_Behavior_Problems_Associated_with_Child_ADHD" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Synopsis of 'How does a suicide attempter eat differently from others? Comparison of macronutrient intakes'"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="How does a suicide attempter eat differently from others? Comparison of macronutrient intakes"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://www.sciencedirect.com/science/article/abs/pii/S0899900705000985?via%3Dihub" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Synopsis of 'Zinc deficiency among a healthy population in Baghdad, Iraq.'"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Zinc deficiency among a healthy population in Baghdad, Iraq."
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://europepmc.org/article/med/16311665" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Synopsis of 'Reduced violent behavior following biochemical therapy'"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Reduced violent behavior following biochemical therapy"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://www.sciencedirect.com/science/article/abs/pii/S0031938404003105" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="Synopsis of 'Elevated Blood Copper/Zinc Ratios in Assaultive Young Males'"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Elevated Blood Copper/Zinc Ratios in Assaultive Young Males"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://www.sciencedirect.com/science/article/abs/pii/S0031938497889883" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+                <Label Text="Synopsis of resource"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="hyperlink text. Not the URL but just text"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand}"
+                                          CommandParameter="https://numoofficial.github.io/" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
