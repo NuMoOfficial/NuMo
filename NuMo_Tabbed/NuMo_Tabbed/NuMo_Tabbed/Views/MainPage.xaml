@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:views="clr-namespace:NuMo_Tabbed.Views"
             x:Class="NuMo_Tabbed.Views.MainPage">
@@ -10,9 +12,6 @@
             <x:Arguments>
                 <views:HomePage />
             </x:Arguments>
-            <NavigationPage.TitleView>
-                <Label Text="Home" FontSize="12" TextColor="White" />
-            </NavigationPage.TitleView>
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_feed.png"/>
@@ -27,17 +26,6 @@
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="Plus_Tab.png"/>
-                </OnPlatform>
-            </NavigationPage.Icon>
-        </NavigationPage>
-
-        <NavigationPage x:Name="Camera" Title="Camera">
-            <x:Arguments>
-                <views:CameraStuff />
-            </x:Arguments>
-            <NavigationPage.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="iOS" Value="camera.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
         </NavigationPage>
@@ -64,6 +52,17 @@
             </NavigationPage.Icon>
         </NavigationPage>
 
+        <NavigationPage x:Name="Camera" Title="Camera">
+            <x:Arguments>
+                <views:CameraStuff />
+            </x:Arguments>
+            <NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="camera.png"/>
+                </OnPlatform>
+            </NavigationPage.Icon>
+        </NavigationPage>
+
         <NavigationPage x:Name="Resources" Title="Resources">
             <x:Arguments>
                 <views:NutrientResources />
@@ -74,5 +73,6 @@
                 </OnPlatform>
             </NavigationPage.Icon>
         </NavigationPage>
+
     </TabbedPage.Children>
 </TabbedPage>
