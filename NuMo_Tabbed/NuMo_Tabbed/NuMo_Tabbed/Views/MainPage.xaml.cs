@@ -16,7 +16,7 @@ namespace NuMo_Tabbed.Views
             pages.MoveNext();
             pages.MoveNext();
             pages.MoveNext();
-
+            pages.MoveNext();
 
             CurrentPage = pages.Current;
         }

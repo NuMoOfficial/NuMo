@@ -261,7 +261,7 @@
                     </Label.FormattedText>
                 </Label>
                 
-                <Label Text="Synopsis of resource"
+                <!--<Label Text="Synopsis of resource"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
                 <Label VerticalOptions="Start" 
@@ -278,7 +278,7 @@
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
-                </Label>
+                </Label>-->
                 
             </StackLayout>
         </ScrollView>

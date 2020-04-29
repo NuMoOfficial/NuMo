@@ -45,7 +45,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Label Text="Resource Name"
+                <!--<Label Text="Resource Name"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
                 <Label VerticalOptions="Start" 
@@ -62,7 +62,7 @@
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
-                </Label>
+                </Label>-->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
