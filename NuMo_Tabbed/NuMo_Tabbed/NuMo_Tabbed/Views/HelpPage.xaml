@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NuMo_Tabbed.Views.HelpPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="How to fix words trailing off screen: Go to your phones settings > accessibility > display > font size, then change the size to default."
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+            <Label Text="How to fix camera crashing: Go to your phones settings > apps > see all apps > NuMo > permissions, then make sure both the camera and storage permissions are allowed."
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0" />
+            <Label Text="How to create a custom recipe: Go to the create page and select CREATE RECIPE. Then give your recipe a name, serving name, and amount. After this step you should tap ADD INGREDIENT. Here you can search for the different ingredients of your meal. You should keep adding ingredients until your recipe is complete. Once its done tap SAVE. The recipe will now appear when you search for food in the database."
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

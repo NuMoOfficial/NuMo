@@ -25,5 +25,10 @@ namespace NuMo_Tabbed.Views
             else
                 await DisplayAlert("Alert", "The link was unable to open", "OK");
         });
+
+        public ICommand ClickCommand3 => new Command<string>(async (url) =>
+        {
+            await Navigation.PushAsync(new HelpPage());
+        });
     }
 }

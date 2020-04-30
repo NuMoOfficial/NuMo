@@ -47,6 +47,24 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <Label Text="Get help using the app"
+                VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0"/>
+                <Label VerticalOptions="Start" 
+                HorizontalOptions="Start" Padding="10,10,10,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Get help using the app"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding ClickCommand3}"
+                                          CommandParameter="https://nutritiondata.self.com/" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
                 
 

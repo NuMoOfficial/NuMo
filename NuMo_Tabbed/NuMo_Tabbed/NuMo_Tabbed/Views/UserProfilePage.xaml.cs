@@ -201,7 +201,10 @@ namespace NuMo_Tabbed.Views
                 profilePic.Source = myDayReminderItem.ReminderImage.Source;
             }
         }
-
+        async void openHelpPage(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new HelpPage());
+        }
         //private async void PickPhotoButton_OnClicked(object sender, EventArgs e)
         //{
         //    await CrossMedia.Current.Initialize();
