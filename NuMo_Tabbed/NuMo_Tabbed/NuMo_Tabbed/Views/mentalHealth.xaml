@@ -260,6 +260,8 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+
+               
                 
                 <!--<Label Text="Synopsis of resource"
                 VerticalOptions="Start" 
