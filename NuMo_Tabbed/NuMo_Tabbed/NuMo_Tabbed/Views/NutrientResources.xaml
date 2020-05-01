@@ -29,6 +29,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+
                 <Label Text="Self Nutrition Data: Know what you eat"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
@@ -66,7 +67,7 @@
                     </Label.FormattedText>
                 </Label>
 
-                
+
 
                 <!--<Label Text="Resource Name"
                 VerticalOptions="Start" 
