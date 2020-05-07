@@ -13,14 +13,15 @@
                 <Node name="mentalHealth.xaml" selected="True" />
               </Node>
             </Node>
+            <Node name="NuMo_Tabbed.iOS" expanded="True" />
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.NuMo__Tabbed.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.F1F7E3F1-47CC-4747-A4AF-FDCD124BF1F2" />
+  <MonoDevelop.Ide.ItemProperties.NuMo__Tabbed.iOS automaticSigning="False" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.2C0F8A93-A4D0-4E77-AFCD-976EDC3794E4" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhoneSimulator" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
