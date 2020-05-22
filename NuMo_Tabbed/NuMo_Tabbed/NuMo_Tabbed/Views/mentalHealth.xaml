@@ -242,6 +242,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+
                 <Label Text="Synopsis of 'Elevated Blood Copper/Zinc Ratios in Assaultive Young Males'"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
@@ -261,8 +262,13 @@
                     </Label.FormattedText>
                 </Label>
 
+                <!--
+                    To add resources copy and paste the code below without the parts that make it a comment. The parts that make it a comment
+                    are the following: --> <!-- Once you copy and paste the code replace -Synopsis of resource- with the synopsis you want
+                    for your resource,replace - hyperlink text. Not the URL but just text- with whatever you want the hyperlink
+                    to say, replace -https://numoofficial.github.io/- with the actual URL of the new resource
+                -->
 
-                
                 <!--<Label Text="Synopsis of resource"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>

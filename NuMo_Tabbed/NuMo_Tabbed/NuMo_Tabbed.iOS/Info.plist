@@ -21,7 +21,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>12.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>NuMo_Tabbed</string>
 	<key>UILaunchStoryboardName</key>
@@ -36,8 +36,6 @@
 	<string>This app needs photo library access to display your before and after photos</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app needs photo library access to display your before and after photos</string>
-	<key>CFBundleVersion</key>
-	<string>2.8</string>
 	<key>CFBundleIdentifier</key>
 	<string>numoTeam.NuMo</string>
 	<key>NSCalendarsUsageDescription</key>
@@ -46,5 +44,7 @@
 	<string>This app needs access to your location</string>
 	<key>NSLocationUsageDescription</key>
 	<string>This app needs access to your location</string>
+	<key>CFBundleVersion</key>
+	<string>3.0</string>
 </dict>
 </plist>

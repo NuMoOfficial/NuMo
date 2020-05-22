@@ -29,6 +29,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+
                 <Label Text="Self Nutrition Data: Know what you eat"
                 VerticalOptions="Start" 
                 HorizontalOptions="Start" Padding="10,10,10,0"/>
@@ -66,7 +67,12 @@
                     </Label.FormattedText>
                 </Label>
 
-                
+                <!--
+                    To add resources copy and paste the code below without the parts that make it a comment. The parts that make it a comment
+                    are the following: --> <!-- Once you copy and paste the code replace -Resource Name- with the name you want for your resource,
+                    replace - Resource name or intro. These are the hyperlink words- with whatever you want the hyperlink to say, replace
+                    -This is where the url goes- with the actual URL of the resource
+                -->
 
                 <!--<Label Text="Resource Name"
                 VerticalOptions="Start" 
