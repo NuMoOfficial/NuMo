@@ -16,30 +16,36 @@
 
     <StackLayout Orientation="Vertical" >
 
-        <DatePicker x:Name="datePicker" MinimumDate="01/01/1970" Format="dddd, MMMM d" DateSelected="dateClicked"/>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" HorizontalOptions="Center">
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-            <Picker x:Name="timePicker" Title="Choose Display Time Period" SelectedIndexChanged="OnTimeLengthChoiceChanged"/>
-        </StackLayout>
+                <DatePicker x:Name="datePicker" MinimumDate="01/01/1970" Format="dddd, MMMM d" DateSelected="dateClicked"/>
 
-        <Label Text="Omega 6 to 3 Ratio:" HorizontalOptions="StartAndExpand"/>
-        <Label x:Name="OmegaCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
-        <views:SKCanvasView x:Name="OmegaTargetCanvas" PaintSurface="OnVisualizePaintSurfaceOmegas" VerticalOptions="FillAndExpand" 
-                            HorizontalOptions="Fill" />
+                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                    <Picker x:Name="timePicker" Title="Choose Display Time Period" SelectedIndexChanged="OnTimeLengthChoiceChanged"/>
+                </StackLayout>
 
-        <Label Text="Calories:" HorizontalOptions="StartAndExpand"/>
-        <Label x:Name="CaloriesCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
-        <views:SKCanvasView x:Name="CaloriesBarCanvas" PaintSurface="OnVisualizePaintSurfaceCalories" HorizontalOptions="Fill"/>
+                <Label Text="Omega 6 to 3 Ratio:" HorizontalOptions="StartAndExpand"/>
+                <Label x:Name="OmegaCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                <views:SKCanvasView x:Name="OmegaTargetCanvas" PaintSurface="OnVisualizePaintSurfaceOmegas" VerticalOptions="FillAndExpand" 
+                                    HorizontalOptions="Fill" />
 
-        <Label Text="Protein:" HorizontalOptions="StartAndExpand"/>
-        <Label x:Name="ProteinCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
-        <views:SKCanvasView x:Name="ProteinBarCanvas" PaintSurface="OnVisualizePaintSurfaceProtein" HorizontalOptions="Fill"/>
+                <Label Text="Calories:" HorizontalOptions="StartAndExpand"/>
+                <Label x:Name="CaloriesCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                <views:SKCanvasView x:Name="CaloriesBarCanvas" PaintSurface="OnVisualizePaintSurfaceCalories" HorizontalOptions="Fill"/>
 
-        <Label Text="Sugar:" HorizontalOptions="StartAndExpand"/>
-        <Label x:Name="SugarCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
-        <views:SKCanvasView x:Name="SugarBarCanvas" PaintSurface="OnVisualizePaintSurfaceSugar" HorizontalOptions="Fill"/>
+                <Label Text="Protein:" HorizontalOptions="StartAndExpand"/>
+                <Label x:Name="ProteinCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                <views:SKCanvasView x:Name="ProteinBarCanvas" PaintSurface="OnVisualizePaintSurfaceProtein" HorizontalOptions="Fill"/>
 
-        <BoxView Color="White"/>
+                <Label Text="Sugar:" HorizontalOptions="StartAndExpand"/>
+                <Label x:Name="SugarCounter" Text="temp" HorizontalOptions="CenterAndExpand" FontSize="Small"/>
+                <views:SKCanvasView x:Name="SugarBarCanvas" PaintSurface="OnVisualizePaintSurfaceSugar" HorizontalOptions="Fill"/>
+
+                <BoxView Color="White"/>
+
+            </StackLayout>
+        </ScrollView>
 
     </StackLayout>
 

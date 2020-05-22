@@ -6,16 +6,23 @@
         <StackLayout>
             <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
 
-            <StackLayout Orientation="Vertical" HorizontalOptions="Center">
-                <DatePicker x:Name="datePicker" MinimumDate="01/01/1970" Format="ddd, MMMM d" DateSelected="dateClicked"/>
-                <Label x:Name="Drinks" Text="Default" FontSize="Large" HorizontalOptions="Center"/>
-                <Image x:Name="MainImage" HorizontalOptions="Center" HeightRequest="350" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
+            <ScrollView>
 
-                <Button x:Name ="addWater" Text = "Add 8 oz" Margin="0,20,0,0" Clicked="AddWater_OnClicked" />
-                <Button x:Name ="minusWater" Margin="0,20,0,0" Text = "Subtract 8 oz" Clicked="MinusWater_OnClicked"/>
-            </StackLayout>
+                <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                    <DatePicker x:Name="datePicker" MinimumDate="01/01/1970" Format="ddd, MMMM d" DateSelected="dateClicked"/>
+
+                    <StackLayout Orientation="Vertical" HorizontalOptions="Center">
+                        <Label x:Name="Drinks" Text="Default" FontSize="Large" HorizontalOptions="Center"/>
+                        <Image x:Name="MainImage" HorizontalOptions="Center" HeightRequest="350" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
+
+                        <Button x:Name ="addWater" Text = "Add 8 oz" Margin="0,20,0,0" Clicked="AddWater_OnClicked" />
+                        <Button x:Name ="minusWater" Margin="0,20,0,0" Text = "Subtract 8 oz" Clicked="MinusWater_OnClicked"/>
+                    </StackLayout>
+                </StackLayout>
+                
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
